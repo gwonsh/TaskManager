@@ -18,6 +18,7 @@ Ext.define('TaskManager.view.MainView', {
     alias: 'widget.mainview',
 
     requires: [
+        'TaskManager.view.LoginWindow',
         'Ext.button.Button',
         'Ext.toolbar.Spacer',
         'Ext.tab.Panel',
@@ -390,6 +391,11 @@ Ext.define('TaskManager.view.MainView', {
                     ]
                 }
             ]
+        },
+        {
+            xtype: 'loginwindow',
+            region: 'south',
+            hidden: false
         }
     ],
     listeners: {

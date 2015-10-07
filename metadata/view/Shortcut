@@ -23,6 +23,7 @@
         "src": [
             "{piSrc}"
         ],
+        "style": null,
         "width": 128
     },
     "name": "MyContainer33",
@@ -30,7 +31,8 @@
         "categoryId": "binding",
         "categoryName": "binding",
         "src": "binding",
-        "displayType": "binding"
+        "displayType": "binding",
+        "style": "string"
     },
     "designerId": "b39320e6-fa32-40d1-af24-6c7bf6cb7137",
     "customConfigs": [
