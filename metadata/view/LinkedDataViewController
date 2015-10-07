@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "linkeddata",
+        "designer|userClassName": "LinkedDataViewController"
+    },
+    "designerId": "35d81d3d-76af-470d-83c1-a342e086423b"
+}

@@ -1,0 +1,46 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "shortcuteditwindow",
+        "designer|userClassName": "ShortcutEditWindow",
+        "height": 600,
+        "layout": null,
+        "padding": 20,
+        "scrollable": true,
+        "title": [
+            "{changeShortcut}"
+        ],
+        "width": 800
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding",
+        "scrollable": "boolean"
+    },
+    "designerId": "d5f919f7-2a8a-4b1b-965c-ef0800766ce3",
+    "viewControllerInstanceId": "d7cc1c6c-e00d-43e4-af77-43b4a76de4bc",
+    "viewModelInstanceId": "b267635f-ff8c-43f7-8912-8298521a6da7",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": "100%",
+                "itemId": "shortcutCon",
+                "layout": "column",
+                "width": "100%"
+            },
+            "name": "MyContainer33",
+            "designerId": "83a4f7d9-d22a-46b5-bffc-fe5690f4e407"
+        }
+    ]
+}

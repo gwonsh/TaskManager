@@ -1,0 +1,101 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "FieldModel"
+    },
+    "name": "MyModel1",
+    "designerId": "0c6893bb-a460-4c8e-8846-549c53525169",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cols_data"
+            },
+            "name": "MyField16",
+            "designerId": "087acede-15df-415e-9c0e-36ab62b519d5",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var value;",
+                            "if(rec.get('cols_type') == 'colorchk'){",
+                            "    value = [];",
+                            "    var val;",
+                            "    for(var i=0; i<v.length; i++){",
+                            "        val = v[i].split('||');",
+                            "        value.push([val[1], val[0], v[i]]);",
+                            "    }",
+                            "}",
+                            "else{",
+                            "    value = v;",
+                            "}",
+                            "return value;"
+                        ]
+                    },
+                    "name": "convert",
+                    "designerId": "70239a2c-2ffa-4b84-88f7-3bea09c11ba6"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cols_idx"
+            },
+            "name": "MyField20",
+            "designerId": "60ab74b3-6534-412a-a42f-d13125c5b44f"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cols_name"
+            },
+            "name": "MyField21",
+            "designerId": "14c42c9a-c028-442b-b4de-ae7983c0cd94"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cols_type"
+            },
+            "name": "MyField22",
+            "designerId": "0d39d02f-df58-4cc8-8b25-657c9ad8d9f0"
+        }
+    ]
+}

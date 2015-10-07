@@ -1,0 +1,1026 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "baseParams": [
+            "{}"
+        ],
+        "bdIdx": "`''`",
+        "bodyPadding": "0 30 30 30",
+        "bodyStyle": null,
+        "closeAction": null,
+        "container|align": "stretch",
+        "designer|userAlias": "newrequest",
+        "designer|userClassName": "NewRequest",
+        "header": false,
+        "height": null,
+        "isEditMode": false,
+        "itemId": "newRequest",
+        "layout": "vbox",
+        "manageHeight": false,
+        "method": "POST",
+        "requires": [
+            "Ext.form.action.StandardSubmit"
+        ],
+        "standardSubmit": true,
+        "style": null,
+        "title": [
+            "{uploadTitle}"
+        ],
+        "width": "100%"
+    },
+    "name": "MyForm",
+    "configAlternates": {
+        "scrollable": "boolean",
+        "isEditMode": "boolean",
+        "title": "binding"
+    },
+    "designerId": "3d065772-8994-4717-897c-564f6cfd18fd",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "bdIdx",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "isEditMode",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "64ceb058-9be0-4037-a84d-f2dba304cebd",
+    "viewModelInstanceId": "72fe4802-924c-40af-b138-603de4cdd46b",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "requestform-space"
+                ],
+                "itemId": "requestTitle",
+                "layout|flex": 1,
+                "style": [
+                    "{    ",
+                    "    'font-size':'17px',    ",
+                    "    'font-weight':'bold'",
+                    "}"
+                ],
+                "text": "My Label"
+            },
+            "name": "MyLabel5",
+            "designerId": "79d763fa-3c48-46f9-aec9-7f54445f0802"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": 1
+            },
+            "name": "formspacer",
+            "designerId": "211f527e-d915-4b7b-bbc6-616fa439abe8",
+            "masterInstanceId": "889baba3-512d-414b-a049-e4d6684526ea"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "layout": "hbox",
+                "layout|flex": 1
+            },
+            "name": "MyContainer15",
+            "designerId": "ac757719-deeb-49b0-8904-af901b6c0345",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "requestform-space"
+                        ],
+                        "fieldLabel": [
+                            "{title}"
+                        ],
+                        "fieldStyle": null,
+                        "itemId": "fdSubject",
+                        "layout|flex": 1,
+                        "margin": null,
+                        "name": "bd_subject",
+                        "value": null
+                    },
+                    "name": "MyTextField",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "c3252d26-8663-4855-abb2-47de8c60d6c9"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "colorname",
+                        "fieldLabel": "Color tag",
+                        "itemId": "fdColortag",
+                        "labelWidth": 70,
+                        "layout|flex": null,
+                        "margin": "0 0 0 15",
+                        "name": "bd_colortag",
+                        "valueField": "colorcode",
+                        "width": 200
+                    },
+                    "name": "MyComboBox",
+                    "designerId": "692ede87-302a-42bc-930b-6f9af3a59ee5",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onComboboxRender",
+                                "implHandler": [
+                                    "var store = Ext.create('Ext.data.Store', {",
+                                    "    fields:[",
+                                    "        {",
+                                    "            name:'colorcode'",
+                                    "        },",
+                                    "        {",
+                                    "            name:'colorname'",
+                                    "        }",
+                                    "    ],",
+                                    "    data:companyInfo.colortag",
+                                    "});",
+                                    "component.setStore(store);"
+                                ],
+                                "name": "render",
+                                "scope": "me"
+                            },
+                            "name": "onComboboxRender",
+                            "designerId": "add70a7b-5eb4-4f29-a2ff-e787406e3e17"
+                        },
+                        {
+                            "type": "Ext.view.BoundList",
+                            "reference": {
+                                "name": "listConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemSelector": "div"
+                            },
+                            "name": "MyBoundList",
+                            "designerId": "1d9296e5-6bc9-4e9f-81ba-395e292b57f9",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<tpl for='.'>",
+                                            "    <div style='background-color:{colorcode};width:100%;height:100%;font-size:12px'>{colorname}</div>",
+                                            "</tpl>"
+                                        ]
+                                    },
+                                    "name": "itemTpl",
+                                    "designerId": "04ec5daa-3d8b-409a-8bfa-62c1f0fbf907"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": 1
+            },
+            "name": "formspacer1",
+            "designerId": "c33b51e5-7395-4126-886a-7daed5ace1a8",
+            "masterInstanceId": "889baba3-512d-414b-a049-e4d6684526ea"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "height": null,
+                "itemId": "customFieldCon",
+                "layout": "vbox",
+                "layout|flex": null,
+                "margin": null,
+                "padding": null
+            },
+            "name": "MyContainer9",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "89161374-03c3-4db0-b1d8-42ef40f0ae8e"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "itemId": "attachCon",
+                "layout": "vbox",
+                "layout|flex": null,
+                "width": null
+            },
+            "name": "MyContainer11",
+            "designerId": "b8dc9a2d-4a16-41f7-b102-0ea7e4b45fcb",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "x-form-item-label-default"
+                        ],
+                        "hidden": true,
+                        "itemId": "titleExistFile",
+                        "layout|flex": 1,
+                        "text": [
+                            "{attachedFile}"
+                        ]
+                    },
+                    "name": "MyLabel8",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "fe69b868-1faf-4e87-a4df-509a8be57106"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "attachedfileLength": 0,
+                        "delEntry": [
+                            "[]"
+                        ],
+                        "hidden": true,
+                        "itemId": "existFilesCon",
+                        "layout|flex": 1
+                    },
+                    "name": "MyContainer35",
+                    "configAlternates": {
+                        "delEntry": "array",
+                        "attachedfileLength": "number"
+                    },
+                    "designerId": "4f2f97ae-e980-43a2-8d19-f7a87fa6554e",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "delEntry",
+                            "type": "string"
+                        },
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "attachedfileLength",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": null,
+                        "height": null,
+                        "hidden": true,
+                        "itemId": "attachboxHeader",
+                        "layout": "hbox",
+                        "layout|flex": 1
+                    },
+                    "name": "MyContainer12",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "e5f1a408-16b8-4d5f-b15e-786da628f310",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "x-form-item-label-default"
+                                ],
+                                "itemId": "title",
+                                "text": [
+                                    "{addAttachFile}"
+                                ]
+                            },
+                            "name": "MyLabel1",
+                            "configAlternates": {
+                                "scrollable": "boolean",
+                                "text": "binding"
+                            },
+                            "designerId": "9ad78c7a-1775-4f1f-9210-1931306b5d89"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1
+                            },
+                            "name": "MySpacer7",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "b974b846-d15d-4778-965a-e1f983424de0"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "plain-toolbar-small",
+                                "height": 24,
+                                "icon": "resources/images/ico_plus.png",
+                                "itemId": "btnAddAttach",
+                                "layout|flex": null,
+                                "margin": "5 2 0 0",
+                                "text": null,
+                                "tooltip": null,
+                                "ui": "plain-toolbar-small",
+                                "width": 24
+                            },
+                            "name": "MyButton10",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "22d2b10e-bc22-4ff6-9111-3f068ba775fe",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnAddAttachClick",
+                                        "implHandler": [
+                                            "var atcCon = this.down('#attachCon');",
+                                            "var fileCon = atcCon.down('#fileCon');",
+                                            "var childs = fileCon.items.items;",
+                                            "var fileIdx = childs.length;",
+                                            "/* get selected item from list */",
+                                            "var wPan = getController('Main').getWestPanel();",
+                                            "var grid = wPan.getActiveTab();",
+                                            "var chks = grid.getSelectionModel().getSelection();",
+                                            "var files = [];",
+                                            "if(chks.length > 0){",
+                                            "    files = chks[0].get('bd_file');",
+                                            "}",
+                                            "var fn = files.length;",
+                                            "var fName = 'file_' + (fileIdx + fn).toString();",
+                                            "",
+                                            "atcCon.down('#fileCon').add(",
+                                            "    {",
+                                            "        xtype: 'filefield',",
+                                            "        cls: 'requestform-space',",
+                                            "        itemId: 'fdAttach_' + fileIdx.toString(),",
+                                            "        fieldLabel: 'File',",
+                                            "        labelWidth:35,",
+                                            "        name:fName,",
+                                            "        listeners: {",
+                                            "            render: function(component){",
+                                            "                component.setFieldLabel(locale.main.file);",
+                                            "                component.button.setText(locale.main.browse);",
+                                            "            }",
+                                            "        }",
+                                            "    }",
+                                            ");"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnAddAttachClick",
+                                    "designerId": "859e8f26-1880-4ef0-9b36-b7529611d403"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "plain-toolbar-small",
+                                "height": 24,
+                                "icon": "resources/images/ico_minus.png",
+                                "itemId": "btnAttachDell",
+                                "layout|flex": null,
+                                "margin": "5 2 0 0",
+                                "style": null,
+                                "text": null,
+                                "ui": "plain-toolbar-small",
+                                "width": 24
+                            },
+                            "name": "MyButton11",
+                            "configAlternates": {
+                                "style": "string",
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "2c42fd80-e4a9-4cd9-a007-c504deb9cd7f",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var atcCon = button.up('#attachCon');",
+                                            "var atcs = Ext.ComponentQuery.query('filefield', atcCon);",
+                                            "if(atcs.length === 1){",
+                                            "    Ext.toast(locale.upload.noMoreDel);",
+                                            "    return;",
+                                            "}",
+                                            "atcs[atcs.length - 1].destroy();"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "89016bc7-16ac-479f-a045-110c547631ab"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "container|padding": null,
+                        "hidden": true,
+                        "itemId": "fileCon",
+                        "layout": "vbox",
+                        "layout|flex": 1
+                    },
+                    "name": "MyContainer33",
+                    "designerId": "21876b9f-38ef-4688-b964-02533542d9ea"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "container|padding": "0 0 10 0",
+                        "hidden": true,
+                        "itemId": "multiFileCon",
+                        "layout": "vbox",
+                        "layout|flex": null,
+                        "width": null
+                    },
+                    "name": "MyContainer36",
+                    "designerId": "7598c276-22d6-4dab-9158-d66c359d6d3f",
+                    "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": null,
+                                "height": null,
+                                "itemId": "selectedFileHeader",
+                                "layout": "hbox",
+                                "layout|flex": 1
+                            },
+                            "name": "MyContainer37",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "14920422-1a09-472d-a75a-e7863fc139b1",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": [
+                                            "x-form-item-label-default"
+                                        ],
+                                        "itemId": "title",
+                                        "text": [
+                                            "{addAttachFile}"
+                                        ]
+                                    },
+                                    "name": "MyLabel1",
+                                    "configAlternates": {
+                                        "scrollable": "boolean",
+                                        "text": "binding"
+                                    },
+                                    "designerId": "ab42ac6e-4324-41d4-ba70-f272ef730b30"
+                                },
+                                {
+                                    "type": "Ext.toolbar.Spacer",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 1
+                                    },
+                                    "name": "MySpacer7",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "fb697847-6866-48d9-8c04-8b644b2b29b2"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|uiInterfaceName": "plain-toolbar-small",
+                                        "height": 24,
+                                        "icon": "resources/images/ico_minus.png",
+                                        "itemId": "btnSelectedDel",
+                                        "layout|flex": null,
+                                        "margin": "5 2 0 0",
+                                        "style": null,
+                                        "text": null,
+                                        "tooltip": [
+                                            "{remove}"
+                                        ],
+                                        "ui": "plain-toolbar-small",
+                                        "width": 24
+                                    },
+                                    "name": "MyButton11",
+                                    "configAlternates": {
+                                        "style": "string",
+                                        "scrollable": "boolean",
+                                        "tooltip": "binding"
+                                    },
+                                    "designerId": "135faa5b-310a-4d69-bbd3-16e4e498fe55",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "var grid = button.up('#multiFileCon').down('grid');",
+                                                    "var selected = grid.getSelectionModel().getSelection();",
+                                                    "grid.getStore().remove(selected);"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "faecc8ba-774b-4261-8987-d38fda1b5c0e"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "selectedFilesCon",
+                                "layout|flex": null
+                            },
+                            "name": "MyContainer32",
+                            "designerId": "cdcc4393-e820-4576-ad0c-00fde70893e4"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onAttachConRender",
+                        "implHandler": [
+                            "if(isHtml5()){",
+                            "    if(navigator.appName == 'Microsoft Internet Explorer' && getIEVersion() < 10){",
+                            "        component.down('#fileCon').setHidden(false);",
+                            "        component.down('#attachboxHeader').setHidden(false);",
+                            "",
+                            "        /* add one fileField to set the multipart upload form*/",
+                            "        component.down('#btnAddAttach').fireEvent('click');",
+                            "    }",
+                            "    else{",
+                            "        component.down('#multiFileCon').setHidden(false);",
+                            "        component.down('#multiFileCon').add(",
+                            "            {",
+                            "                xtype: 'multifileinput',",
+                            "                multiple: true,",
+                            "                itemId: 'files',",
+                            "                name:'files'",
+                            "            }",
+                            "        );",
+                            "    }",
+                            "}",
+                            "else{",
+                            "    component.down('#fileCon').setHidden(false);",
+                            "    component.down('#attachboxHeader').setHidden(false);",
+                            "",
+                            "    /* add one fileField to set the multipart upload form*/",
+                            "    component.down('#btnAddAttach').fireEvent('click');",
+                            "}"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onAttachConRender",
+                    "designerId": "133b5020-7ed4-47da-8f89-02ceaa0b854f"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": null,
+                "margin": "5 0 0 0"
+            },
+            "name": "formspacer2",
+            "designerId": "d7fa2251-ac5e-4e59-a241-77849268c930",
+            "masterInstanceId": "889baba3-512d-414b-a049-e4d6684526ea"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "description title container",
+                "margin": "10 0 0 0",
+                "padding": 5,
+                "style": "background-color:#ededed;border:1px solid #cecece"
+            },
+            "name": "MyContainer14",
+            "configAlternates": {
+                "style": "string",
+                "scrollable": "boolean"
+            },
+            "designerId": "58e3c954-fadf-49b8-8041-e8ffcdc17f82",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "x-form-item-label-default"
+                        ],
+                        "designer|displayName": "Description title",
+                        "margin": "10 0 0 0",
+                        "style": null,
+                        "text": [
+                            "{description}"
+                        ]
+                    },
+                    "name": "MyLabel4",
+                    "configAlternates": {
+                        "style": "string",
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "03a83797-eca5-4075-ae12-b976b4415b70"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "center",
+                "designer|displayName": "button container",
+                "dock": "bottom",
+                "hidden": true,
+                "itemId": "buttonCon",
+                "layout": "hbox",
+                "layout|flex": 1,
+                "margin": "20 0 0 0"
+            },
+            "name": "MyContainer13",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "3affc27a-4bfb-4cc0-8b23-ad4950fc5e35",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnSubmit",
+                        "layout|flex": null,
+                        "text": [
+                            "{submit}"
+                        ],
+                        "width": 80
+                    },
+                    "name": "MyButton6",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "d184352f-ffd3-44ef-b49b-05444490f5b8"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnReset",
+                        "layout|flex": null,
+                        "margin": "0 0 0 10",
+                        "text": [
+                            "{reset}"
+                        ],
+                        "width": 80
+                    },
+                    "name": "MyButton7",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "a920af7d-d2d5-47ae-874c-dafeac1b595a"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnCancel",
+                        "layout|flex": null,
+                        "margin": "0 0 0 10",
+                        "text": [
+                            "{cancel}"
+                        ],
+                        "width": 80
+                    },
+                    "name": "MyButton16",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "483b4f4f-f51f-4595-b394-cf6927064c7c",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "button.up('window').close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "699226a6-a3a1-41c0-9aa3-f6650e5e3644"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.HtmlEditor",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "enableFont": false,
+                "fieldBodyCls": null,
+                "fieldLabel": null,
+                "formItemCls": null,
+                "height": 150,
+                "itemId": "fdContent",
+                "labelAlign": "top",
+                "labelWidth": null,
+                "layout|flex": null,
+                "margin": "-1 0 0 0",
+                "name": "bd_content",
+                "padding": null,
+                "style": null,
+                "value": null,
+                "width": "100%"
+            },
+            "name": "MyHtmlEditor1",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "style": "string"
+            },
+            "designerId": "b29a2280-57d0-415a-84d9-ac210788c151"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "setSubject",
+                "implHandler": [
+                    "this.down('#fdSubject').setValue(value);"
+                ]
+            },
+            "name": "setSubject",
+            "designerId": "81acaa0e-7bc5-4aef-a866-1c949ce04143"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "setRemark",
+                "implHandler": [
+                    "this.down('#fdContent').setValue(value);"
+                ]
+            },
+            "name": "setRemark",
+            "designerId": "3a53b50e-b890-4264-9530-c386909fa501"
+        },
+        {
+            "type": "Ext.form.field.Hidden",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Label",
+                "itemId": "bdIdx",
+                "layout|flex": 1,
+                "name": "bd_idx"
+            },
+            "name": "MyHiddenField",
+            "designerId": "27ed309f-e429-4f23-8fca-65eb22d28e94"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "setColortag",
+                "implHandler": [
+                    "this.down('#fdColortag').setValue(value);"
+                ]
+            },
+            "name": "setColortag",
+            "designerId": "799c6a41-a8df-486d-9b03-00bd009367b6"
+        }
+    ]
+}

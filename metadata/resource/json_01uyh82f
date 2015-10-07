@@ -1,0 +1,14 @@
+{
+    "type": "jsonresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "json_01uyh82f",
+        "url": "resources/shortcuts.json"
+    },
+    "name": "json",
+    "designerId": "c01d4d23-75d4-4535-a79c-ab0137ddf8c8"
+}

@@ -1,0 +1,47 @@
+{
+    "type": "Ext.tab.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "activeTab": 0,
+        "designer|userAlias": "mytabpanel1",
+        "designer|userClassName": "MyTabPanel1",
+        "height": 250,
+        "width": 400
+    },
+    "name": "MyTabPanel1",
+    "designerId": "bda19f87-7d41-4746-bb56-22f74bb0a906",
+    "viewControllerInstanceId": "bf1a1d2e-f9f4-48c2-9af4-08530f773ea8",
+    "viewModelInstanceId": "17ac9e63-8c6e-43a7-94df-5d82d171c849",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "closable": true,
+                "title": "Tab 1"
+            },
+            "name": "MyPanel5",
+            "designerId": "f1b3c177-1013-413e-a546-ee4e85aa2e73",
+            "cn": [
+                {
+                    "type": "Ext.tab.Tab",
+                    "reference": {
+                        "name": "tabConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "TabConfig5",
+                    "designerId": "255d5097-72e4-46b9-8c6c-3f5c2ab5071b"
+                }
+            ]
+        }
+    ]
+}

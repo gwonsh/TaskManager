@@ -1,0 +1,74 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "Login",
+            "Main",
+            "Search",
+            "Upload",
+            "Config",
+            "Viewer"
+        ],
+        "models": [
+            "FieldModel",
+            "CategoryModel",
+            "UpModel"
+        ],
+        "name": "TaskManager",
+        "requires": [
+            "Ext.LoadMask",
+            "Ext.ux.exporter.Exporter",
+            "TaskManager.doc.Viewer"
+        ],
+        "stores": [
+            "FieldStore",
+            "CategoryStore",
+            "ShortcutsStore"
+        ],
+        "views": [
+            "MainView",
+            "AttachmentUnit",
+            "LoginWindow",
+            "ViewerDefault",
+            "NewRequest",
+            "DatasetGridBox",
+            "MultiSelectWindow",
+            "LinkedData",
+            "LinkingWindow",
+            "Preference",
+            "Shortcut",
+            "ShortcutEditWindow",
+            "Viewer",
+            "DataGroupWindow",
+            "FormSpacer",
+            "MultiFileInput",
+            "MyTabPanel1",
+            "LinkUnit"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "app = TaskManager;"
+                ]
+            },
+            "name": "launch",
+            "designerId": "431d5b5a-e2c9-444a-bdae-45b7a7b62330"
+        }
+    ]
+}

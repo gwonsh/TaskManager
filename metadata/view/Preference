@@ -1,0 +1,116 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closeAction": "hide",
+        "container|align": "stretch",
+        "container|padding": 20,
+        "designer|userAlias": "preference",
+        "designer|userClassName": "Preference",
+        "height": 600,
+        "itemId": null,
+        "layout": "vbox",
+        "title": [
+            "{config}"
+        ],
+        "width": 450
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "0e63b853-c81b-485c-8c79-1dd8e0e2c066",
+    "viewControllerInstanceId": "6d6d98b1-e619-4d04-be6f-3db0f5b9cc1a",
+    "viewModelInstanceId": "8848c308-c89d-43cc-92a5-a4c7444e7199",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": null,
+                "text": [
+                    "{listDisplay}"
+                ]
+            },
+            "name": "MyLabel8",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "e9b63144-f84a-4246-ace7-28672b1ba9e8"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "layout": "hbox",
+                "layout|flex": null
+            },
+            "name": "MyContainer31",
+            "designerId": "c655ada1-99d6-4466-968b-a163b73d2c32",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Radio",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "boxLabel": null,
+                        "fieldLabel": [
+                            "{simpleMode}"
+                        ],
+                        "hideEmptyLabel": false,
+                        "itemId": "simpleMode",
+                        "labelWidth": 50,
+                        "layout|flex": 1,
+                        "name": "displayMode",
+                        "width": null
+                    },
+                    "name": "MyRadio",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "09431bd2-499f-42b3-8ed9-b6c4cbbf5b73"
+                },
+                {
+                    "type": "Ext.form.field.Radio",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "boxLabel": null,
+                        "fieldLabel": [
+                            "{detailMode}"
+                        ],
+                        "hideEmptyLabel": false,
+                        "itemId": "detailMode",
+                        "labelWidth": 50,
+                        "layout|flex": 1,
+                        "name": "displayMode"
+                    },
+                    "name": "MyRadio1",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "06fd3907-fdba-454c-bdac-03e97ed0f802"
+                }
+            ]
+        }
+    ]
+}

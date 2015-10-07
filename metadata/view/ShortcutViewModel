@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "shortcut",
+        "designer|userClassName": "ShortcutViewModel"
+    },
+    "designerId": "4926c1f5-b7a9-423d-8160-0fcdb82b1f33"
+}

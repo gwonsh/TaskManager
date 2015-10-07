@@ -1,0 +1,96 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "stretch",
+        "designer|userAlias": "linkeddata",
+        "designer|userClassName": "LinkedData",
+        "height": null,
+        "layout": "hbox",
+        "width": "100%"
+    },
+    "name": "MyContainer24",
+    "designerId": "0aaec68c-3e9a-4bda-974d-b58f95f12203",
+    "viewControllerInstanceId": "35d81d3d-76af-470d-83c1-a342e086423b",
+    "viewModelInstanceId": "40bc0e91-8fc1-436d-b3ad-64030c1f5c52",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "layout": "vbox",
+                "layout|flex": null,
+                "width": null
+            },
+            "name": "MyContainer29",
+            "designerId": "f7cf8d1f-f41a-47e7-b674-ad4da341b6ed",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "baseCls": "x-form-item-label-default",
+                        "itemId": "linkFieldTitle",
+                        "layout|flex": 1,
+                        "text": null
+                    },
+                    "name": "MyLabel6",
+                    "designerId": "01217abe-7084-4af2-b58d-c71f2973b183"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-large",
+                        "height": 80,
+                        "icon": "resources/images/big_plus.png",
+                        "itemId": "addLink",
+                        "scale": "large",
+                        "text": null,
+                        "ui": "plain-toolbar-large",
+                        "width": 80
+                    },
+                    "name": "MyButton17",
+                    "designerId": "bc566157-ca4c-40fd-b328-d4d03a9d9eab"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "str"
+                ],
+                "fn": "setFieldLabel",
+                "implHandler": [
+                    "var label = this.down('#linkFieldTitle');",
+                    "label.setText(str);"
+                ]
+            },
+            "name": "setFieldLabel",
+            "designerId": "3c23df50-dad3-4d40-a5e9-9716933594cc"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js",
+        "includeInBundle": true,
+        "url": "resources/globals.js"
+    },
+    "name": "js",
+    "designerId": "893e38a3-7b99-4afa-84c6-284ab20b1b4a"
+}

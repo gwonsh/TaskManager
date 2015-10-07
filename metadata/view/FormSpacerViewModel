@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "formspacer",
+        "designer|userClassName": "FormSpacerViewModel"
+    },
+    "designerId": "3812ffc9-30cc-485f-a3de-aeb40848e8a5"
+}

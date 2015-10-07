@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "datasetgridbox",
+        "designer|userClassName": "DatasetGridBoxViewModel"
+    },
+    "designerId": "033f44bb-fd13-4d70-b3bd-9a51fd6ee695"
+}

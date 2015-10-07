@@ -1,0 +1,562 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyStyle": [
+            "{",
+            "    'background-color':'#e6e6e6'",
+            "}"
+        ],
+        "closable": false,
+        "container|align": "center",
+        "container|pack": "center",
+        "designer|userAlias": "loginwindow",
+        "designer|userClassName": "LoginWindow",
+        "frameHeader": false,
+        "header": false,
+        "height": "100%",
+        "id": "loginWin",
+        "itemId": "loginWin",
+        "layout": "vbox",
+        "minHeight": 800,
+        "minWidth": 800,
+        "overlapHeader": false,
+        "style": null,
+        "title": "",
+        "width": "100%"
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "style": "string",
+        "scrollable": "boolean"
+    },
+    "designerId": "2b415a2b-c951-40d6-9032-8f8a79f5fc3b",
+    "viewControllerInstanceId": "48e259d4-4867-4e4b-8986-8bd45172ac94",
+    "viewModelInstanceId": "3a1b29b0-fd49-4e89-b555-d1cb56bec410",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": null,
+                "container|pack": "center",
+                "container|padding": "30 40 30 40",
+                "height": null,
+                "itemId": "loginBox",
+                "layout": "vbox",
+                "style": [
+                    "{",
+                    "    'border':'1px solid #cecece',",
+                    "    'border-radius': '12px',",
+                    "    'background-color': '#ffffff'",
+                    "}"
+                ],
+                "width": 450
+            },
+            "name": "MyContainer1",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "63a243e5-419e-4b9c-9f70-daa864842038",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "middle",
+                        "layout": "hbox",
+                        "layout|flex": null
+                    },
+                    "name": "MyContainer4",
+                    "designerId": "03f52dac-2fb5-4d57-adbf-67113cd750af",
+                    "cn": [
+                        {
+                            "type": "Ext.Img",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 32,
+                                "layout|flex": 1,
+                                "src": "resources/images/ico_task.png",
+                                "width": 32
+                            },
+                            "name": "MyImg2",
+                            "designerId": "c50d5417-f20f-4bdd-9e90-86e122d09a2d"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "margin": "0 0 0 10",
+                                "style": [
+                                    "{",
+                                    "    'font-weight':'bold',",
+                                    "    'font-size':'25px'",
+                                    "}"
+                                ],
+                                "text": "Smartori Task Manager"
+                            },
+                            "name": "MyLabel2",
+                            "designerId": "a2304382-7a3c-4456-bb55-c42fdca3ff3d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 15,
+                        "layout|flex": null
+                    },
+                    "name": "MySpacer2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "b7b21b57-2d38-4547-98ca-70d29390c947"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": [
+                            "{userId}"
+                        ],
+                        "height": null,
+                        "itemId": "userId",
+                        "labelAlign": "top",
+                        "labelWidth": 65,
+                        "layout|flex": null,
+                        "style": null,
+                        "width": "100%"
+                    },
+                    "name": "MyTextField1",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "style": "string",
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "b46ff1d7-4c4b-4a35-971f-58d86ea8b2e7",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onUserIdRender",
+                                "implHandler": [
+                                    "if(localStorage.getItem('userId') !== undefined){",
+                                    "    component.setValue(localStorage.getItem('userId'));",
+                                    "}"
+                                ],
+                                "name": "render",
+                                "scope": "me"
+                            },
+                            "name": "onUserIdRender",
+                            "designerId": "9c19286e-9daa-48ed-b67d-be1738207e82"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 3,
+                        "layout|flex": null
+                    },
+                    "name": "MySpacer4",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "e72e776c-c21a-41a9-8faa-ab300fbe56ba"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": [
+                            "{password}"
+                        ],
+                        "height": null,
+                        "inputType": "password",
+                        "itemId": "password",
+                        "labelAlign": "top",
+                        "labelWidth": 65,
+                        "layout|flex": null,
+                        "width": "100%"
+                    },
+                    "name": "MyTextField3",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "44feb7c4-ce02-44f7-b521-1418a6ca70e2"
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 15,
+                        "layout|flex": null
+                    },
+                    "name": "MySpacer3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "bbf57268-7d94-4f14-9e42-f0bbdd5b6b6e"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "center",
+                        "layout": "vbox",
+                        "layout|flex": 1,
+                        "margin": "8 0 0 0",
+                        "width": "100%"
+                    },
+                    "name": "MyContainer2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "67a07ae7-b1b0-4ba7-9261-026984b189de",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 30,
+                                "itemId": "loginButton",
+                                "layout|flex": 1,
+                                "text": [
+                                    "{login}"
+                                ],
+                                "width": 100
+                            },
+                            "name": "MyButton3",
+                            "configAlternates": {
+                                "scrollable": "boolean",
+                                "text": "binding"
+                            },
+                            "designerId": "c899ee9e-1636-4643-99d6-91277f348955"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "languageBox",
+                "layout|flex": null,
+                "margin": "10 0 0 0"
+            },
+            "name": "MyContainer18",
+            "designerId": "0121abe6-e1a8-456a-96f1-69d2228947d7",
+            "cn": [
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "width": null
+                    },
+                    "name": "MyRadioGroup",
+                    "designerId": "7f2db3db-1c5d-4ccd-9a0a-ab9861fb2779",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "한국어",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "itemId": "rdKorean",
+                                "name": "language"
+                            },
+                            "name": "MyRadio2",
+                            "designerId": "b59810f8-04c5-4b5a-87cb-061dd0575bd1",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onRdKoreanChange",
+                                        "implHandler": [
+                                            "if(newValue){",
+                                            "    localStorage.setItem('baseLanguage', 'korean');",
+                                            "    localLanguage = 'Korean';",
+                                            "    locale = languageSet.Korean;",
+                                            "}",
+                                            "else{",
+                                            "    localStorage.setItem('baseLanguage', 'english');",
+                                            "    localLanguage = 'English';",
+                                            "    locale = languageSet.English;",
+                                            "}"
+                                        ],
+                                        "name": "change",
+                                        "scope": "me"
+                                    },
+                                    "name": "onRdKoreanChange",
+                                    "designerId": "74b4b682-f36a-4425-b55d-86d145798154"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "English",
+                                "fieldLabel": null,
+                                "itemId": "rdEnglish",
+                                "margin": "0 0 0 25",
+                                "name": "language"
+                            },
+                            "name": "MyRadio3",
+                            "designerId": "1de7e9a6-cf5a-4724-8de7-c110a2f50ccf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "default-framed",
+                "frame": true,
+                "height": 200,
+                "hidden": true,
+                "html": "",
+                "itemId": "feedBox",
+                "layout|flex": null,
+                "margin": "0 0 20 0",
+                "maxWidth": 700,
+                "padding": 30,
+                "scrollable": [
+                    "{",
+                    "    direction: 'vertical',",
+                    "}"
+                ],
+                "style": null,
+                "title": "'  '",
+                "width": 700
+            },
+            "name": "MyPanel4",
+            "configAlternates": {
+                "html": "string",
+                "scrollable": "object",
+                "style": "string"
+            },
+            "designerId": "c60798f6-6bdd-4fb6-b197-9f9c5f13bcdb",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<tpl for='.'>    ",
+                            "        <table style='width:100%;border-top:1px solid #cecece;border-spacing:0;margin-bottom:-1px' border=0>",
+                            "            <tr>",
+                            "                <td style='padding:6px;border-bottom:1px solid #cecece;cursor:point;'>",
+                            "                    <div name='subject' index='{#}' style='width:100%;float:left'>{bd_subject}",
+                            "                        <span style='float:right;color:#357dc7;font-size:12px'>{bd_regdate} / {bd_name}</span>",
+                            "                    </div>",
+                            "                </td>",
+                            "            </tr>",
+                            "            <tr>",
+                            "                <td index='{#}' class='feedContent' style='padding:5px;font-size:12px;color:#333333;display:{[this.checkCount(xindex)]};background-color:#ebf1f2'>",
+                            "                    <div style='width:100%;height:100%;background-color:#ebf1f2'>{bd_content}</div>",
+                            "                </td>",
+                            "            </tr>",
+                            "        </table>",
+                            "</tpl>"
+                        ]
+                    },
+                    "name": "tpl",
+                    "designerId": "a56340f3-42d5-46c6-977b-bacb4565c76a",
+                    "cn": [
+                        {
+                            "type": "templatefunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "index"
+                                ],
+                                "fn": "checkCount",
+                                "implHandler": [
+                                    "if(index == 1){",
+                                    "    val = 'block';",
+                                    "}",
+                                    "else{",
+                                    "    val = 'none';",
+                                    "}",
+                                    "return val;"
+                                ]
+                            },
+                            "name": "checkCount",
+                            "designerId": "60858619-8b1f-48ca-9249-e5c0bd1aede1"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFeedBoxAfterRender",
+                        "implHandler": [
+                            "var header = component.getHeader();",
+                            "header.setTitle(locale.main.notice);",
+                            "var headerEl = header.el.select('.x-box-item');",
+                            "header.setIcon('resources/images/ico_mic.png');",
+                            "/* shortcut for notification detail list */",
+                            "var shortcut = {",
+                            "    xtype:'button',",
+                            "    text:locale.menu.seeDetail,",
+                            "    style:'float:right;cursor:point:font-size:12px;border:1px solid #cecece',",
+                            "    ui: 'plain-toolbar-small',",
+                            "    handler:function(button){",
+                            "        var info = component.getData();",
+                            "        var ctlr = getController('Login');",
+                            "        var scBox= ctlr.getLoginWin().down('#shortcutsBox');",
+                            "        getController('Main').setShortcuts(scBox.items.items);",
+                            "        ctlr.getLoginWin().close();",
+                            "        getController('Main').createNewGrid(info[0].ca_id, locale.main.notice, 'normal');",
+                            "    }",
+                            "};",
+                            "",
+                            "header.add(shortcut);",
+                            "/* when click title of notice show content div */",
+                            "component.el.on('click', function(e){",
+                            "    if(e.target.getAttribute('name') == 'subject'){",
+                            "        var index = e.target.getAttribute('index');",
+                            "        var tds = component.getEl().query('.feedContent');",
+                            "        var target = component.getEl().query('.feedContent[index=\"' + index + '\"]');",
+                            "        for(var i=0; i<tds.length; i++){",
+                            "            if(tds[i] == target[0]){",
+                            "                tds[i].style.display = 'block';",
+                            "            }",
+                            "            else{",
+                            "                tds[i].style.display = 'none';",
+                            "            }",
+                            "        }",
+                            "    }",
+                            "});"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFeedBoxAfterRender",
+                    "designerId": "c0e439d2-ab0d-4573-b3d1-f41113df5e60"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "itemId": "shortcutsBox",
+                "layout": "column",
+                "layout|flex": null,
+                "maxWidth": 700,
+                "padding": null,
+                "width": null
+            },
+            "name": "MyContainer31",
+            "designerId": "d7668ecc-ce53-4ec6-b7ab-c38f195880a8"
+        }
+    ]
+}

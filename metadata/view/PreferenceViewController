@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "preference",
+        "designer|userClassName": "PreferenceViewController"
+    },
+    "designerId": "6d6d98b1-e619-4d04-be6f-3db0f5b9cc1a"
+}

@@ -1,0 +1,121 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Search"
+    },
+    "name": "MyController",
+    "designerId": "724d8121-bc2e-40b6-a698-bd3cd4b5ac02",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#findIt",
+                "designer|targetType": "MyButton8",
+                "fn": "onFindItClick",
+                "implHandler": [
+                    "var val = this.getFdSearchAll().getValue();",
+                    "var query = '&ca_id='+ selectedCategory +'&se_all=' + val  + '&page=1';",
+                    "this.search(query, Ext.getStore('dStore_' + selectedCategory));"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "name": "onFindItClick",
+            "designerId": "25819c10-3914-4e48-9eb6-54af6035f585"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#findDetail",
+                "designer|targetType": "MyButton9",
+                "fn": "onFindDetailClick",
+                "name": "click",
+                "scope": "me"
+            },
+            "name": "onFindDetailClick",
+            "designerId": "70a0148a-0a94-4eb7-8999-516bd6b9a771"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "fdSearchAll",
+                "selector": "#fdSearchAll"
+            },
+            "name": "fdSearchAll",
+            "designerId": "545de0e2-36a5-4802-b7ba-847b48af6367"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "query",
+                    "store"
+                ],
+                "fn": "search",
+                "implHandler": [
+                    "var me = this;",
+                    "var dataUrl = getDataListByIdApi(query);",
+                    "store.getProxy().setUrl(dataUrl);",
+                    "store.load();"
+                ]
+            },
+            "name": "search",
+            "designerId": "c6444b48-0533-4ace-a1ad-99249933988f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "getSearchIdx",
+                "implHandler": [
+                    "value = value.toString();",
+                    "if(value.length == 1){",
+                    "    value = '000' + value;",
+                    "}",
+                    "if(value.length == 2){",
+                    "    value = '00' + value;",
+                    "}",
+                    "if(value.length == 3){",
+                    "    value = '0' + value;",
+                    "}",
+                    "",
+                    "return value;"
+                ]
+            },
+            "name": "getSearchIdx",
+            "designerId": "f17e4ed4-fc79-4344-bea2-012fc1257174"
+        }
+    ]
+}

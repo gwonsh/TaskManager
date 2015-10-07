@@ -1,0 +1,47 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "categoryId": "`''`",
+        "designer|userAlias": "viewer",
+        "designer|userClassName": "Viewer",
+        "editable": false,
+        "height": "100%",
+        "itemId": "viewer",
+        "layout": "fit",
+        "padding": "0 0 30 0",
+        "record": [
+            "`null`"
+        ],
+        "width": "100%"
+    },
+    "name": "MyContainer35",
+    "configAlternates": {
+        "editable": "boolean",
+        "record": "object"
+    },
+    "designerId": "c59fd46c-c85e-4ebf-a757-4821a1569b69",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "editable",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryId",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "record",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "81b76b64-4332-4e49-ad7a-79087c15d462",
+    "viewModelInstanceId": "afcd3ee2-4ae1-4325-a79b-0ad062893e4a"
+}

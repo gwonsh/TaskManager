@@ -1,0 +1,108 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "attachmentunit",
+        "designer|userClassName": "AttachmentUnit",
+        "height": null,
+        "html": "<iframe id=\"downFrame\" style=\"display:none\"></iframe>",
+        "margin": "0 10 0 0",
+        "style": null,
+        "width": null
+    },
+    "name": "MyContainer1",
+    "configAlternates": {
+        "html": "string",
+        "scrollable": "boolean",
+        "style": "string"
+    },
+    "designerId": "ccaee703-345e-450f-9dd0-329ff42e3d13",
+    "viewControllerInstanceId": "8e1f1928-dd05-43c6-89ba-d910a27a9fed",
+    "viewModelInstanceId": "636f2595-50ce-4b1d-b9c9-76f37ffdf58b",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoDestroy": false,
+                "autoEl": null,
+                "border": null,
+                "height": null,
+                "itemId": "imageCon",
+                "layout": "column",
+                "margin": "0 8 0 0",
+                "padding": 8,
+                "src": null,
+                "style": "border:1px solid #cecece;text-align:center",
+                "width": "auto"
+            },
+            "name": "MyContainer18",
+            "configAlternates": {
+                "style": "string",
+                "scrollable": "boolean"
+            },
+            "designerId": "a7634488-702d-4c8e-bea6-737f848743fb",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "src",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "imgInfo",
+                    "index"
+                ],
+                "fn": "addImage",
+                "implHandler": [
+                    "var ic = this.down('#imageCon');",
+                    "var src = imgInfo.thumb_path;",
+                    "ic.on('render', function(){",
+                    "    ic.el.on('click', function(){",
+                    "        var viewer = ic.up('#docViewer');",
+                    "        var idx = viewer.getViewModel().data.bd_idx;",
+                    "        if(imgInfo.isImage){",
+                    "            var win = window.open('', 'Image View');",
+                    "            win.document.write('<img src=\"' + imgInfo.file_path + '\"/>');",
+                    "        }",
+                    "        else{",
+                    "            var iframe = document.getElementById('downFrame');",
+                    "            iframe.src =imgInfo.file_path;",
+                    "        }",
+                    "    });",
+                    "});",
+                    "var imgConH = 100;",
+                    "var imgH = imgConH;",
+                    "var fs = getController('Main').bytesToSize(imgInfo.file_size);",
+                    "var fw = imgInfo.file_width;",
+                    "var fh = imgInfo.file_height;",
+                    "if(fh < imgConH){",
+                    "    imgH = fh;",
+                    "}",
+                    "var htmlImg = '<div style=\"width:100%;\"><img style=\"height:'+ imgH +'px\" src=' + src + '></div>';",
+                    "htmlImg += '<span style=\"margin-top:10px;width:100%;font-size:11px\">' + imgInfo.file_name + '<br>' + fs + '</span>';",
+                    "ic.setHtml(htmlImg);"
+                ]
+            },
+            "name": "addImage",
+            "designerId": "afb636d6-2ffb-4bbd-ac2c-6f21e08b36ec"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "datagroupwindow",
+        "designer|userClassName": "LinkingWindowViewController2"
+    },
+    "name": "LinkingWindowViewController2",
+    "designerId": "52a82d35-0277-4ec4-9d1d-9190f6ae0ab5"
+}

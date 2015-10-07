@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "multifileinput",
+        "designer|userClassName": "MultiFileInputViewModel"
+    },
+    "designerId": "c1531275-3912-4a7c-a43a-04be7a437bcb"
+}

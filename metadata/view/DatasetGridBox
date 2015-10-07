@@ -1,0 +1,313 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "stretch",
+        "designer|userAlias": "datasetgridbox",
+        "designer|userClassName": "DatasetGridBox",
+        "height": null,
+        "itemId": null,
+        "layout": "vbox",
+        "width": "100%"
+    },
+    "name": "MyContainer20",
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
+    "designerId": "b759096f-3cd1-44ca-9118-8801846ee1da",
+    "viewControllerInstanceId": "3f84d944-ea07-4e49-b6e0-1ac4da020d56",
+    "viewModelInstanceId": "033f44bb-fd13-4d70-b3bd-9a51fd6ee695",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "bottom",
+                "height": null,
+                "itemId": "datasetHeader",
+                "layout": "hbox",
+                "layout|flex": 1
+            },
+            "name": "MyContainer20",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "dcae5ea1-2698-4cb1-a555-6aba71877de0",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "x-form-item-label-default"
+                        ],
+                        "itemId": "title",
+                        "text": null
+                    },
+                    "name": "MyLabel1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "8dde76df-c3f9-4c6a-83b6-484cf80e7312"
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer7",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "a20d9c4f-12b8-471d-ba4f-1be064b53639"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-small",
+                        "height": 24,
+                        "icon": "resources/images/ico_plus.png",
+                        "itemId": "btnAddColumn",
+                        "layout|flex": null,
+                        "margin": "0 2 0 0",
+                        "text": null,
+                        "tooltip": [
+                            "{addRow}"
+                        ],
+                        "ui": "plain-toolbar-small",
+                        "width": 24
+                    },
+                    "name": "MyButton10",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "a04cc5b2-45c0-4e89-8cc3-6986cad0dee8"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-small",
+                        "height": 24,
+                        "icon": "resources/images/ico_minus.png",
+                        "itemId": "btnDelColumn",
+                        "layout|flex": null,
+                        "margin": "0 2 0 0",
+                        "style": null,
+                        "text": null,
+                        "tooltip": [
+                            "{delRow}"
+                        ],
+                        "ui": "plain-toolbar-small",
+                        "width": 24
+                    },
+                    "name": "MyButton11",
+                    "configAlternates": {
+                        "style": "string",
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "12768211-cd3c-46f3-80cb-0510e3d929d8"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-small",
+                        "height": 24,
+                        "icon": "resources/images/ico_delete.png",
+                        "itemId": "btnDelAllColumn",
+                        "layout|flex": null,
+                        "margin": "0 8 0 0",
+                        "style": null,
+                        "text": null,
+                        "tooltip": [
+                            "{delAllRow}"
+                        ],
+                        "ui": "plain-toolbar-small",
+                        "width": 24
+                    },
+                    "name": "MyButton8",
+                    "configAlternates": {
+                        "style": "string",
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "9c7f2cf0-f81a-4b58-aa80-b88a0817dc33"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "title"
+                ],
+                "fn": "addTitle",
+                "implHandler": [
+                    "var lb = this.down('#title');",
+                    "lb.setText(title);"
+                ]
+            },
+            "name": "addTitle",
+            "designerId": "54e95f46-7d76-4bd5-a08e-4f1a56e48fcd"
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "datasetGrid"
+                ],
+                "colsInfo": [
+                    "[]"
+                ],
+                "dataIdx": "`''`",
+                "defaults": null,
+                "enableColumnHide": false,
+                "enableColumnMove": false,
+                "header": false,
+                "headerOverCls": null,
+                "headerPosition": null,
+                "height": null,
+                "itemId": "datasetGrid",
+                "layout|flex": null,
+                "title": null,
+                "width": null
+            },
+            "name": "MyGridPanel1",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "colsInfo": "array"
+            },
+            "designerId": "43dc244c-07e9-41a6-9d7b-c9920d7042c3",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "dataIdx",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "colsInfo",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "string",
+                        "draggable": false,
+                        "sortable": false,
+                        "text": "String"
+                    },
+                    "name": "MyColumn",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "3dd52a71-14fe-41d5-804b-9f93fda14e5b",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTextField4",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "3397c142-478d-4be1-b01d-423879423898"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.plugin.CellEditing",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "clicksToEdit": 1
+                    },
+                    "name": "MyCellEditingPlugin",
+                    "designerId": "8e5d9c0b-0153-440a-b13c-e5774e7f340a"
+                },
+                {
+                    "type": "Ext.selection.CheckboxModel",
+                    "reference": {
+                        "name": "selModel",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyCheckboxSelectionModel",
+                    "designerId": "cd4b616c-1dfd-4258-9f38-1110c47637b7"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getGrid",
+                "implHandler": [
+                    "return this.down('#datasetGrid');"
+                ]
+            },
+            "name": "getGrid",
+            "designerId": "7dfa3351-f686-44b4-b7a0-1436a8b8be10"
+        }
+    ]
+}

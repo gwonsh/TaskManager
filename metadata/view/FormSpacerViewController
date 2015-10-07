@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "formspacer",
+        "designer|userClassName": "FormSpacerViewController"
+    },
+    "designerId": "1d12d368-ee1e-4804-acf3-1a601938b537"
+}

@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "linkunit",
+        "designer|userClassName": "LinkUnitViewModel1"
+    },
+    "name": "LinkUnitViewModel1",
+    "designerId": "56e5caa1-9c64-4271-a31e-ce16c3c44a11"
+}

@@ -1,0 +1,423 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|padding": 40,
+        "designer|userAlias": "multiselectwindow",
+        "designer|userClassName": "MultiSelectWindow",
+        "ghost": [
+            "false"
+        ],
+        "height": 270,
+        "layout": "vbox",
+        "title": "My Window",
+        "width": 400
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
+    "designerId": "83e3a8a8-0b28-4ee5-bffb-7bef366b3da1",
+    "viewControllerInstanceId": "31156675-61e1-4f32-b4e2-5f024611b473",
+    "viewModelInstanceId": "ea455cc7-bfe9-4942-8afb-8af9acd2959d",
+    "cn": [
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "displayField": "name",
+                "fieldLabel": [
+                    "{option1}"
+                ],
+                "itemId": "firstOption",
+                "labelWidth": 70,
+                "queryMode": "local",
+                "valueField": "name",
+                "width": "100%"
+            },
+            "name": "MyComboBox",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "fieldLabel": "binding"
+            },
+            "designerId": "854a5970-86f5-4b24-a688-216a0bf4f4c0",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFirstOptionSelect",
+                        "implHandler": [
+                            "var sbDt = record.data.subData;",
+                            "var sndOpt = this.down('#secondOption');",
+                            "sndOpt.setDisabled(false);",
+                            "sndOpt.value = '';",
+                            "var sData = [];",
+                            "Ext.Array.each(sbDt, function(item){",
+                            "    sData.push({name:item});",
+                            "});",
+                            "var store = Ext.create('Ext.data.Store', {",
+                            "    fields:['name'],",
+                            "    data:sData",
+                            "});",
+                            "sndOpt.setStore(store);"
+                        ],
+                        "name": "select",
+                        "scope": "me"
+                    },
+                    "name": "onFirstOptionSelect",
+                    "designerId": "a1ec730a-51e2-42a2-8ae3-689dcfe539c4"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "disabled": true,
+                "displayField": "name",
+                "fieldLabel": [
+                    "{option2}"
+                ],
+                "itemId": "secondOption",
+                "labelWidth": 70,
+                "layout|flex": null,
+                "valueField": "name",
+                "width": "100%"
+            },
+            "name": "MyComboBox1",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "fieldLabel": "binding"
+            },
+            "designerId": "4f5256a7-4c87-4c6c-975b-47c951e83bde"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "center",
+                "height": null,
+                "layout": "hbox",
+                "layout|flex": null,
+                "minHeight": null,
+                "width": "100%"
+            },
+            "name": "MyContainer19",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "c608a985-d39e-4241-928c-1a3771afbd82",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "layout": "vbox",
+                        "layout|flex": null
+                    },
+                    "name": "MyContainer22",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "d62f6226-ded2-410f-9e46-1eabb0610ad4",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "plain-toolbar-small",
+                                "itemId": "btnAdd",
+                                "layout|flex": null,
+                                "style": "background-color:#eeeeee;border:1px solid #cecece",
+                                "text": "ADD",
+                                "ui": "plain-toolbar-small",
+                                "width": 70
+                            },
+                            "name": "MyButton12",
+                            "configAlternates": {
+                                "style": "string",
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "2726cfb8-cd50-4eb1-ad6d-8894168d7aa2",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnAddClick",
+                                        "implHandler": [
+                                            "var fstOpt = button.up('window').down('#firstOption');",
+                                            "var sndOpt = button.up('window').down('#secondOption');",
+                                            "var valFld = button.up('window').down('#valueField');",
+                                            "var preVal = (valFld.getValue() === '')? '' : valFld.getValue() + ',';",
+                                            "var value = '';",
+                                            "if(fstOpt.getValue() === '' || fstOpt.getValue() === null || fstOpt.getValue() === undefined){",
+                                            "    alert(locale.upload.selectFirstOption);",
+                                            "    return;",
+                                            "}",
+                                            "else if(sndOpt.getValue() === '' || sndOpt.getValue() === null || sndOpt.getValue() === undefined){",
+                                            "    var cfm = confirm(locale.upload.selectSecondOption);",
+                                            "    if(cfm){",
+                                            "        value = preVal + sndOpt.getValue() + fstOpt.getValue() + '-[' + sndOpt.getValue() + ']';",
+                                            "    }",
+                                            "    else{",
+                                            "        return;",
+                                            "    }",
+                                            "}",
+                                            "else{",
+                                            "    value = preVal + fstOpt.getValue() + '-[' + sndOpt.getValue() + ']';",
+                                            "}",
+                                            "valFld.setValue(value);",
+                                            "fstOpt.setValue('');",
+                                            "sndOpt.setValue('');",
+                                            "sndOpt.disable();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnAddClick",
+                                    "designerId": "6ba28a67-c604-442b-af75-cfc04ddace3f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "plain-toolbar-small",
+                                "itemId": "btnClear",
+                                "layout|flex": null,
+                                "style": "background-color:#eeeeee;border:1px solid #cecece",
+                                "text": "CLEAR",
+                                "ui": "plain-toolbar-small",
+                                "width": 70
+                            },
+                            "name": "MyButton15",
+                            "configAlternates": {
+                                "style": "string",
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "e55157be-aea7-4d1e-a558-ba2df2c34523",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnClearClick",
+                                        "implHandler": [
+                                            "",
+                                            "var valFld = button.up('window').down('#valueField');",
+                                            "",
+                                            "valFld.setValue('');"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnClearClick",
+                                    "designerId": "0fef374c-8779-42fd-9ef5-ac1c7524a2dd"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "height": null,
+                        "hideEmptyLabel": false,
+                        "itemId": "valueField",
+                        "labelWidth": 0,
+                        "layout|flex": 1,
+                        "readOnly": true,
+                        "style": null
+                    },
+                    "name": "MyTextArea",
+                    "configAlternates": {
+                        "style": "string",
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "1a3c48bd-73d3-4858-8ab4-39f329ae7462"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store"
+                ],
+                "fn": "setFirstStore",
+                "implHandler": [
+                    "var fstOpt = this.down('#firstOption');",
+                    "fstOpt.setStore(store);"
+                ]
+            },
+            "name": "setFirstStore",
+            "designerId": "91b54b2b-2713-4fc9-8d59-fc582d45cfed"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "center",
+                "height": null,
+                "layout": "hbox",
+                "layout|flex": null,
+                "layout|margins": "",
+                "margin": "16 0 0 0",
+                "width": "100%"
+            },
+            "name": "MyContainer21",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "aaf0472d-7303-476c-b4f2-8e98c9f7a52b",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnOk",
+                        "text": [
+                            "{entry}"
+                        ],
+                        "width": 80
+                    },
+                    "name": "MyButton13",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "b8754f91-c60c-40c3-9690-fb992400f7c8",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnOkClick",
+                                "implHandler": [
+                                    "var w = button.up('window');",
+                                    "w.setTitle('');",
+                                    "w.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnOkClick",
+                            "designerId": "0d49bcee-00c4-4700-b989-d102d97c93cb"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnCancel",
+                        "margin": "0 0 0 10",
+                        "text": [
+                            "{cancel}"
+                        ],
+                        "width": 80
+                    },
+                    "name": "MyButton14",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "text": "binding"
+                    },
+                    "designerId": "1de00221-050d-47dd-bdbc-b3191f5925fa",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "var w = button.up('window');",
+                                    "w.destroy();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "0beabb6b-a556-4d8d-9c46-f9d6fd1bd575"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

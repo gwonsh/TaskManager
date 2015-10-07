@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "datagroupwindow",
+        "designer|userClassName": "LinkingWindowViewModel2"
+    },
+    "name": "LinkingWindowViewModel2",
+    "designerId": "ef377fc0-e6ad-4264-9521-6269a7b01353"
+}

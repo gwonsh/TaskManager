@@ -1,0 +1,639 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "categoryId": "`''`",
+        "container|align": "stretch",
+        "designer|userAlias": "viewerdefault",
+        "designer|userClassName": "ViewerDefault",
+        "height": "100%",
+        "itemId": "docViewer",
+        "layout": "vbox",
+        "padding": "40 40 40 40",
+        "style": "background:#ffffff;border:1px solid #777777",
+        "width": "100%"
+    },
+    "name": "MyContainer10",
+    "configAlternates": {
+        "style": "string",
+        "scrollable": "boolean"
+    },
+    "designerId": "c6cf9bba-5d09-432d-9cc0-c6c2b0db335e",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryId",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "a9ff028c-a23c-41e9-a15b-89f195eef482",
+    "viewModelInstanceId": "11cfdbaa-5bb3-4f4d-87c9-1630df519ec5",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "itemId": "viewerHeader",
+                "layout|flex": 1
+            },
+            "name": "MyContainer16",
+            "designerId": "2033e2fd-2d62-4f3b-a7ba-1a35c4b42b16",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewerHeaderAfterRender",
+                        "implHandler": [
+                            "component.setData(companyInfo);"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onViewerHeaderAfterRender",
+                    "designerId": "36290e0d-4073-47f3-a13e-a6925ed1e15d"
+                },
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<div style=\"width:100%;height:100%\">",
+                            "    <div style=\"float:left;width:50px;height:50px;background:url({company_logo});background-repeat:no-repeat;background-position:center;background-size:contain\"></div>",
+                            "    <div style=\"float:left;font-size:11px;padding-left:10px\">",
+                            "        <div style=\"font-weight:bold;font-size:17px;width:100%\">{company_name}</div>",
+                            "        <span style=\"font-weight:bold\">Phone: </span>",
+                            "        <span>{company_phone}, </span>",
+                            "        <span style=\"font-weight:bold\">Fax: </span>",
+                            "        <span>{company_fax}</span>",
+                            "        <div style=\"font-size:11px;width:100%\">{company_addr1} {company_addr2}</div>",
+                            "        <div style=\"height:10px;width:100%\"></div>",
+                            "    </div>",
+                            "</div>"
+                        ]
+                    },
+                    "name": "tpl",
+                    "designerId": "43adbefa-5ceb-4dfb-b197-e23d501d7c90"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|padding": 10,
+                "designer|displayName": "Title container",
+                "height": 40,
+                "layout": "hbox",
+                "style": "background-color:#333333"
+            },
+            "name": "MyContainer9",
+            "configAlternates": {
+                "style": "string",
+                "scrollable": "boolean"
+            },
+            "designerId": "2c4545f3-5138-458b-9814-0aba4563abbc",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "formTitle",
+                        "reference": null,
+                        "style": [
+                            "{",
+                            "    'color':'#ffffff',",
+                            "    'font-size':'20px',",
+                            "    'font-weight':'bold'",
+                            "}"
+                        ],
+                        "text": "''"
+                    },
+                    "name": "MyLabel",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "3058825a-d69f-41af-9aa0-7d1ad6048f8c",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFormTitleBeforeRender",
+                                "implHandler": [
+                                    "component.setText(categoryName);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onFormTitleBeforeRender",
+                            "designerId": "f3cc31e3-364e-48c1-94d3-4c36eac70154"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "view-input-group"
+                ],
+                "container|align": "stretch",
+                "designer|displayName": "1stRow",
+                "layout": "hbox",
+                "margin": "16 0 0 0",
+                "style": [
+                    "{",
+                    "    \"border\":\"1px solid #000\",",
+                    "}"
+                ],
+                "width": "100%"
+            },
+            "name": "MyContainer",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "219eae2b-4f0c-457c-9a6a-db44869da367",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Display",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Name",
+                        "itemId": "dfName",
+                        "labelClsExtra": "view-input-label",
+                        "labelWidth": 60,
+                        "layout|flex": 2,
+                        "value": [
+                            "{bd_name}"
+                        ]
+                    },
+                    "name": "MyDisplayField",
+                    "configAlternates": {
+                        "value": "binding",
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "adb3f211-15a9-4a8f-a44d-9619efa1f329",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDfNameBeforeRender",
+                                "implHandler": [
+                                    "component.setFieldLabel(locale.main.name);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onDfNameBeforeRender",
+                            "designerId": "2a04cd30-3c97-447a-8f92-6e4c165aac6c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.Display",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Date",
+                        "itemId": "dfDate",
+                        "labelClsExtra": "view-input-label",
+                        "labelWidth": 55,
+                        "layout|flex": 1,
+                        "value": [
+                            "{bd_regdate}"
+                        ]
+                    },
+                    "name": "MyDisplayField1",
+                    "configAlternates": {
+                        "value": "binding",
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "d2db6f23-c45e-4659-ac61-568b4c96e444",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDfDateBeforeRender",
+                                "implHandler": [
+                                    "component.setFieldLabel(locale.main.regDate);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onDfDateBeforeRender",
+                            "designerId": "bfea27fe-f2c4-424c-8e71-a344b5fece73"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.Display",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "ID",
+                        "itemId": "dfID",
+                        "labelClsExtra": "view-input-label",
+                        "labelWidth": 30,
+                        "layout|flex": 1,
+                        "value": [
+                            "{idx}"
+                        ]
+                    },
+                    "name": "MyDisplayField3",
+                    "configAlternates": {
+                        "value": "binding",
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "2c5298c2-5b0d-4b67-b6c0-ee54f5a46c94"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "view-input-group"
+                ],
+                "container|align": "stretch",
+                "designer|displayName": "2ndtRow",
+                "layout": "hbox",
+                "margin": "-1 0 0 0",
+                "style": [
+                    "{",
+                    "    \"border\":\"1px solid #000\",",
+                    "}"
+                ],
+                "width": "100%"
+            },
+            "name": "MyContainer3",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "5c72b169-1e07-4455-bff2-6669279fb358",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Display",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Title",
+                        "height": null,
+                        "itemId": "dfTitle",
+                        "labelClsExtra": "view-input-label",
+                        "labelWidth": 60,
+                        "layout|flex": 1,
+                        "margin": "-1 0 0 0",
+                        "value": [
+                            "{bd_subject}"
+                        ]
+                    },
+                    "name": "MyDisplayField",
+                    "configAlternates": {
+                        "value": "binding",
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "d1aa9a5a-1d77-47e1-bb1f-187cad5ba1e9",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDfTitleBeforeRender",
+                                "implHandler": [
+                                    "component.setFieldLabel(locale.main.title);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onDfTitleBeforeRender",
+                            "designerId": "0bcf59a3-073f-492f-a2d2-216edfdb755d"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "hidden": true,
+                "html": [
+                    "{bd_content}"
+                ],
+                "itemId": "remarkCon",
+                "margin": "-1 0 0 0",
+                "minHeight": 35,
+                "padding": "6 6 6 6",
+                "style": "border:1px solid #000;font-size:13px"
+            },
+            "name": "MyContainer17",
+            "configAlternates": {
+                "style": "string",
+                "html": "binding",
+                "scrollable": "boolean"
+            },
+            "designerId": "1bf0ae77-81b6-439e-9637-43ba612c9162"
+        },
+        {
+            "type": "Ext.toolbar.Spacer",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "preview-spacer"
+                ],
+                "height": null
+            },
+            "name": "MySpacer8",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "19e530a6-549b-4bcc-9522-05d725101dfb"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "custom-field"
+                ],
+                "container|align": "stretch",
+                "itemId": "customFieldCon",
+                "layout": "vbox",
+                "layout|flex": null,
+                "padding": null,
+                "width": null
+            },
+            "name": "MyContainer5",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "29b250c3-6b8e-4473-89fd-567314e4290d"
+        },
+        {
+            "type": "Ext.toolbar.Spacer",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "preview-spacer"
+                ],
+                "height": null,
+                "padding": null
+            },
+            "name": "MySpacer1",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "e5d77acc-18d1-4ec2-b52a-20a106ee55b6"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "preview-section-title"
+                ],
+                "designer|displayName": "Image title container",
+                "layout|flex": 1,
+                "padding": null,
+                "style": ""
+            },
+            "name": "MyContainer7",
+            "configAlternates": {
+                "style": "string",
+                "scrollable": "boolean"
+            },
+            "designerId": "bd788802-8c07-4ca9-8e45-a005f0144910",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "preview-title"
+                        ],
+                        "itemId": "txtReferenceImage",
+                        "margin": null,
+                        "text": "Refrence Image"
+                    },
+                    "name": "MyLabel3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
+                    "designerId": "f7f099ea-f4ef-4f62-967f-c7ff1e9c62bf",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "ontxtReferenceImageBeforeRender",
+                                "implHandler": [
+                                    "component.setText(locale.main.refImageTitle);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "ontxtReferenceImageBeforeRender",
+                            "designerId": "8d36c51b-10a1-4126-af11-aa6c4863db39"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "attatchCon",
+                "layout": "column",
+                "padding": "10 0 0 0",
+                "scrollable": false,
+                "width": "100%"
+            },
+            "name": "MyContainer6",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "cb0a7795-afce-48c8-a9ac-d9f8034d4cfa"
+        },
+        {
+            "type": "Ext.toolbar.Spacer",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "preview-spacer"
+                ],
+                "height": null
+            },
+            "name": "MySpacer10",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "1bcd60fd-57b7-478c-9354-5f83990ce610"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "docs"
+                ],
+                "fn": "addAttachment",
+                "implHandler": [
+                    "for(var i=0; i<docs.length; i++){",
+                    "    var atCon = Ext.create(appName + '.view.AttachmentUnit', {",
+                    "        margin:'0, 0 10, 0'",
+                    "    });",
+                    "    atCon.addImage(docs[i], i);",
+                    "    this.down('#attatchCon').add(atCon);",
+                    "}"
+                ]
+            },
+            "name": "addAttachment",
+            "designerId": "ab10177c-037e-4151-a0f0-b94be7ad11c0"
+        },
+        {
+            "type": "Ext.form.field.Checkbox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "boxLabel": "Box Label",
+                "fieldLabel": "Label",
+                "layout|flex": 1
+            },
+            "name": "MyCheckbox",
+            "designerId": "253bcbfd-1e08-4255-8813-bebce7c5df7f",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "afterBoxLabelTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "afterBoxLabelTpl",
+                        "implHandler": [
+                            "<div style=\"\"></div><div></div>",
+                            "<span></span>"
+                        ]
+                    },
+                    "name": "afterBoxLabelTpl",
+                    "designerId": "4d9bfb71-d7d4-4174-84e5-0ff46a066969"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,631 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 20,
+        "bodyStyle": [
+            "{'background-color':'#ffffff'}"
+        ],
+        "categoryId": "`''`",
+        "designer|userAlias": "linkingwindow",
+        "designer|userClassName": "LinkingWindow",
+        "ghost": [
+            "false"
+        ],
+        "height": 750,
+        "id": null,
+        "layout": "border",
+        "maxHeight": null,
+        "opener": [
+            "`null`"
+        ],
+        "title": [
+            "{linkWinTitle}"
+        ],
+        "width": 1000
+    },
+    "name": "SmartoriMain1",
+    "configAlternates": {
+        "title": "binding",
+        "header": "object",
+        "window": "object",
+        "opener": "object"
+    },
+    "designerId": "a0e226a8-948a-4b4f-8ee9-e1810ee42ca3",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryId",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "opener",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "dd8acae3-8da3-4be7-898c-61173bc843ef",
+    "viewModelInstanceId": "90802870-ffc6-407b-8ada-e0b4282a2257",
+    "cn": [
+        {
+            "type": "Ext.tree.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "hideHeaders": true,
+                "itemId": "tree",
+                "layout|region": "west",
+                "layout|split": true,
+                "overlapHeader": true,
+                "title": "Category",
+                "width": 230
+            },
+            "name": "MyTreePanel",
+            "designerId": "08e2c401-8932-468b-8d18-ecee4fbdf80c",
+            "cn": [
+                {
+                    "type": "Ext.tree.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyTreeView",
+                    "designerId": "e9e1213a-8f78-47e7-95de-030012891927"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "listContainer",
+                "layout": "fit",
+                "layout|flex": 1,
+                "layout|region": "center",
+                "layout|split": true,
+                "scrollable": null,
+                "style": "border:1px solid #cecece"
+            },
+            "name": "MyContainer23",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "style": "string"
+            },
+            "designerId": "eee98cf6-abad-4f31-a11c-988c575adf15",
+            "cn": [
+                {
+                    "type": "Ext.grid.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "frameHeader": false,
+                        "header": false,
+                        "itemId": "listForLink",
+                        "title": "Data List",
+                        "type": "normal"
+                    },
+                    "name": "MyGridPanel2",
+                    "designerId": "ea435224-e80d-448c-838f-12d18fd36c3c",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "type",
+                            "type": "string"
+                        }
+                    ],
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "string",
+                                "text": "String"
+                            },
+                            "name": "MyColumn2",
+                            "designerId": "4d974ec2-a1f9-4028-8113-1d9146a7959b"
+                        },
+                        {
+                            "type": "Ext.view.Table",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTable",
+                            "designerId": "0f16ed5f-d118-4d92-8695-5429e2d16ed8",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.plugin.DragDrop",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "ddGroup": "gridData"
+                                    },
+                                    "name": "MyGridDragDropPlugin",
+                                    "designerId": "2a8e973a-68be-4a39-96f1-44e8c6794228"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.toolbar.Paging",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "displayInfo": true,
+                                "displayMsg": "Data {0} - {1} of {2}",
+                                "dock": "bottom",
+                                "itemId": "pagingToolbar",
+                                "width": 360
+                            },
+                            "name": "MyPagingToolbar1",
+                            "designerId": "aadeb072-1edd-436d-838f-bbdd51f33116",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": [
+                                            "searchbox"
+                                        ],
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "itemId": "linkSearch",
+                                        "labelWidth": 0,
+                                        "layout|flex": null,
+                                        "margin": "0 0 0 3"
+                                    },
+                                    "name": "MyTextField5",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "61a317aa-97f0-42cd-b520-a55c248cabfe"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "icon": "resources/images/find.png",
+                                        "id": null,
+                                        "itemId": "findLinkData",
+                                        "layout|flex": null,
+                                        "margin": "0 6 0 6",
+                                        "text": null
+                                    },
+                                    "name": "MyButton18",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "10647d12-1e85-4b06-91de-b5c325e03708",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "var val = button.up('pagingtoolbar').down('#linkSearch').getValue();",
+                                                    "var ctrl = getController('Main');",
+                                                    "var query = \"&se_all=\" + val;",
+                                                    "ctrl.getServerData('', query, button.up('pagingtoolbar').up('gridpanel'));"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "5e325953-a711-4233-8428-3bcfdc89d6c6"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDataListCellDblClick",
+                                "implHandler": [
+                                    "var linkWin = tableview.up('window');",
+                                    "var dropBox = linkWin.down('#dropBox');",
+                                    "/* check units in dropBox of linkingWindow */",
+                                    "var preUnit = dropBox.down('#unit_' + record.data.bd_idx);",
+                                    "/* check units in linkedData of newRequest view */",
+                                    "/* newRequest를 통해 업로드하거나 수정할 때만 체크 */",
+                                    "var rqtWin = Ext.getCmp('newRequestWin_' + selectedCategory);",
+                                    "var rqtWin = linkWin.opener;",
+                                    "/* if request win is opened that is new request mode or edit request mode */",
+                                    "if(rqtWin && !rqtWin.hidden){",
+                                    "    var oldUnit = linkWin.opener.down('#unit_' + record.data.bd_idx);",
+                                    "    /* check if it has been added */",
+                                    "    if(oldUnit !== null || preUnit !== null){",
+                                    "        Ext.toast(locale.main.duplicated);",
+                                    "        return;",
+                                    "    }",
+                                    "}",
+                                    "else{",
+                                    "    /* in case edit by viewer directly */",
+                                    "    if(preUnit !== null){",
+                                    "        Ext.toast(locale.main.duplicated);",
+                                    "        return;",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "var linkUnit = Ext.create(appName + '.view.LinkUnit', {",
+                                    "    itemId:'unit_' + record.data.bd_idx",
+                                    "});",
+                                    "",
+                                    "/* check if dropbox has a unit otherwise show 'drop here' message again */",
+                                    "linkUnit.on('destroy', function(unit){",
+                                    "    if(dropBox.items.length === 0){",
+                                    "//         dropBox.down('#header').setHtml('<div style=\"text-align:center;width:100%;margin-top:8px\">' + locale.main.dropHere + '</div>');",
+                                    "    }",
+                                    "});",
+                                    "if(record.data.thumb_path){",
+                                    "    linkUnit.down('#image').setStyle('background-image', 'url(' +record.data.thumb_path+ ')');",
+                                    "}",
+                                    "else{",
+                                    "    linkUnit.down('#image').setStyle('background-image', 'url(resources/images/ico_noimage.gif');",
+                                    "}",
+                                    "",
+                                    "linkUnit.getViewModel().setData({",
+                                    "    src:record.data.thumb_path,",
+                                    "    bdIdx:record.data.bd_idx,",
+                                    "    unitTitle:record.data.bd_subject",
+                                    "});",
+                                    "dropBox.add(linkUnit);"
+                                ],
+                                "name": "celldblclick",
+                                "scope": "me"
+                            },
+                            "name": "onDataListCellDblClick",
+                            "designerId": "404095eb-66f6-499c-9b23-6ec42d9534a8"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowBeforeRender",
+                "implHandler": [
+                    "var tree = component.down('#tree');",
+                    "tree.setTitle(locale.main.category);",
+                    "var tStore = Ext.create('Ext.data.TreeStore', {",
+                    "    model:'CateModel', //defined at globals.js",
+                    "    proxy: {",
+                    "        type: 'jsonp',",
+                    "        reader: {",
+                    "            type: 'json'",
+                    "        },",
+                    "        api: {",
+                    "            read: getCategoryListApi()",
+                    "        }",
+                    "    },",
+                    "    listeners:{",
+                    "        load:function(){",
+                    "        }",
+                    "    }",
+                    "});",
+                    "tStore.load();",
+                    "tree.setStore(tStore);",
+                    "var ctrl = getController('Main');",
+                    "ctrl.getServerData('', '', component.down('gridpanel'));",
+                    "tree.getSelectionModel().on('select', function(sm, node, index){",
+                    "    ctrl.getServerData(node.id, '&ca_id=' + node.id, component.down('gridpanel'));",
+                    "});"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onWindowBeforeRender",
+            "designerId": "6ff2fe24-8803-45a3-840c-bef408316197"
+        },
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "frameHeader": false,
+                "header": false,
+                "height": 185,
+                "html": null,
+                "itemId": "dropBox",
+                "layout": "hbox",
+                "layout|flex": null,
+                "layout|region": "south",
+                "padding": null,
+                "scrollable": true,
+                "style": [
+                    "{",
+                    "    'background-color':'#eeeeee', 'border':'1px solid #cccccc'",
+                    "}"
+                ]
+            },
+            "name": "MyPanel6",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "665381af-4ceb-42a9-b383-d121a8e8544d",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "middle",
+                        "container|pack": "end",
+                        "dock": "top",
+                        "height": 35,
+                        "html": null,
+                        "itemId": "header",
+                        "layout": "hbox",
+                        "layout|flex": null
+                    },
+                    "name": "MyContainer28",
+                    "designerId": "cc94107d-22dd-401c-b111-1f9bbb7ae4d2",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "margin": "0 0 0 8",
+                                "text": [
+                                    "{dropHere}"
+                                ]
+                            },
+                            "name": "MyLabel10",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "c1ded039-b7d6-4ab8-a02a-110addabff0b"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "text": [
+                                    "{reset}"
+                                ]
+                            },
+                            "name": "MyButton19",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "4a1015e2-a781-4a1c-a876-c660b9bde1d4",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var container = button.up('container').up('container');",
+                                            "var dBox = container.queryById('dropBox');",
+                                            "dBox.removeAll();"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "9f897970-57e4-4b01-92a6-76532e0b4ca6"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "margin": "0 0 0 3",
+                                "text": [
+                                    "{saveClose}"
+                                ]
+                            },
+                            "name": "MyButton20",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "1e07896f-d816-464c-9d7b-3faa60721500",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var dropBox = button.up('#dropBox');",
+                                            "var lnkWin = dropBox.up('window');",
+                                            "var newRqt = lnkWin.opener;",
+                                            "if(newRqt){",
+                                            "    /* in case upload or edit by new request */",
+                                            "    var luCon = newRqt.down('#' + lnkWin.getItemId() + '_unitCon');",
+                                            "    for (var i=dropBox.getLinkData().length; i--; ) {",
+                                            "        luCon.add(dropBox.getLinkData()[i]);",
+                                            "    }",
+                                            "    lnkWin.close();",
+                                            "",
+                                            "}",
+                                            "else{",
+                                            "    /* in case upload or edit by viewer */",
+                                            "    lnkWin.fireEvent('save');",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "61d34a6a-83ae-469f-9168-a61a754f4e0d"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDropBoxRender",
+                        "implHandler": [
+                            "var dropEl = component.el.dom;",
+                            "var me = component;",
+                            "var dropTarget = Ext.create('Ext.dd.DropTarget', dropEl, {",
+                            "    ddGroup:'gridData',",
+                            "    notifyEnter:function(ddSource, e, data){",
+                            "        /* hide 'drop here' message when a data dragged on dropBox */",
+                            "        me.down('#header').setHtml('');",
+                            "    },",
+                            "    notifyOut:function(){",
+                            "        if(me.items.length === 1){",
+                            "            /* show 'drop here' message when a data placed out of dropBox */",
+                            "//             me.down('#header').setHtml('<div style=\"text-align:center;width:100%;margin-top:8px\">' + locale.main.dropHere + '</div>');",
+                            "        }",
+                            "    },",
+                            "    notifyDrop:function(ddSource, e, data){",
+                            "        var record = ddSource.dragData.records[0];",
+                            "        /* check units in dropBox of linkingWindow */",
+                            "        var preUnit = me.down('#unit_' + record.data.bd_idx);",
+                            "        var oldUnit = null;",
+                            "        /* check units in linkedData of newRequest view */",
+                            "        var rqtWin = component.up('window').opener;",
+                            "        /* if request win is opened that is new request mode or edit request mode */",
+                            "        if(rqtWin && !rqtWin.hidden){",
+                            "            oldUnit = rqtWin.down('#' + me.up('window').getItemId()).down('#unit_' + record.data.bd_idx);",
+                            "        }",
+                            "        /* check if it has been added */",
+                            "        if(oldUnit !== null || preUnit !== null){",
+                            "            Ext.toast(locale.main.duplicated);",
+                            "            return;",
+                            "        }",
+                            "        /* drop into dropBox the dragged data */",
+                            "        var linkUnit = Ext.create(appName + '.view.LinkUnit', {",
+                            "            itemId:'unit_' + record.data.bd_idx",
+                            "        });",
+                            "        linkUnit.getViewModel().setData({",
+                            "            src:record.data.thumb_path,",
+                            "            bdIdx:record.data.bd_idx,",
+                            "            unitTitle:record.data.bd_subject",
+                            "        });",
+                            "        /* check if dropbox has a unit otherwise show 'drop here' message again */",
+                            "        linkUnit.on('destroy', function(unit){",
+                            "            if(me.items.length === 0){",
+                            "//                 container.setHtml('<div style=\"text-align:center;width:100%;margin-top:8px\">' + locale.main.dropHere + '</div>');",
+                            "            }",
+                            "        });",
+                            "        if(record.data.thumb_path){",
+                            "            linkUnit.down('#image').setStyle('background-image', 'url(' +record.data.thumb_path+ ')');",
+                            "        }",
+                            "        else{",
+                            "            linkUnit.down('#image').setStyle('background-image', 'url(resources/images/ico_noimage.gif');",
+                            "        }        ",
+                            "        me.add(linkUnit);",
+                            "    }",
+                            "});"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onDropBoxRender",
+                    "designerId": "98682eda-9cdb-426a-81b9-16a12fe770e6"
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "getLinkData",
+                        "implHandler": [
+                            "return this.items.items;"
+                        ]
+                    },
+                    "name": "getLinkData",
+                    "designerId": "96f428d7-6126-41a6-aa3d-a5a4a18c8c74"
+                }
+            ]
+        }
+    ]
+}

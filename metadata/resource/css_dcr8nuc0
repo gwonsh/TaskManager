@@ -1,0 +1,14 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css_dcr8nuc0",
+        "url": "resources/tabstyle.css"
+    },
+    "name": "css3",
+    "designerId": "7585d9af-9ab6-482f-a6a1-1ffc61b6b9f8"
+}

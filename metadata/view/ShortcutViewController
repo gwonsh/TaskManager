@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "shortcut",
+        "designer|userClassName": "ShortcutViewController"
+    },
+    "designerId": "ae4989a5-1868-4ff1-9ff5-ddf7b6902a53"
+}

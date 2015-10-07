@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "multiselectwindow",
+        "designer|userClassName": "MultiSelectWindowViewController"
+    },
+    "designerId": "31156675-61e1-4f32-b4e2-5f024611b473"
+}

@@ -1,0 +1,324 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "categoryId": [
+            "{ca_id}"
+        ],
+        "categoryName": [
+            "{ca_name}"
+        ],
+        "designer|snapToGrid": 10,
+        "designer|userAlias": "shortcut",
+        "designer|userClassName": "Shortcut",
+        "displayType": [
+            "{displayType}"
+        ],
+        "height": 128,
+        "layout": "absolute",
+        "src": [
+            "{piSrc}"
+        ],
+        "width": 128
+    },
+    "name": "MyContainer33",
+    "configAlternates": {
+        "categoryId": "binding",
+        "categoryName": "binding",
+        "src": "binding",
+        "displayType": "binding"
+    },
+    "designerId": "b39320e6-fa32-40d1-af24-6c7bf6cb7137",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryId",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryName",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "src",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "displayType",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "ae4989a5-1868-4ff1-9ff5-ddf7b6902a53",
+    "viewModelInstanceId": "4926c1f5-b7a9-423d-8160-0fcdb82b1f33",
+    "cn": [
+        {
+            "type": "Ext.Img",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 128,
+                "itemId": "shortcutImage",
+                "src": [
+                    "{piSrc}"
+                ],
+                "style": [
+                    "{cursor:'pointer'}"
+                ],
+                "width": 128
+            },
+            "name": "MyImg6",
+            "configAlternates": {
+                "src": "binding"
+            },
+            "designerId": "57910601-99b6-450c-9b19-d2705b09545f",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onImageRender",
+                        "implHandler": [
+                            "component.getEl().on('click', function(){",
+                            "    var shortcut = component.up('shortcut');",
+                            "    shortcut.fireEvent('click', shortcut.categoryId, shortcut.categoryName, shortcut.displayTyype, component);",
+                            "});"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onImageRender",
+                    "designerId": "bee5b978-d36f-43af-98da-6f70e98b93b1"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Img",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 24,
+                "hidden": true,
+                "itemId": "editShortcut",
+                "layout|x": 100,
+                "layout|y": 100,
+                "src": "resources/images/ico_edit_shotcut.png",
+                "style": [
+                    "{cursor:'pointer'}"
+                ],
+                "width": 24
+            },
+            "name": "MyImg3",
+            "designerId": "64f5413b-f9da-4e5b-9395-1c3fb725bbad",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onEditorRender",
+                        "implHandler": [
+                            "component.getEl().on('click', function(){",
+                            "    var shortcut = component.up('shortcut');",
+                            "    shortcut.fireEvent('editShortcut', shortcut);",
+                            "});"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onEditorRender",
+                    "designerId": "b8fe3c52-9c7a-4d83-a2d1-4dbafb1a3ec8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Img",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 24,
+                "hidden": true,
+                "itemId": "delShortcut",
+                "layout|x": 73,
+                "layout|y": 100,
+                "src": "resources/images/ico_x.png",
+                "style": [
+                    "{cursor:'pointer'}"
+                ],
+                "width": 24
+            },
+            "name": "MyImg5",
+            "designerId": "6c75507f-6764-482d-8c26-a9471641a40b",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDeleteRender",
+                        "implHandler": [
+                            "component.getEl().on('click', function(){",
+                            "    var shortcut = component.up('shortcut');",
+                            "    shortcut.fireEvent('deleteShortcut', shortcut);",
+                            "});"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onDeleteRender",
+                    "designerId": "755af8a7-8c68-4f90-aad6-1bb1a4e676fa"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Img",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 16,
+                "hidden": true,
+                "itemId": "editShortcutTitle",
+                "layout|x": 109,
+                "layout|y": 3,
+                "src": "resources/images/ico_edit_shortcut_s.png",
+                "style": [
+                    "{cursor:'pointer'}"
+                ],
+                "width": 16
+            },
+            "name": "MyImg4",
+            "designerId": "ddc36636-91de-4213-addb-12c95b39b732",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTitleEditorRender",
+                        "implHandler": [
+                            "component.getEl().on('click', function(){",
+                            "    var shortcut = component.up('shortcut');",
+                            "    shortcut.fireEvent('editTitle', shortcut.down('#shortcutTitle'));",
+                            "});"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "name": "onTitleEditorRender",
+                    "designerId": "23a766cc-cd30-4edd-abed-53562fdfd319"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "shortcutTitle",
+                "style": [
+                    "{color:'white','font-size':'12px; margin:3px 0 0 3px'}"
+                ],
+                "text": [
+                    "{ca_name}"
+                ],
+                "width": 110
+            },
+            "name": "MyLabel9",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "3c5c3e28-4514-4173-bcf5-560767605d0a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showEditButton",
+                "implHandler": [
+                    "this.down('#editShortcut').setHidden(false);",
+                    "this.down('#editShortcutTitle').setHidden(false);",
+                    "this.down('#delShortcut').setHidden(false);"
+                ]
+            },
+            "name": "showEditButton",
+            "designerId": "1ceafef8-4213-4281-8605-9969f0fe04fe"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "size"
+                ],
+                "fn": "changeSize",
+                "implHandler": [
+                    "this.setWidth(size);",
+                    "this.setHeight(size);",
+                    "this.down('#shortcutImage').setWidth(size);",
+                    "this.down('#shortcutImage').setHeight(size);"
+                ]
+            },
+            "name": "changeSize",
+            "designerId": "867fbfec-6ba6-48d3-8cc8-88654bc83dce"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getTitle",
+                "implHandler": [
+                    "var title = this.getViewModel().get('ca_name');",
+                    "return title;"
+                ]
+            },
+            "name": "getTitle",
+            "designerId": "bd4a8ec5-f742-4d2f-86d8-151d7ec04a15"
+        }
+    ]
+}

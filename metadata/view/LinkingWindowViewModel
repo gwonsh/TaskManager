@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "linkingwindow",
+        "designer|userClassName": "LinkingWindowViewModel"
+    },
+    "name": "SmartoriMainViewModel1",
+    "designerId": "90802870-ffc6-407b-8ada-e0b4282a2257"
+}

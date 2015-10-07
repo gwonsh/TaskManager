@@ -1,0 +1,16 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": false,
+        "designer|userClassName": "FieldStore",
+        "model": "FieldModel",
+        "storeId": "FieldStore"
+    },
+    "name": "MyStore",
+    "designerId": "f38f3239-6468-477c-b49d-a0e4667d798e"
+}

@@ -1,0 +1,116 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ShortcutsStore",
+        "storeId": "ShortcutsStore"
+    },
+    "name": "MyJsonStore",
+    "designerId": "3a043844-f97b-4983-a823-a6ef074447d1",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "resources/shortcuts.json"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "69b9ba9a-7a79-4a14-b7ac-f1dab616c702",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyJsonReader1",
+                    "designerId": "adf4fdfe-9137-414d-9a5e-cf72a8497b05"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "MyField6",
+            "designerId": "c48a9e71-63e8-48a6-8356-1b86e988b91d"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ca_id"
+            },
+            "name": "MyField7",
+            "designerId": "3ad89257-6ae6-47e9-83c6-88d500ad3ba9"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "text"
+            },
+            "name": "MyField8",
+            "designerId": "67bde350-1238-42dc-8f38-7bdb9278e812"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "piSrc"
+            },
+            "name": "MyField9",
+            "designerId": "8a38482a-a59a-4865-ac3b-3699a4e7bccb",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var val = 'resources/shortcuts/' + rec.get('name');",
+                            "return val;"
+                        ]
+                    },
+                    "name": "convert",
+                    "designerId": "974503cf-c283-441f-8d82-c91931f2dd62"
+                }
+            ]
+        }
+    ]
+}

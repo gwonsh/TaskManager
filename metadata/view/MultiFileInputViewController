@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "multifileinput",
+        "designer|userClassName": "MultiFileInputViewController"
+    },
+    "designerId": "a7afac18-b12a-4433-bed1-2357ce57b0b6"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "viewerdefault",
+        "designer|userClassName": "ViewerDefaultViewController"
+    },
+    "designerId": "a9ff028c-a23c-41e9-a15b-89f195eef482"
+}

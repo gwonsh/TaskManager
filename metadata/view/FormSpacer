@@ -1,0 +1,22 @@
+{
+    "type": "Ext.toolbar.Spacer",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "formspacer",
+        "designer|userClassName": "FormSpacer",
+        "height": 1,
+        "style": "border-top:1px solid #e9e9e9",
+        "width": "100%"
+    },
+    "name": "MySpacer6",
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "889baba3-512d-414b-a049-e4d6684526ea",
+    "viewControllerInstanceId": "1d12d368-ee1e-4804-acf3-1a601938b537",
+    "viewModelInstanceId": "3812ffc9-30cc-485f-a3de-aeb40848e8a5"
+}

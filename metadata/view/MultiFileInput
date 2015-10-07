@@ -1,0 +1,67 @@
+{
+    "type": "Ext.form.field.Text",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "multifileinput",
+        "designer|userClassName": "MultiFileInput",
+        "fieldLabel": null,
+        "inputType": "file",
+        "width": "100%"
+    },
+    "name": "MyTextField2",
+    "designerId": "de99fdcf-4f02-48da-880d-f0a934e3682b",
+    "viewControllerInstanceId": "a7afac18-b12a-4433-bed1-2357ce57b0b6",
+    "viewModelInstanceId": "c1531275-3912-4a7c-a43a-04be7a437bcb",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTextfieldRender",
+                "implHandler": [
+                    "var el = Ext.get(component.id+'-inputEl');",
+                    "el.set({",
+                    "    size: component.inputSize || 1",
+                    "});",
+                    "if(component.multiple) {",
+                    "    el.set({",
+                    "        multiple: 'multiple'",
+                    "    });",
+                    "}"
+                ],
+                "name": "render",
+                "scope": "me"
+            },
+            "name": "onTextfieldRender",
+            "designerId": "13b9a066-fcdf-40a0-9c85-0c5942805550"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTextfieldChange",
+                "implHandler": [
+                    "var el = Ext.get(field.id+'-inputEl');",
+                    "var files = el.dom.files;",
+                    "field.fireEvent('select', field, files);"
+                ],
+                "name": "change",
+                "scope": "me"
+            },
+            "name": "onTextfieldChange",
+            "designerId": "d27bb417-2916-428f-8e83-e2c6e00f3e4f"
+        }
+    ]
+}

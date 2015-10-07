@@ -1,0 +1,54 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "UpModel"
+    },
+    "name": "MyModel",
+    "designerId": "bf2a05d8-e64e-452e-a758-ab4b73affc8e",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "bd_subject"
+            },
+            "name": "MyField7",
+            "designerId": "b9eb4453-df3c-45db-8810-276bb8ce877d"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "bd_content"
+            },
+            "name": "MyField8",
+            "designerId": "3267d6c5-02cf-4bc1-aeb5-72dee10be73b"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "bd_colortag"
+            },
+            "name": "MyField9",
+            "designerId": "725f5b0f-a690-42d6-ba81-fb22202307d3"
+        }
+    ]
+}

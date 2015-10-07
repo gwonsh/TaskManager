@@ -1,0 +1,140 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CategoryModel"
+    },
+    "name": "MyModel",
+    "designerId": "060c0e9d-6a6c-4277-8c6e-0e58e3a18730",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": [
+                    "title"
+                ],
+                "name": "text"
+            },
+            "name": "MyField",
+            "designerId": "3d84bbc3-d0cd-455f-8015-d29a3bf7cc62"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "lazy"
+            },
+            "name": "MyField1",
+            "designerId": "d51f8ea5-ee78-442d-b036-e66e493bb968"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": [
+                    "data.id"
+                ],
+                "name": "id"
+            },
+            "name": "MyField2",
+            "designerId": "0489c8a5-ac26-48bd-9c42-98a67991a028"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "leaf"
+            },
+            "name": "MyField4",
+            "designerId": "3cbca445-10be-492d-970c-4eaf8e703447",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return (rec.get('lazy') === false);"
+                        ]
+                    },
+                    "name": "convert",
+                    "designerId": "c05d58b1-c113-45d8-9af6-ada837bf6d4a"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "title"
+            },
+            "name": "MyField3",
+            "designerId": "1b908bd6-2bc9-45bf-ba79-29fc2ce8a50c"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": [
+                    "data.code"
+                ],
+                "name": "code"
+            },
+            "name": "MyField5",
+            "designerId": "484f88c7-a363-416c-a322-684522bb25c3"
+        },
+        {
+            "type": "Ext.data.field.Boolean",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "defaultValue": [
+                    "false"
+                ],
+                "name": "isShortcut"
+            },
+            "name": "MyBoolean",
+            "designerId": "0041aec6-2b5c-4957-bc8e-27fe7ac95a52"
+        }
+    ]
+}

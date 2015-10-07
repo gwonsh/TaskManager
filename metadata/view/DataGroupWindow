@@ -1,0 +1,239 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 20,
+        "bodyStyle": [
+            "{'background-color':'#ffffff'}"
+        ],
+        "categoryId": "`''`",
+        "container|align": "stretch",
+        "designer|userAlias": "datagroupwindow",
+        "designer|userClassName": "DataGroupWindow",
+        "ghost": [
+            "false"
+        ],
+        "height": 650,
+        "id": null,
+        "layout": "vbox",
+        "maxHeight": null,
+        "modal": true,
+        "title": null,
+        "width": 850
+    },
+    "name": "LinkingWindow1",
+    "designerId": "34bcd98f-b85d-4c2e-8333-29135b6502bc",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "categoryId",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "52a82d35-0277-4ec4-9d1d-9190f6ae0ab5",
+    "viewModelInstanceId": "ef377fc0-e6ad-4264-9521-6269a7b01353",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "listContainer",
+                "layout": "fit",
+                "layout|flex": 1,
+                "scrollable": null,
+                "style": "border:1px solid #cecece"
+            },
+            "name": "MyContainer23",
+            "configAlternates": {
+                "scrollable": "boolean",
+                "style": "string"
+            },
+            "designerId": "a0c07df8-4ca8-4019-9954-0c2428d4c2f5",
+            "cn": [
+                {
+                    "type": "Ext.grid.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "frameHeader": false,
+                        "header": false,
+                        "itemId": "dgGrid",
+                        "title": "Data List",
+                        "type": "normal"
+                    },
+                    "name": "MyGridPanel2",
+                    "designerId": "cc97147a-40b6-4c29-ad89-7878f736c292",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "type",
+                            "type": "string"
+                        }
+                    ],
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "string",
+                                "text": "String"
+                            },
+                            "name": "MyColumn2",
+                            "designerId": "3c4abe30-4e39-4a02-9715-1e4ac7e0be3a"
+                        },
+                        {
+                            "type": "Ext.view.Table",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTable",
+                            "designerId": "c369f34a-1124-46cd-b811-e664a0dd296e",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.plugin.DragDrop",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "ddGroup": "gridData"
+                                    },
+                                    "name": "MyGridDragDropPlugin",
+                                    "designerId": "f8797ff9-4186-4afc-820f-2ea1015c49cb"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.toolbar.Paging",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "displayInfo": true,
+                                "displayMsg": "Data {0} - {1} of {2}",
+                                "dock": "bottom",
+                                "itemId": "pagingToolbar",
+                                "width": 360
+                            },
+                            "name": "MyPagingToolbar1",
+                            "designerId": "2bb14728-96b5-4f94-9b67-7bd9fe9188fd",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": [
+                                            "searchbox"
+                                        ],
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "itemId": "dgSearch",
+                                        "labelWidth": 0,
+                                        "layout|flex": null,
+                                        "margin": "0 0 0 3"
+                                    },
+                                    "name": "MyTextField5",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "729cbeb8-8f88-4842-b747-889c92f02a39"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "icon": "resources/images/find.png",
+                                        "id": null,
+                                        "itemId": "findData",
+                                        "layout|flex": null,
+                                        "margin": "0 6 0 6",
+                                        "text": null
+                                    },
+                                    "name": "MyButton18",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "a7db5464-e307-4974-8171-6490a6a1f470",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "var val = button.up('pagingtoolbar').down('#dgSearch').getValue();",
+                                                    "var ctrl = getController('Main');",
+                                                    "var cId = button.up('window').relatedCategory;",
+                                                    "var query = \"&se_all=\" + val + '&ca_id=' + cId;",
+                                                    "ctrl.getServerData(cId, query, button.up('pagingtoolbar').up('gridpanel'));"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "14ea99f9-7e79-4fc6-9ee4-ab6d2b4f4f40"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowBeforeRender",
+                "implHandler": [
+                    "var ctrl = getController('Main');",
+                    "var rc = component.relatedCategory;",
+                    "ctrl.getServerData(rc, '&ca_id=' + rc, component.down('gridpanel'));"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onWindowBeforeRender",
+            "designerId": "5fd6498d-d1cc-45a6-868e-6b3da7d76a77"
+        }
+    ]
+}

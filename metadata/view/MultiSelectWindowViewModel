@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "multiselectwindow",
+        "designer|userClassName": "MultiSelectWindowViewModel"
+    },
+    "designerId": "ea455cc7-bfe9-4942-8afb-8af9acd2959d"
+}
