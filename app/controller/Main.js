@@ -46,31 +46,36 @@ Ext.define('TaskManager.controller.Main', {
     onMainViewBeforeRender: function(component, eOpts) {
         var hdrPan = component.down('#headerPan');
         var vewPan = component.down('#viewPan');
-        var loginWin = this.getLoginWindow();
         hdrPan.hide();
         vewPan.hide();
+        var lw = Ext.create({
+            xtype:'loginwindow',
+            width:window.innerWidth,
+            height:window.innerHeight
+        });
 
-        loginWin.on('afterrender', function(){
-            loginWin.el.dom.onkeyup = function(e){
+        lw.on('show', function(){
+            lw.el.dom.onkeyup = function(e){
                 if(e.keyCode == 13){
-                    var fdUserId =  loginWin.down('#userId');
-                    var fdPass =  loginWin.down('#password');
+                    var fdUserId =  lw.down('#userId');
+                    var fdPass =  lw.down('#password');
                     if(fdUserId.getValue() !== '' && fdPass.getValue() !== ''){
-                        var loginBtn = loginWin.down('#loginButton');
+                        var loginBtn = lw.down('#loginButton');
                         loginBtn.fireEvent('click');
                     }
                 }
             };
         });
+        lw.show();
 
         //Apply menu languageset by binding
         if(localStorage.getItem('baseLanguage')){
             var baseLan = localStorage.getItem('baseLanguage');
             if(baseLan == 'korean'){
-                loginWin.down('#rdKorean').setValue(true);
+                lw.down('#rdKorean').setValue(true);
             }
             else{
-                loginWin.down('#rdEnglish').setValue(true);
+                lw.down('#rdEnglish').setValue(true);
             }
         }
         var baseData = {
@@ -1464,7 +1469,7 @@ Ext.define('TaskManager.controller.Main', {
                                 var eastPan = me.getEastPanel();
                                 eastPan.show();
                                 if(me.getLoginWindow() !== undefined){
-                                    me.getLoginWindow().destroy();
+                                    me.getLoginWindow().close();
                                 }
                                 /* preload the upload window */
                                 getController('Upload').onBtnNewClick(false);

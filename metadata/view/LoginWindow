@@ -1,24 +1,35 @@
 {
-    "type": "Ext.container.Container",
+    "type": "Ext.window.Window",
     "reference": {
         "name": "items",
         "type": "array"
     },
     "codeClass": null,
     "userConfig": {
+        "bodyStyle": [
+            "{",
+            "    'background-color':'#e6e6e6'",
+            "}"
+        ],
+        "closable": false,
         "container|align": "center",
         "container|pack": "center",
         "designer|userAlias": "loginwindow",
         "designer|userClassName": "LoginWindow",
+        "frameHeader": false,
+        "header": false,
         "height": "100%",
         "id": "loginWin",
         "itemId": "loginWin",
         "layout": "vbox",
-        "minHeight": null,
-        "minWidth": null,
+        "minHeight": 800,
+        "minWidth": 800,
+        "overlapHeader": false,
         "style": null,
+        "title": "",
         "width": "100%"
     },
+    "name": "MyWindow",
     "configAlternates": {
         "style": "string",
         "scrollable": "boolean"
@@ -39,7 +50,6 @@
                 "container|pack": "center",
                 "container|padding": "30 40 30 40",
                 "height": null,
-                "hidden": true,
                 "itemId": "loginBox",
                 "layout": "vbox",
                 "style": [
@@ -292,7 +302,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "hidden": true,
                 "itemId": "languageBox",
                 "layout|flex": null,
                 "margin": "10 0 0 0"
@@ -499,7 +508,7 @@
                             "        var ctlr = getController('Login');",
                             "        var scBox= ctlr.getLoginWin().down('#shortcutsBox');",
                             "        getController('Main').setShortcuts(scBox.items.items);",
-                            "        ctlr.getLoginWin().destroy();",
+                            "        ctlr.getLoginWin().close();",
                             "        getController('Main').createNewGrid(info[0].ca_id, locale.main.notice, 'normal');",
                             "    }",
                             "};",
@@ -538,39 +547,16 @@
             },
             "codeClass": null,
             "userConfig": {
-                "container|pack": "center",
                 "height": null,
                 "itemId": "shortcutsBox",
-                "layout": "hbox",
+                "layout": "column",
                 "layout|flex": null,
-                "maxWidth": null,
+                "maxWidth": 700,
                 "padding": null,
-                "scrollable": true,
-                "width": "90%"
+                "width": null
             },
             "name": "MyContainer31",
-            "configAlternates": {
-                "scrollable": "boolean"
-            },
             "designerId": "d7668ecc-ce53-4ec6-b7ab-c38f195880a8"
-        },
-        {
-            "type": "basiceventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onLoginWinBeforeRender",
-                "implHandler": [
-                    "getController('Login').sessionCheck();"
-                ],
-                "name": "beforerender",
-                "scope": "me"
-            },
-            "name": "onLoginWinBeforeRender",
-            "designerId": "155674eb-c278-4775-9011-24b98cda08bd"
         }
     ]
 }

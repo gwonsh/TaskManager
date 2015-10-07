@@ -1236,21 +1236,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "type": "linkedinstance",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "hidden": false,
-                "layout|region": "south"
-            },
-            "name": "loginwindow",
-            "designerId": "7db65f4c-71cb-401d-9f90-05e60d7e36f2",
-            "masterInstanceId": "2b415a2b-c951-40d6-9032-8f8a79f5fc3b"
         }
     ]
 }

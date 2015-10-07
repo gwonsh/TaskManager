@@ -24,6 +24,9 @@ Ext.define('TaskManager.controller.Login', {
     control: {
         "#loginButton": {
             click: 'onLoginButtonClick'
+        },
+        "#loginWin": {
+            beforeshow: 'onLoginWinBeforeShow'
         }
     },
 
@@ -53,6 +56,10 @@ Ext.define('TaskManager.controller.Login', {
         });
     },
 
+    onLoginWinBeforeShow: function(component, eOpts) {
+        this.sessionCheck();
+    },
+
     sessionCheck: function() {
         var me = this;
         Ext.data.JsonP.request({
@@ -63,8 +70,7 @@ Ext.define('TaskManager.controller.Login', {
                     me.onLoginSuccess();
                 }
                 else{
-                    me.getLoginWin().down('#loginBox').show();
-                    me.getLoginWin().down('#languageBox').show();
+                    //             alert('Session has disconnected');
 
                 }
             }
@@ -86,7 +92,7 @@ Ext.define('TaskManager.controller.Login', {
             url:domain + '/json/site',
             success:function(response){
                 companyInfo = response.siteConfig;
-                /* newsfeed list */
+        /* newsfeed list */
                 Ext.data.JsonP.request({
                     url:getDataListByCodeApi('pi_feed', ''),
                     success:function(response){
@@ -109,7 +115,7 @@ Ext.define('TaskManager.controller.Login', {
             /* diplay shortcuts */
             scBox.setHidden(false);
 
-            /* load user Info */
+        /* load user Info */
             Ext.data.JsonP.request({
                 params:{
                     nvm_id:sessionId
@@ -117,11 +123,11 @@ Ext.define('TaskManager.controller.Login', {
                 url:getMemberViewApi(),
                 success:function(response){
                     userInfo = response.member;
-                    /* the private information of shortcuts set */
+        /* the private information of shortcuts set */
                     var val = response.member.nv_10;
                     var scConfig = eval('(['+ val + '])');
                     var userShortcuts = [];
-                    /* shorcut for customer choose */
+        /* shorcut for customer choose */
                     if(scConfig.length === 0 || scConfig === null || scConfig === undefined || val === null){
                         var tipWin = Ext.create('Ext.window.Window', {
                             padding:20,
@@ -147,7 +153,7 @@ Ext.define('TaskManager.controller.Login', {
                                             if(me.getLoginWin() !== undefined){
                                                 /* set shortcut at mainView header */
                                                 ctlr.setShortcuts(scBox.items.items);
-                                                me.getLoginWin().destroy();
+                                                me.getLoginWin().close();
                                             }
                                         }
                                     }
@@ -167,7 +173,7 @@ Ext.define('TaskManager.controller.Login', {
                         });
                     }
 
-                    /* shorcut to smartori */
+        /* shorcut to smartori */
                     var scSmartori = Ext.create(appName + '.view.Shortcut', {
                         margin:'0 0 0 9',
                         listeners:[
@@ -185,14 +191,14 @@ Ext.define('TaskManager.controller.Login', {
                     });
                     scBox.add(scSmartori);
 
-                    /* shortcut for setting shortcuts */
+        /* shortcut for setting shortcuts */
                     var configIcon = Ext.create(appName + '.view.Shortcut', {
                         margin:'0 0 0 9',
                         isDefault:true,
                         listeners:[
                             {
                                 click:function(){
-                                    /* used afterrender #categoryTree at setShortcuts of Config controller  */
+        /* used afterrender #categoryTree at setShortcuts of Config controller  */
                                     getController('Config').setShortcuts(userShortcuts);
                                 }
                             }
