@@ -18,7 +18,6 @@ Ext.define('TaskManager.doc.Default', {
 		html += 	 	    '<div class="viewer-companyname">'+ values.companyInfo.company_name +'</div>';
 		html += 			'<div class="viewer-addr">'+ values.companyInfo.company_addr1 + ' ' + values.companyInfo.company_addr2 +'</div>';
 		html += 	 	 '</div>';
-				console.log(values.approvalList);
 				if(values.approvalList){
 					var apvLst = values.approvalList;
 		html += 	 	 '<div style="float:right;height:100%;margin-left:10px">';
@@ -33,7 +32,7 @@ Ext.define('TaskManager.doc.Default', {
 					for(i=0; i<apvLst.length; i++){
 		html += 					'<td height="45" align="center" valign="middle" bdIdx="'+values.bd_idx+'" checked="'+apvLst[i].ap_chk+'" userid="'+apvLst[i].user_id+'" class="apvUnit">';
 						if(apvLst[i].ap_chk == 1){
-		html +=                     	'<img src="resources/images/ico_check.png"><div style="width:100%;font-size:11px">'+apvLst[i].user_name+'</div>';
+		html +=                     	'<img src="resources/images/ico_check.png"><div style="width:100%;font-size:11px">'+userInfo.nv_name+'</div>';
 						}
 		html += 					'</td>';
 					}

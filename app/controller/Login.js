@@ -55,6 +55,13 @@ Ext.define('TaskManager.controller.Login', {
 
     sessionCheck: function() {
         var me = this;
+        // Ext.data.JsonP.request({
+        //     params:{nv_10:''},
+        //     url:getMemberUpdateApi(),
+        //     success:function(response){
+        //         Ext.toast(locale.upload.posted);
+        //     }
+        // });
         Ext.data.JsonP.request({
             url:getSessionApi(),
             success:function(response){
@@ -117,6 +124,7 @@ Ext.define('TaskManager.controller.Login', {
                 url:getMemberViewApi(),
                 success:function(response){
                     userInfo = response.member;
+                    console.log(userInfo);
                     /* the private information of shortcuts set */
                     var val = response.member.nv_10;
                     var scConfig = eval('(['+ val + '])');

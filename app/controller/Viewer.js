@@ -1705,6 +1705,14 @@ Ext.define('TaskManager.controller.Viewer', {
             var checked = elements[i].getAttribute('checked').toString();
             values.push(checked);
             Ext.get(elements[i]).on('click', function(e ){
+                var viewer = me.getViewPan().down('viewer');
+                var apvList = viewer.info.approvalList;
+                var apvMembers = [];
+                for(var j=0; j<apvList.length; j++){
+                    apvMembers.push(apvList[j].user_id);
+                }
+                var userId = userInfo.nv_id;
+                if(apvMembers.indexOf(userId)) return;
                 var text;
                 var updateMode = 'update';
                 var index = Ext.get(elements).indexOf(e.currentTarget);
