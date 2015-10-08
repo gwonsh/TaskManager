@@ -8,6 +8,7 @@ Ext.define('TaskManager.doc.Default', {
 		var subjectAttr = ' class="basic-field" field_type="subject" bd_idx="'+values.bd_idx+'"';
 		var contentAttr = ' class="basic-field" field_type="content" bd_idx="'+values.bd_idx+'"';
 		var html;
+		var i;
 		html  =  '<div class="viewer-frame">';
 		/* header */
 		html +=		 '<div class="viewer-header">';
@@ -17,6 +18,29 @@ Ext.define('TaskManager.doc.Default', {
 		html += 	 	    '<div class="viewer-companyname">'+ values.companyInfo.company_name +'</div>';
 		html += 			'<div class="viewer-addr">'+ values.companyInfo.company_addr1 + ' ' + values.companyInfo.company_addr2 +'</div>';
 		html += 	 	 '</div>';
+				console.log(values.approvalList);
+				if(values.approvalList){
+					var apvLst = values.approvalList;
+		html += 	 	 '<div style="float:right;height:100%;margin-left:10px">';
+		html +=			 	'<table cellpadding="0" cellspacing="0" border="1" class="approval-list">';
+		html +=             	'<tr>';
+					for(i=0; i<apvLst.length; i++){
+		html += 					'<td height="20" width="45" align="center" title="'+apvLst[i].user_name+'">';
+		html +=                     	apvLst[i].user_duty;
+		html += 					'</td>';
+					}
+		html +=             	'</tr><tr>';
+					for(i=0; i<apvLst.length; i++){
+		html += 					'<td height="45" align="center" valign="middle" bdIdx="'+values.bd_idx+'" checked="'+apvLst[i].ap_chk+'" userid="'+apvLst[i].user_id+'" class="apvUnit">';
+						if(apvLst[i].ap_chk == 1){
+		html +=                     	'<img src="resources/images/ico_check.png"><div style="width:100%;font-size:11px">'+apvLst[i].user_name+'</div>';
+						}
+		html += 					'</td>';
+					}
+		html +=             	'</tr>';
+		html +=			 	'</table>';
+		html += 	 	 '</div>';
+				}
 			}
 		html +=  	 '</div>';
 		/* category name */

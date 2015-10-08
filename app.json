@@ -1,0 +1,84 @@
+{
+   "name": "TaskManager",
+   "indexHtmlPath": "index.html",
+   "classpath": "${app.dir}/app,${app.dir}/resources/",
+   "overrides": "${app.dir}/overrides",
+   "framework": "ext",
+   "theme": "ext-theme-crisp-0ce2e424-cec8-4a50-8848-7818c8de2ba4",
+   "requires": [],
+   "sass": {
+      "namespace": "FormViewer"
+   },
+   "url": null,
+   "js": [
+      {
+         "path": "${ext.dir}/build/ext-all-rtl-debug.js"
+      },
+      {
+         "path": "resources/globals.js",
+         "includeInBundle": true
+      },
+      {
+         "path": "app.js",
+         "bundle": true
+      }
+   ],
+   "css": [
+      {
+         "path": "bootstrap.css",
+         "bootstrap": true
+      },
+      {
+         "path": "resources/default.css"
+      },
+      {
+         "path": "resources/custom.css"
+      },
+      {
+         "path": "resources/viewer.css"
+      },
+      {
+         "path": "resources/tabstyle.css"
+      }
+   ],
+   "production": {},
+   "testing": {},
+   "development": {},
+   "bootstrap": {
+      "base": "${app.dir}",
+      "manifest": "bootstrap.json",
+      "microloader": "bootstrap.js",
+      "css": "bootstrap.css"
+   },
+   "output": {
+      "base": "${workspace.build.dir}/${build.environment}/${app.name}"
+   },
+   "appCache": {
+      "cache": [
+         "index.html"
+      ],
+      "network": [
+         "*"
+      ],
+      "fallback": []
+   },
+   "resources": [
+      "resources/default.css",
+      "resources/custom.css",
+      "resources/viewer.css",
+      "resources/tabstyle.css"
+   ],
+   "ignore": [
+      "(^|/)CVS(/?$|/.*?$)"
+   ],
+   "archivePath": "archive",
+   "slicer": {
+      "js": [
+         {
+            "path": "${app.dir}/sass/example/custom.js",
+            "isWidgetManifest": true
+         }
+      ]
+   },
+   "id": "a06829e2-e0ab-4a8e-aa30-e982538c50e2"
+}

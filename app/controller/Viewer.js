@@ -28,6 +28,7 @@ Ext.define('TaskManager.controller.Viewer', {
 
     onViewerAfterLayout: function(container, layout, eOpts) {
         var me = this;
+        var i;
         var vPan = me.getViewPan();
         var viewer = vPan.down('viewer');
         var fStore = Ext.getStore('fStore_' + viewer.categoryId);
@@ -39,6 +40,13 @@ Ext.define('TaskManager.controller.Viewer', {
             });
 
         }
+        /* when click the approval table */
+        var apvFld = container.el.select('.apvUnit');
+        var apvEl = apvFld.elements;
+        if(apvEl.length > 0){
+            me.setApproval(apvEl);
+        }
+
         /* when click the basic data */
         var basicFld = container.el.select('.basic-field');
         Ext.Array.each(basicFld.elements, function(entry){
@@ -920,32 +928,6 @@ Ext.define('TaskManager.controller.Viewer', {
                             var dsetStore = grid.getStore();
                             //     var subIdxs = grid.subIdxs;
                             var idxVal = '';
-
-        //                     var submitObj = {};
-        //                     submitObj.cols_idx = colsIdx;
-        //                     submitObj.bd_idx = bdIdx;
-        //                     dsetStore.each(function(rec, index){
-        //                         Ext.Object.each(rec.data, function(key, val){
-        //                             if(Ext.isDate(val)){
-        //                                 var dtForm = (localLanguage == 'Korean')? 'Y/m/d' : 'm/d/Y';
-        //                                 val = Ext.util.Format.date(val, dtForm);
-        //                             }
-        //                             if(key != 'id' && key != 'subIdx' && key != 'cols_info'){
-        //                                 if(submitObj[key + '_' + index] === undefined || submitObj[key + '_' + index] === ''){
-        //                                     submitObj[key + '_' + index]= val;
-        //                                 }
-        //                                 else{
-        //                                     submitObj[key + '_' + index] += ',' +  val;
-        //                                 }
-        //                             }
-        //                             /* sub category */
-        //                             if(key === 'subIdx'){
-        //                                 idxVal += val + ', ';
-        //                                 submitObj[idx] = idxVal.slice(0, idxVal.length - 2);
-        //                             }
-        //                         });
-        //                     });
-        //                     me.updateDatasetValue(submitObj, target, winDset);
                             /* set parameters for each sub field */
                             var params = [];
                             params.cols_idx = colsIdx;
@@ -1576,7 +1558,7 @@ Ext.define('TaskManager.controller.Viewer', {
                     Ext.data.JsonP.request({
                         url:getDataWriteApi(),
                         params:{
-                            bd_idx:viewer.record.bd_idx,
+                            bd_idx:viewer.info.bd_idx,
                             html:0
                         },
                         success:function(response){
@@ -1711,6 +1693,98 @@ Ext.define('TaskManager.controller.Viewer', {
                         }
                     ]
                 }).show();
+            }
+        });
+    },
+
+    setApproval: function(elements) {
+        var values = [];
+        var me = this;
+        var bdIdx = elements[0].getAttribute('bdIdx');
+        for(i=0; i<elements.length; i++){
+            var checked = elements[i].getAttribute('checked').toString();
+            values.push(checked);
+            Ext.get(elements[i]).on('click', function(e ){
+                var text;
+                var updateMode = 'update';
+                var index = Ext.get(elements).indexOf(e.currentTarget);
+                var target = e.currentTarget;
+                if(target.getAttribute('checked') == '0'){
+                    text = '결재하시겠습니까?';
+                }
+                else{
+                    text = "결재를 취소하시겠습니까?";
+                    updateMode = 'cancel';
+                }
+                var apvWin = Ext.create('Ext.window.Window', {
+                    width:280,
+                    modal:true,
+                    ghost:false,
+                    index:index,
+                    layout:{
+                        type:'vbox',
+                        align:'center'
+                    },
+                    items:[
+                        {
+                            xtype: 'label',
+                            text:text,
+                            margin:'15 0 0 0'
+                        },
+                        {
+                            xtype:'container',
+                            layout:{
+                                type:'hbox',
+                                pack:'center'
+                            },
+                            padding:12,
+                            items:[
+                                {
+                                    xtype:'button',
+                                    width:100,
+                                    text:locale.menu.edit,
+                                    handler:function(button){
+                                        var index = button.up('window').index;
+                                        values[index] = (updateMode == 'update')? '1': '0';
+                                        button.up('window').close();
+                                        me.updateApproval(bdIdx, values.join(", "));
+                                    }
+                                },
+                                {
+                                    xtype:'button',
+                                    width:100,
+                                    text:locale.upload.cancel,
+                                    margin:'0 0 0 10',
+                                    handler:function(button){
+                                        button.up('window').close();
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }).show();
+            });
+        }
+
+    },
+
+    updateApproval: function(bd_idx, value) {
+        Ext.data.JsonP.request({
+            url:getUpdateApprovalApi(),
+            params:{
+                bd_idx:bd_idx,
+                ap_chk:value
+            },
+            success:function(response){
+                var ctlr = getController('Main');
+                var viewer = ctlr.getViewPan().down('viewer');
+                var dStore = Ext.getStore('dStore_' + viewer.categoryId);
+                dStore.on('load', function onStoreLoad(store){
+                    store.un('load', onStoreLoad);
+                    ctlr.viewDocument(selectedCategory, viewer.info.bd_idx);
+                });
+                dStore.load();
+
             }
         });
     }

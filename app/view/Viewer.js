@@ -24,7 +24,7 @@ Ext.define('TaskManager.view.Viewer', {
     config: {
         editable: false,
         categoryId: '',
-        record: null
+        info: 'null'
     },
 
     viewModel: {

@@ -281,15 +281,15 @@ Ext.define('TaskManager.controller.Upload', {
                 html:0
             },
             success:function(response){
-        //         var cList = response.categoryColsList;
-        //         for(i=0; i<cList.length; i++){
-        //             Ext.Object.each(cList[i], function(key, value){
-        //                 /* if autoidx field is installed, update it */
-        //                 if(key == 'cols_type' && value == 'idx' && !form.isEditMode){
-        //                     form.down('#indexKey').setValue(cList[i].data_val);
-        //                 }
-        //             });
-        //         }
+                var cList = response.categoryColsList;
+                for(i=0; i<cList.length; i++){
+                    Ext.Object.each(cList[i], function(key, value){
+                        /* if autoidx field is installed, update it */
+                        if(key == 'cols_type' && value == 'idx' && !form.isEditMode){
+                            form.down('#indexKey').setValue(cList[i].data_val);
+                        }
+                    });
+                }
                 me.postRequest(win);
             },
             failure:function(response){
@@ -791,6 +791,7 @@ Ext.define('TaskManager.controller.Upload', {
                     });
                     ccg.add(cChk);
                 }
+                colorChkCon.add(ccg);
                 target.add(colorChkCon);
                 target.add({xtype:'formspacer'});
 
@@ -1373,7 +1374,7 @@ Ext.define('TaskManager.controller.Upload', {
                     //keep grid selection
                     grid.getSelectionModel().select(newRec);
                     //update viewer
-                    getController('Main').viewDocument(newRec);
+                    getController('Main').viewDocument(newRec.get('ca_id'), newRec.get('bd_idx'));
                 }
             });
             var removeCom = function(){

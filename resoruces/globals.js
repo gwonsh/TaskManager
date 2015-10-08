@@ -72,6 +72,10 @@ function getCategoryViewApi(cId){
 function getCategoryListApi(){
     return domain + "/json/cateList?";
 }
+function getCategoryViewApi(){
+    return domain + "/json/cateView";
+}
+
 
 /**
  * @params ca_id category id
@@ -178,6 +182,9 @@ function getSessionApi(){
 }
 function getLogoutApi(){
     return getDomain() + '/json/logout';
+}
+function getUpdateApprovalApi(){
+    return getDomain() + '/json/approval';
 }
 
 var languageSet = {

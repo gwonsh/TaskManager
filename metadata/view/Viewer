@@ -11,18 +11,19 @@
         "designer|userClassName": "Viewer",
         "editable": false,
         "height": "100%",
+        "info": [
+            "'null'"
+        ],
         "itemId": "viewer",
         "layout": "fit",
         "padding": "0 0 30 0",
-        "record": [
-            "`null`"
-        ],
         "width": "100%"
     },
     "name": "MyContainer35",
     "configAlternates": {
         "editable": "boolean",
-        "record": "object"
+        "record": "object",
+        "info": "object"
     },
     "designerId": "c59fd46c-c85e-4ebf-a757-4821a1569b69",
     "customConfigs": [
@@ -38,7 +39,7 @@
         },
         {
             "group": "(Custom Properties)",
-            "name": "record",
+            "name": "info",
             "type": "string"
         }
     ],

@@ -14,7 +14,7 @@
  */
 
 Ext.define('TaskManager.view.LoginWindow', {
-    extend: 'Ext.window.Window',
+    extend: 'Ext.container.Container',
     alias: 'widget.loginwindow',
 
     requires: [
@@ -32,17 +32,7 @@ Ext.define('TaskManager.view.LoginWindow', {
     height: '100%',
     id: 'loginWin',
     itemId: 'loginWin',
-    minHeight: 800,
-    minWidth: 800,
     width: '100%',
-    bodyStyle: {
-        'background-color': '#e6e6e6'
-    },
-    closable: false,
-    frameHeader: false,
-    header: false,
-    overlapHeader: false,
-    title: '',
     defaultListenerScope: true,
 
     layout: {
@@ -53,6 +43,7 @@ Ext.define('TaskManager.view.LoginWindow', {
     items: [
         {
             xtype: 'container',
+            hidden: true,
             itemId: 'loginBox',
             style: {
                 border: '1px solid #cecece',
@@ -154,6 +145,7 @@ Ext.define('TaskManager.view.LoginWindow', {
         },
         {
             xtype: 'container',
+            hidden: true,
             itemId: 'languageBox',
             margin: '10 0 0 0',
             items: [
@@ -233,10 +225,17 @@ Ext.define('TaskManager.view.LoginWindow', {
         {
             xtype: 'container',
             itemId: 'shortcutsBox',
-            maxWidth: 700,
-            layout: 'column'
+            scrollable: true,
+            width: '90%',
+            layout: {
+                type: 'hbox',
+                pack: 'center'
+            }
         }
     ],
+    listeners: {
+        beforerender: 'onLoginWinBeforeRender'
+    },
 
     onUserIdRender: function(component, eOpts) {
         if(localStorage.getItem('userId') !== undefined){
@@ -273,7 +272,7 @@ Ext.define('TaskManager.view.LoginWindow', {
                 var ctlr = getController('Login');
                 var scBox= ctlr.getLoginWin().down('#shortcutsBox');
                 getController('Main').setShortcuts(scBox.items.items);
-                ctlr.getLoginWin().close();
+                ctlr.getLoginWin().destroy();
                 getController('Main').createNewGrid(info[0].ca_id, locale.main.notice, 'normal');
             }
         };
@@ -295,6 +294,10 @@ Ext.define('TaskManager.view.LoginWindow', {
                 }
             }
         });
+    },
+
+    onLoginWinBeforeRender: function(component, eOpts) {
+        getController('Login').sessionCheck();
     }
 
 });

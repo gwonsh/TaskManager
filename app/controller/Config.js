@@ -36,7 +36,7 @@ Ext.define('TaskManager.controller.Config', {
                     type: 'help',
                     listeners: {
                         click: function(){
-        /* show help window */
+                            /* show help window */
                             var usage = '<div style="margin:0 auto">';
                             usage    += 	'<div style="font-size:16px;width:100%;margin-bottom:15px">바로가기추가</div>';
                             usage    +=		'<img src="resources/images/usage/usage_newshortcut.jpg" style="border:1px solid #cecece">';
@@ -93,11 +93,11 @@ Ext.define('TaskManager.controller.Config', {
                             flex:1,
                             renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
                                 var val = '';
-        /* if item is not shortcut */
+                                /* if item is not shortcut */
                                 if(!record.get('isShortcut')){
                                     val =  '<span>' + record.get('text') + ' </span><img src="resources/images/ico_plus_vs.png" style="margin-left:10px" action="add">';
                                 }
-        /* if item is already shortcut */
+                                /* if item is already shortcut */
                                 else{
                                     val =  '<span>' + record.get('text') + ' </span><img src="resources/images/ico_minus_vs.png" style="margin-left:10px" action="del">';
                                     localStorage.setItem('shortcut_' + record.get('id'), false);
@@ -114,14 +114,14 @@ Ext.define('TaskManager.controller.Config', {
                         {
                             afterrender: function(component){
                                 var selectedCon = scWin.down('#selectedCon');
-        /* show current user shotcut set */
+                                /* show current user shotcut set */
                                 if(userShortcuts.length !== 0){
                                     Ext.Array.each(userShortcuts, function(entry){
                                         me.createShortcut(scWin, entry);
                                     });
                                 }
                                 else{
-        /* add tip for setting at first time */
+                                    /* add tip for setting at first time */
                                     selectedCon.add({
                                         xtype:'label',
                                         itemId:'notice',
@@ -129,7 +129,7 @@ Ext.define('TaskManager.controller.Config', {
                                     });
 
                                 }
-        /* check if shortcut of category already exists in current shortcut list */
+                                /* check if shortcut of category already exists in current shortcut list */
                                 var cStore = component.getStore();
                                 cStore.on('load', function(){
                                     cStore.each(function(record){
@@ -142,13 +142,13 @@ Ext.define('TaskManager.controller.Config', {
                             }
                         },
                         {
-        /* when click category tree */
+                            /* when click category tree */
                             itemClick:function(view, record, item, index, event){
                                 var action = event.target.getAttribute('action');
-        /* when click add to shortcut */
+                                /* when click add to shortcut */
                                 var shortcutCon = scWin.down('#selectedCon');
                                 if(record.get('isShortcut')){
-        /* if it is alreay add to container remove it from shortcut list */
+                                    /* if it is alreay add to container remove it from shortcut list */
                                     record.set('isShortcut', false);
                                     if(shortcutCon.down('#shortcut_' + record.get('id')) !== null){
                                         shortcutCon.down('#shortcut_' + record.get('id')).destroy();
@@ -166,12 +166,12 @@ Ext.define('TaskManager.controller.Config', {
                                         piSrc:'resources/shortcuts/pi_default.png',
                                         ca_id:record.get('id'),
                                         ca_name:record.get('title'),
-        /* define display type for dataview */
+                                        /* define display type for dataview */
                                         displayType:gridType
                                     };
                                     me.createShortcut(scWin, scInfo);
                                 }
-        /* when click delete from shortcut */
+                                /* when click delete from shortcut */
                                 if(action == 'del'){
                                     record.set('isShortcut', false);
                                     if(shortcutCon.down('#shortcut_' + record.get('id')) !== null){
@@ -238,7 +238,7 @@ Ext.define('TaskManager.controller.Config', {
                                         var scBox = loginWin.down('#shortcutsBox');
                                         /* add new shortcut to shortcut list in login window */
                                         Ext.Array.each(scs, function(entry, index){
-        //                                     value.push('{ca_name:"'+ entry.categoryName+'",'+'ca_id:"'+entry.categoryId+'",src:"'+entry.src+'"}');
+                                            //                                     value.push('{ca_name:"'+ entry.categoryName+'",'+'ca_id:"'+entry.categoryId+'",src:"'+entry.src+'"}');
                                             var params = '{ca_name:"'+entry.categoryName+'",ca_id:"'+entry.categoryId+'",src:"'+entry.src+'",displayType:"'+entry.displayType+'"}';
                                             value.push(params);
                                         });

@@ -46,36 +46,31 @@ Ext.define('TaskManager.controller.Main', {
     onMainViewBeforeRender: function(component, eOpts) {
         var hdrPan = component.down('#headerPan');
         var vewPan = component.down('#viewPan');
+        var loginWin = this.getLoginWindow();
         hdrPan.hide();
         vewPan.hide();
-        var lw = Ext.create({
-            xtype:'loginwindow',
-            width:window.innerWidth,
-            height:window.innerHeight
-        });
 
-        lw.on('show', function(){
-            lw.el.dom.onkeyup = function(e){
+        loginWin.on('afterrender', function(){
+            loginWin.el.dom.onkeyup = function(e){
                 if(e.keyCode == 13){
-                    var fdUserId =  lw.down('#userId');
-                    var fdPass =  lw.down('#password');
+                    var fdUserId =  loginWin.down('#userId');
+                    var fdPass =  loginWin.down('#password');
                     if(fdUserId.getValue() !== '' && fdPass.getValue() !== ''){
-                        var loginBtn = lw.down('#loginButton');
+                        var loginBtn = loginWin.down('#loginButton');
                         loginBtn.fireEvent('click');
                     }
                 }
             };
         });
-        lw.show();
 
         //Apply menu languageset by binding
         if(localStorage.getItem('baseLanguage')){
             var baseLan = localStorage.getItem('baseLanguage');
             if(baseLan == 'korean'){
-                lw.down('#rdKorean').setValue(true);
+                loginWin.down('#rdKorean').setValue(true);
             }
             else{
-                lw.down('#rdEnglish').setValue(true);
+                loginWin.down('#rdEnglish').setValue(true);
             }
         }
         var baseData = {
@@ -1212,7 +1207,7 @@ Ext.define('TaskManager.controller.Main', {
                 listeners:[
                     {
                         itemclick:function(grid, record, item, index, e, eOpts){
-                            me.viewDocument(record);
+                            me.viewDocument(record.get('ca_id'), record.get('bd_idx'));
                         },
                         headerclick:function( ct, column, e, t, eOpts){
                             var cif = column.colsInfo;
@@ -1382,7 +1377,7 @@ Ext.define('TaskManager.controller.Main', {
                         listeners:[
                             {
                                 itemclick:function(grid, record, item, index, e, eOpts ){
-                                    me.viewDocument(record);
+                                    me.viewDocument(record.get('ca_id'), record.get('bd_idx'));
                                 }
                             }
                         ]
@@ -1469,7 +1464,7 @@ Ext.define('TaskManager.controller.Main', {
                                 var eastPan = me.getEastPanel();
                                 eastPan.show();
                                 if(me.getLoginWindow() !== undefined){
-                                    me.getLoginWindow().close();
+                                    me.getLoginWindow().destroy();
                                 }
                                 /* preload the upload window */
                                 getController('Upload').onBtnNewClick(false);
@@ -1759,7 +1754,7 @@ Ext.define('TaskManager.controller.Main', {
 
     },
 
-    viewDocument: function(record) {
+    viewDocument: function(caId, bdIdx) {
         var me = this;
         var vPan = this.getViewPan();
         var grid = me.getWestPanel().getActiveTab();
@@ -1769,7 +1764,7 @@ Ext.define('TaskManager.controller.Main', {
 
         vPan.down('#viewCon').removeAll();
         /* if selected category has no data */
-        if(record === undefined){
+        if(bdIdx === undefined){
             viewer.setHtml('');
             vCon.add(viewer);
             return;
@@ -1782,47 +1777,20 @@ Ext.define('TaskManager.controller.Main', {
         }
 
         Ext.data.JsonP.request({
-            url:getViewApi(),
-            params:{
-                bd_idx:record.data.bd_idx
-            },
-            success:function(response){
-
-                var dl = response.binderView;
-                dl.companyInfo = companyInfo;
-                var hasFile = false;
-                Ext.Object.each(dl, function(key, value){
-                    if(key == 'bd_file'){
-                        if(value.length !== 0){
-                            hasFile = true;
-                        }
-                    }
-                });
-                /* add an attached file exists or not */
-                dl.hasFile = hasFile;
-                var html = app.doc.Viewer.VIEWERS[currentViewMode].getHtml(dl);
-                viewer.categoryId = record.get('ca_id');
-                viewer.record = dl;
-                viewer.setHtml(html);
-                vCon.add(viewer);
-                grid.enable();
-            }
-        });
-
-        Ext.data.JsonP.request({
             url:getDataWriteApi(),
             params:{
-                bd_idx:record.get('bd_idx'),
+                bd_idx:bdIdx,
                 html:0
             },
             success:function(response){
                 /* field store */
                 var colsList = response.categoryColsList;
+                var approvalList = response.approvalList;
                 /* field store for make grid fields */
-                var fStore = Ext.getStore('fStore_' + record.get('ca_id'));
+                var fStore = Ext.getStore('fStore_' + caId);
                 if(fStore === undefined){
                     fStore = Ext.create(appName + '.store.FieldStore',{
-                        storeId:'fStore_' + record.get('ca_id'),
+                        storeId:'fStore_' + caId,
                         data:colsList
                     });
                 }
@@ -1832,11 +1800,46 @@ Ext.define('TaskManager.controller.Main', {
                 /* change to lock(undeditable) mode */
                 var et = vPan.getHeader().el.select('.editableToggle').elements[0];
                 et.setAttribute('src', 'resources/images/ico_lock.png');
+
+                Ext.data.JsonP.request({
+                    url:getViewApi(),
+                    params:{
+                        bd_idx:bdIdx
+                    },
+                    success:function(response){
+                        var dl = response.binderView;
+                        dl.companyInfo = companyInfo;
+                        if(approvalList && approvalList.length > 0){
+                            dl.approvalList = approvalList;
+                        }
+                        else{
+                            dl.approvalList = null;
+                        }
+                        var hasFile = false;
+                        Ext.Object.each(dl, function(key, value){
+                            if(key == 'bd_file'){
+                                if(value.length !== 0){
+                                    hasFile = true;
+                                }
+                            }
+                        });
+                        /* add an attached file exists or not */
+                        dl.hasFile = hasFile;
+                        var html = app.doc.Viewer.VIEWERS[currentViewMode].getHtml(dl);
+                        viewer.categoryId = caId;
+                        viewer.info = dl;
+                        viewer.setHtml(html);
+                        vCon.add(viewer);
+                        grid.enable();
+                    }
+                });
+
+
             }
         });
 
         /* set Comment list */
-        me.setCommentList(record.data.bd_idx);
+        me.setCommentList(bdIdx);
 
     },
 

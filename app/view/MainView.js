@@ -18,6 +18,7 @@ Ext.define('TaskManager.view.MainView', {
     alias: 'widget.mainview',
 
     requires: [
+        'TaskManager.view.LoginWindow',
         'Ext.button.Button',
         'Ext.toolbar.Spacer',
         'Ext.tab.Panel',
@@ -390,6 +391,10 @@ Ext.define('TaskManager.view.MainView', {
                     ]
                 }
             ]
+        },
+        {
+            xtype: 'loginwindow',
+            region: 'south'
         }
     ],
     listeners: {
@@ -441,8 +446,9 @@ Ext.define('TaskManager.view.MainView', {
             ctlr.getViewPan().down('#viewCon').setHidden(true);
         }
         else{
-            ctlr.viewDocument(selected);
+            ctlr.viewDocument(selected.get('ca_id'), selected.get('bd_idx'));
         }
+
     },
 
     onToolClick: function(tool, e, owner, eOpts) {
@@ -526,7 +532,7 @@ Ext.define('TaskManager.view.MainView', {
             var viewer = component.down('#viewer');
             currentViewMode = index;
             if(viewer) {
-                html = app.doc.Viewer.VIEWERS[index].getHtml(viewer.record);
+                html = app.doc.Viewer.VIEWERS[index].getHtml(viewer.info);
                 viewer.setHtml(html);
             }
         });
@@ -565,10 +571,8 @@ Ext.define('TaskManager.view.MainView', {
         if(!isHtml5() || getIEVersion() < 10){
             gridType = 'normal';
         }
-
         grid.categoryInfo = record;
         ctrl.setMenuPermission(record);
-
         ctrl.createNewGrid(record.get('id'), categoryName, gridType);
     },
 

@@ -531,8 +531,9 @@
                             "    ctlr.getViewPan().down('#viewCon').setHidden(true);",
                             "}",
                             "else{",
-                            "    ctlr.viewDocument(selected);",
-                            "}"
+                            "    ctlr.viewDocument(selected.get('ca_id'), selected.get('bd_idx'));",
+                            "}",
+                            ""
                         ],
                         "name": "tabchange",
                         "scope": "me"
@@ -766,7 +767,7 @@
                             "    var viewer = component.down('#viewer');",
                             "    currentViewMode = index;",
                             "    if(viewer) {",
-                            "        html = app.doc.Viewer.VIEWERS[index].getHtml(viewer.record);",
+                            "        html = app.doc.Viewer.VIEWERS[index].getHtml(viewer.info);",
                             "        viewer.setHtml(html);",
                             "    }",
                             "});"
@@ -1001,10 +1002,8 @@
                                             "if(!isHtml5() || getIEVersion() < 10){",
                                             "    gridType = 'normal';",
                                             "}",
-                                            "",
                                             "grid.categoryInfo = record;",
                                             "ctrl.setMenuPermission(record);",
-                                            "",
                                             "ctrl.createNewGrid(record.get('id'), categoryName, gridType);"
                                         ],
                                         "name": "itemclick",
@@ -1236,6 +1235,20 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "south"
+            },
+            "name": "loginwindow",
+            "designerId": "7db65f4c-71cb-401d-9f90-05e60d7e36f2",
+            "masterInstanceId": "2b415a2b-c951-40d6-9032-8f8a79f5fc3b"
         }
     ]
 }
