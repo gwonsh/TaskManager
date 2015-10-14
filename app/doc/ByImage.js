@@ -1,5 +1,6 @@
 Ext.define('TaskManager.doc.ByImage', {
 	singleton : true,
+	CLASSNAME:'ByImage',
 	getName:function(){		
 		return locale.viewer.byImage;
 	},

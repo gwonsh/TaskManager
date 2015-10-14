@@ -202,7 +202,7 @@ Ext.define('TaskManager.controller.Config', {
                 {
                     xtype:'container',
                     layout:{
-                        type:'vbox',
+                        type:'vbox'
                     },
                     flex:1,
                     height:'100%',

@@ -809,7 +809,7 @@ Ext.define('TaskManager.controller.Upload', {
                     flex: 1,
                     itemId: fIdx + '_unitCon',
                     scrollable: true,
-                    layout: 'hbox',
+                    layout: 'hbox'
                 });
                 links.setFieldLabel(fName);
                 links.add(linkUnitCon);
@@ -1035,93 +1035,6 @@ Ext.define('TaskManager.controller.Upload', {
         }
 
 
-
-
-        // Ext.Array.each(record.get('cols_data'), function(item, index){
-        //     /* object item for storeData */
-        //     /* [{name:'cols_info'}, {name:'cdx'}] */
-        //     var storeObj = {};
-        //     if(index === 0){// for header
-        //         var tmpItem = item.slice(); // slice to keep original item properties
-        //         tmpItem.shift();
-        //         storeObj.cols_info = tmpItem;
-        //         grid.colsInfo = tmpItem;
-        //         /* valiItem:sub-fields information that is included cols_name, cols_idx and cols_type */
-        //         Ext.Array.each(item, function(valItem, index){
-        //             var i;
-        //             /* arrange sub-fields into storeObj */
-        //             if(index > 0){
-        //                 /* generate cell dataindex */
-        //                 var cdx = valItem.cols_idx.toString();
-
-        //                 if(cdx.length == 1){
-        //                     cdx = '000' + cdx;
-        //                 }
-        //                 if(cdx.length == 2){
-        //                     cdx = '00' + cdx;
-        //                 }
-        //                 if(cdx.length == 3){
-        //                     cdx = '0' + cdx;
-        //                 }
-        //                 /* cols27_data_0028 */
-        //                 cdx = 'cols' + record.get('cols_idx').toString() +'_data_' + cdx;
-
-        //                 /* empty field values for new reqeust mode */
-        // //                 storeObj[cdx] = '';
-        //                 /* save cols_infos into Array to use at Editmode */
-        //                 subColsIdxs.push(cdx);
-        //                 /* update cols_idx for each sub-fields to new naming */
-        //                 tmpItem[index-1].cols_idx = cdx;
-        //                 /* build grid columns */
-        //                 var clm = Ext.create('Ext.grid.column.Column' ,{
-        //                     text:valItem.cols_name,
-        //                     dataIndex:cdx,
-        //                     height:25,
-        //                     flex:1,
-        //                     editor: {
-        //                         xtype: 'textfield',
-        //                         ctype:valItem.cols_type
-        //                     }
-        //                 });
-        //                 if(valItem.cols_type == 'date'){
-        //                     clm = Ext.create('Ext.grid.column.Date', {
-        //                         text:valItem.cols_name,
-        //                         height:25,
-        //                         flex:1,
-        //                         dataIndex:cdx,
-        //                         format:'Y/m/d',
-        //                         editor: {
-        //                             xtype: 'datefield',
-        //                             ctype:valItem.cols_type
-        //                         }
-        //                     });
-        //                 }
-        //                 if(valItem.cols_type == 'radio' || valItem.cols_type == 'select'){
-        //                     clm = Ext.create('Ext.grid.column.Column', {
-        //                         text:valItem.cols_name,
-        //                         dataIndex:cdx,
-        //                         height:25,
-        //                         flex:1,
-        //                         editor: {
-        //                             xtype: 'combo',
-        //                             ctype:valItem.cols_type,
-        //                             store:valItem.cols_data
-        //                         }
-        //                     });
-        //                 }
-        //                 var fld = {
-        //                     name:cdx
-        //                 };
-
-        //                 /* grid columns */
-        //                 clms.push(clm);
-        //                 /* store fields */
-        //                 flds.push(fld);
-        //             }
-        //         });
-        //     }
-        // });
-
         var aStore = Ext.create('Ext.data.Store', {
             fields:flds
         });
@@ -1222,7 +1135,7 @@ Ext.define('TaskManager.controller.Upload', {
                             columns:2,
                             itemId:'chkGrp',
                             fieldLabel:cName,
-                            width:'100%',
+                            width:'100%'
                         },
                         {
                             xtype:'container',

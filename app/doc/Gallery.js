@@ -1,5 +1,6 @@
 ﻿Ext.define('TaskManager.doc.Gallery', {
 	singleton : true,
+	CLASSNAME:'Gallery',
 	getName:function(){
 		return locale.viewer.gallery;
 	},

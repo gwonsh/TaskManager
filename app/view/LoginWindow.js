@@ -184,8 +184,7 @@ Ext.define('TaskManager.view.LoginWindow', {
             maxWidth: 700,
             padding: 30,
             scrollable: {
-                direction: 'vertical',
-                
+                direction: 'vertical'
             },
             tpl: Ext.create('Ext.XTemplate', 
                 '<tpl for=\'.\'>    ',

@@ -111,6 +111,122 @@
                     "designerId": "06fd3907-fdba-454c-bdac-03e97ed0f802"
                 }
             ]
+        },
+        {
+            "type": "Ext.toolbar.Spacer",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 13,
+                "layout|flex": null
+            },
+            "name": "MySpacer1",
+            "designerId": "d650ea32-d3cc-4a31-92e6-9602404047e1"
+        },
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": null,
+                "text": [
+                    "{selectForm}"
+                ]
+            },
+            "name": "MyLabel",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "20792861-62d7-45ea-a6aa-f1336bdd5678"
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "displayField": "name",
+                "fieldLabel": null,
+                "itemId": "fDselectForm",
+                "labelWidth": 70,
+                "layout|flex": null,
+                "maxWidth": 380,
+                "valueField": "formId",
+                "width": null
+            },
+            "name": "MyComboBox2",
+            "designerId": "686866ba-3260-4112-9417-19d025e3ab67",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFDselectFormAfterRender",
+                        "implHandler": [
+                            "var forms = app.doc.Viewer.FORMS;",
+                            "var formData = [];",
+                            "for(var i=0; i<forms.length; i++){",
+                            "    formData.push({",
+                            "        name:forms[i].getName(),",
+                            "        formId:forms[i].CLASSNAME,",
+                            "        index:i",
+                            "    });",
+                            "}",
+                            "var store = Ext.create('Ext.data.Store', {",
+                            "    fields: ['name', 'formId', 'index'],",
+                            "    data:formData",
+                            "});",
+                            "component.setStore(store);"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFDselectFormAfterRender",
+                    "designerId": "3b7e2624-f194-4a60-974f-58b7fe8b620d"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFDselectFormSelect",
+                        "implHandler": [
+                            "var fi = record.get('formId');",
+                            "var viewPan = getController('Viewer').getViewPan();",
+                            "var viewer = viewPan.down('#viewer');",
+                            "viewPan.fireEvent('viewmodechange', record.get('index'));",
+                            "var grid = getController('Main').getWestPanel().getActiveTab();",
+                            "var cInfo = grid.categoryInfo;",
+                            "cInfo.ca_option = '--formMode:' + fi;",
+                            "cInfo.u = 'u';",
+                            "cInfo.ca_id = selectedCategory;",
+                            "// Ext.data.JsonP.request({",
+                            "//     url:getCategoryUpdateApi(),",
+                            "//     params:cInfo",
+                            "// });"
+                        ],
+                        "name": "select",
+                        "scope": "me"
+                    },
+                    "name": "onFDselectFormSelect",
+                    "designerId": "185cdcf1-212f-4a6f-bdc3-3b51d24ec736"
+                }
+            ]
         }
     ]
 }

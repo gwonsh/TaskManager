@@ -1,5 +1,6 @@
 Ext.define('TaskManager.doc.Template', {
 	singleton : true,
+	CLASSNAME:'Template',
 	getName:function(){
 		return locale.viewer.template;
 	},

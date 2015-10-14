@@ -12,13 +12,15 @@ Ext.define('TaskManager.doc.Viewer', {
 	constructor:function(config){
 		this.initConfig(config);
 		this.setViewer();
-	},	
+	},
+	getApp:function(){
+		return TaskManager;
+	},
 	setViewer:function(){
-		var app = TaskManager;
-		this.VIEWERS.push(app.doc.Default);
-		this.VIEWERS.push(app.doc.ByImage);		
-		this.VIEWERS.push(app.doc.SimpleList);			
-		this.VIEWERS.push(app.doc.Gallery);
-	},		
-	VIEWERS:[]
+		this.FORMS.push(this.getApp().doc.Default);
+		this.FORMS.push(this.getApp().doc.ByImage);
+		this.FORMS.push(this.getApp().doc.SimpleList);
+		this.FORMS.push(this.getApp().doc.Gallery);
+	},
+	FORMS:[]
 });

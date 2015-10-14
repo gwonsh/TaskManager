@@ -426,9 +426,6 @@ Ext.define('TaskManager.view.MainView', {
 
     onWestPanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         var ctlr = getController('Main');
-        if(newCard.categoryInfo){
-            ctlr.setMenuPermission(newCard.categoryInfo);
-        }
         selectedCategory = newCard.categoryId;
         categoryName = newCard.title;
         tabPanel.up('viewport').down('#headerPan').setTitle('SMARTORI Task Manager - ' + newCard.title);
@@ -449,6 +446,25 @@ Ext.define('TaskManager.view.MainView', {
             ctlr.viewDocument(selected.get('ca_id'), selected.get('bd_idx'));
         }
 
+        Ext.data.JsonP.request({
+            url:getCategoryViewApi(selectedCategory),
+            success:function(response){
+                newCard.categoryInfo = response;
+                var options = {};
+                if(newCard.categoryInfo.ca_option !== null && newCard.categoryInfo.ca_option !== ''){
+                    var option = newCard.categoryInfo.ca_option.replace(/ /g, '');
+                    var tmpArr = option.split('--');
+                    for(var i=0; i<tmpArr.length; i++){
+                        if(tmpArr[i] !== ''){
+                            var oUnit = tmpArr[i].replace(/ /g, '').split(':');
+                            options[oUnit[0]] = oUnit[1];
+                        }
+                    }
+                }
+                config.option = options;
+                ctlr.setMenuPermission(response);
+            }
+        });
     },
 
     onToolClick: function(tool, e, owner, eOpts) {
@@ -520,22 +536,64 @@ Ext.define('TaskManager.view.MainView', {
         var title = '<div style="float:left;margin-top:6px">'+locale.main.preview+'</div>';
         var toggleIco = '<img class="editableToggle" src="resources/images/ico_lock.png" style="float:left;margin:5px 20px 0 10px;cursor:pointer"';
         toggleIco += 'onclick="getController(\'Viewer\').editModeToggle(this)" title="'+locale.menu.editable+'">';
-        var viewers = app.doc.Viewer.VIEWERS;
-        var views = '<select style="margin:1px 0 0 8px;float:right" onchange="Ext.getCmp(\'viewPan\').fireEvent(\'viewmodechange\', this.selectedIndex)">';
-        Ext.Array.each(viewers, function(entry, index){
-            views += '<option index='+index+'>'+ entry.getName()+'</option>';
-        });
-        views += '</select>';
-        component.setTitle(title + toggleIco + views);
-        component.getHeader().setHeight(36);
-        component.on('viewmodechange', function(index){
-            var viewer = component.down('#viewer');
-            currentViewMode = index;
-            if(viewer) {
-                html = app.doc.Viewer.VIEWERS[index].getHtml(viewer.info);
-                viewer.setHtml(html);
+        var viewers = app.doc.Viewer.FORMS;
+        // var views = '<select id="formSelector" style="margin:1px 0 0 8px;float:right" onchange="Ext.getCmp(\'viewPan\').fireEvent(\'viewmodechange\', this.selectedIndex)">';
+
+        if(!config.option.formMode) config.option.formMode = 'Default';
+        var combo = Ext.create('Ext.form.field.ComboBox',{
+            xtype: 'combobox',
+            itemId: 'fDselectForm',
+            displayField: 'name',
+            valueField: 'formId',
+            margin:'0 0 3 10',
+            value:config.option.formMode,
+            listeners: {
+                select: function(combo, record, eOpts){
+                    var viewer = component.down('#viewer');
+                    if(viewer) {
+                        html = app.doc.Viewer.FORMS[record.get('index')].getHtml(viewer.info);
+                        viewer.setHtml(html);
+                    }
+                }
             }
         });
+
+        var forms = app.doc.Viewer.FORMS;
+        var formData = [];
+        for(var i=0; i<forms.length; i++){
+            formData.push({
+                name:forms[i].getName(),
+                formId:forms[i].CLASSNAME,
+                index:i
+            });
+        }
+        var store = Ext.create('Ext.data.Store', {
+            fields: ['name', 'formId', 'index'],
+            data:formData
+        });
+        combo.setStore(store);
+        component.getHeader().add(combo);
+
+
+        // Ext.Array.each(viewers, function(entry, index){
+        //     if(entry.CLASSNAME == preference.option.formMode){
+        //         views += '<option index='+index+' selected>'+ entry.getName()+'</option>';
+        //     }
+        //     else{
+        //         views += '<option index='+index+'>'+ entry.getName()+'</option>';
+        //     }
+        // });
+        // views += '</select>';
+        component.setTitle(title + toggleIco);
+        component.getHeader().setHeight(36);
+        // component.on('viewmodechange', function(index){
+        //     var viewer = component.down('#viewer');
+        //     currentViewMode = index;
+        //     if(viewer) {
+        //         html = app.doc.Viewer.FORMS[index].getHtml(viewer.info);
+        //         viewer.setHtml(html);
+        //     }
+        // });
     },
 
     onViewConAfterRender: function(component, eOpts) {
@@ -571,8 +629,7 @@ Ext.define('TaskManager.view.MainView', {
         if(!isHtml5() || getIEVersion() < 10){
             gridType = 'normal';
         }
-        grid.categoryInfo = record;
-        ctrl.setMenuPermission(record);
+
         ctrl.createNewGrid(record.get('id'), categoryName, gridType);
     },
 

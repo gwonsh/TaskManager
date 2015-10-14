@@ -34,7 +34,6 @@
             "MainView",
             "AttachmentUnit",
             "LoginWindow",
-            "ViewerDefault",
             "NewRequest",
             "DatasetGridBox",
             "MultiSelectWindow",

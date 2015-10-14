@@ -543,7 +543,7 @@ Ext.define('TaskManager.controller.Viewer', {
                                                     checked:isChecked,
                                                     beforeLabelTpl :[
                                                         '<div style="float:left;width:14px;height:14px;margin-top:6px;background-color:'+entry[2].split('||')[0]+'"></div>'
-                                                    ],
+                                                    ]
                                                 }
                                             );
 
@@ -834,7 +834,7 @@ Ext.define('TaskManager.controller.Viewer', {
                                         columns:2,
                                         itemId:'chkGrp',
                                         fieldLabel:cName,
-                                        width:'100%',
+                                        width:'100%'
                                     },
                                     {
                                         xtype:'container',
@@ -1011,10 +1011,10 @@ Ext.define('TaskManager.controller.Viewer', {
                         {
                             xtype:'container',
                             layout:{
-                                type:'hbox',
+                                type:'hbox'
                             },
                             itemId:'btnCon',
-                            margin:'10 0 0 0',
+                            margin:'10 0 0 0'
                         }
                     ]
                 }).show();
@@ -1786,12 +1786,7 @@ Ext.define('TaskManager.controller.Viewer', {
             success:function(response){
                 var ctlr = getController('Main');
                 var viewer = ctlr.getViewPan().down('viewer');
-                var dStore = Ext.getStore('dStore_' + viewer.categoryId);
-                dStore.on('load', function onStoreLoad(store){
-                    store.un('load', onStoreLoad);
-                    ctlr.viewDocument(selectedCategory, viewer.info.bd_idx);
-                });
-                dStore.load();
+                ctlr.viewDocument(selectedCategory, viewer.info.bd_idx);
 
             }
         });

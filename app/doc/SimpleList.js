@@ -1,5 +1,6 @@
 ﻿Ext.define('TaskManager.doc.SimpleList', {
 	singleton : true,
+	CLASSNAME:'SimpleList',
 	getName:function(){
 		return locale.viewer.simpleList;
 	},
@@ -11,8 +12,34 @@
 		var contentAttr = ' class="basic-field simpleList" field_type="content" bd_idx="'+values.bd_idx+'"';
 		var html;
 		html  =  '<div class="viewer-frame">';
-		html +=	 	 '<div style="text-align:right;width:100%;padding:0 0 5px 0">작성자:'+values.bd_name+'</div>';
-		html +=	 	 '<div style="text-align:right;width:100%;padding:0 0 5px 0">작성일:'+values.bd_regdate+'</div>';
+		html +=  	'<div style="width:100%;height:68px">';
+		if(values.approvalList){
+			var apvLst = values.approvalList;
+		html += 	 	 '<div style="float:left;height:65px;">';
+		html +=			 	'<table cellpadding="0" cellspacing="0" border="1" class="approval-list">';
+		html +=             	'<tr>';
+			for(i=0; i<apvLst.length; i++){
+		html += 					'<td height="20" width="45" align="center" title="'+apvLst[i].user_name+'">';
+		html +=                     	apvLst[i].user_duty;
+		html += 					'</td>';
+			}
+		html +=             	'</tr><tr>';
+			for(i=0; i<apvLst.length; i++){
+		html += 					'<td height="45" align="center" valign="middle" bdIdx="'+values.bd_idx+'" checked="'+apvLst[i].ap_chk+'" userid="'+apvLst[i].user_id+'" class="apvUnit">';
+				if(apvLst[i].ap_chk == 1){
+		html +=                     	'<img src="resources/images/ico_check.png"><div style="width:100%;font-size:11px">'+userInfo.nv_name+'</div>';
+				}
+		html += 					'</td>';
+			}
+		html +=             	'</tr>';
+		html +=			 	'</table>';
+		html += 	 	 '</div>';
+		}
+		html +=	 	 	'<div style="float:right">';
+		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">작성자:'+values.bd_name+'</div>';
+		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">작성일:'+values.bd_regdate+'</div>';
+		html +=     	 '</div>';
+		html +=		 '</div>';
 		/* category name */
 		html +=  	 '<div style="width:100%;height:45px;background-color:'+baseColor+'">';
 		if(values.bd_colortag !== ''){

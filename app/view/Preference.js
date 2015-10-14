@@ -21,7 +21,9 @@ Ext.define('TaskManager.view.Preference', {
         'TaskManager.view.PreferenceViewModel',
         'Ext.form.Label',
         'Ext.container.Container',
-        'Ext.form.field.Radio'
+        'Ext.form.field.Radio',
+        'Ext.toolbar.Spacer',
+        'Ext.form.field.ComboBox'
     ],
 
     viewModel: {
@@ -30,6 +32,7 @@ Ext.define('TaskManager.view.Preference', {
     height: 600,
     width: 450,
     closeAction: 'hide',
+    defaultListenerScope: true,
 
     layout: {
         type: 'vbox',
@@ -76,7 +79,62 @@ Ext.define('TaskManager.view.Preference', {
                     }
                 }
             ]
+        },
+        {
+            xtype: 'tbspacer',
+            height: 13
+        },
+        {
+            xtype: 'label',
+            bind: {
+                text: '{selectForm}'
+            }
+        },
+        {
+            xtype: 'combobox',
+            itemId: 'fDselectForm',
+            maxWidth: 380,
+            labelWidth: 70,
+            displayField: 'name',
+            valueField: 'formId',
+            listeners: {
+                afterrender: 'onFDselectFormAfterRender',
+                select: 'onFDselectFormSelect'
+            }
         }
-    ]
+    ],
+
+    onFDselectFormAfterRender: function(component, eOpts) {
+        var forms = app.doc.Viewer.FORMS;
+        var formData = [];
+        for(var i=0; i<forms.length; i++){
+            formData.push({
+                name:forms[i].getName(),
+                formId:forms[i].CLASSNAME,
+                index:i
+            });
+        }
+        var store = Ext.create('Ext.data.Store', {
+            fields: ['name', 'formId', 'index'],
+            data:formData
+        });
+        component.setStore(store);
+    },
+
+    onFDselectFormSelect: function(combo, record, eOpts) {
+        var fi = record.get('formId');
+        var viewPan = getController('Viewer').getViewPan();
+        var viewer = viewPan.down('#viewer');
+        viewPan.fireEvent('viewmodechange', record.get('index'));
+        var grid = getController('Main').getWestPanel().getActiveTab();
+        var cInfo = grid.categoryInfo;
+        cInfo.ca_option = '--formMode:' + fi;
+        cInfo.u = 'u';
+        cInfo.ca_id = selectedCategory;
+        // Ext.data.JsonP.request({
+        //     url:getCategoryUpdateApi(),
+        //     params:cInfo
+        // });
+    }
 
 });

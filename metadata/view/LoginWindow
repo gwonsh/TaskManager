@@ -401,7 +401,7 @@
                 "padding": 30,
                 "scrollable": [
                     "{",
-                    "    direction: 'vertical',",
+                    "    direction: 'vertical'",
                     "}"
                 ],
                 "style": null,

@@ -40,7 +40,6 @@ Ext.application({
         'MainView',
         'AttachmentUnit',
         'LoginWindow',
-        'ViewerDefault',
         'NewRequest',
         'DatasetGridBox',
         'MultiSelectWindow',

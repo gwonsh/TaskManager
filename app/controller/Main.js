@@ -108,6 +108,7 @@ Ext.define('TaskManager.controller.Main', {
             remove:locale.menu.remove,
             reset:locale.main.reset,
             saveClose:locale.main.saveClose,
+            selectForm:locale.config.selectForm,
             setting:locale.menu.setting,
             simpleMode:locale.config.simpleMode,
             submit:locale.upload.submit,
@@ -494,192 +495,11 @@ Ext.define('TaskManager.controller.Main', {
                             val += '<div style="float:left;margin-left:6px">' + entry[1] +'</div>';
                             val += '</div>';
                         });
+                        if(value.length === 0) val = '';
                         return val;
                     },
                     name: 'visibleColorchk' + item.cols_idx
                 });
-            }
-        });
-        return fields;
-    },
-
-    getDataFields1: function(cols) {
-        //////* generating basic fields *//////
-        /* title field */
-        fields.push(Ext.create('Ext.data.field.Field', {name:'bd_subject'}));
-        /* description field */
-        var descript = Ext.create('Ext.data.field.Field', {
-            convert:function(v, rec){
-                v = v.replace(/\n/g, '<br>');
-                return v;
-            },
-            name:'bd_content',
-        });
-        fields.push(descript);
-        /* set path of thumbnail */
-        var thumbPath = Ext.create('Ext.data.field.Field', {
-            convert:function(v, rec){
-                if(rec.data.bd_file !== undefined){
-                    if(rec.data.bd_file.length > 0){
-                        if(rec.data.bd_file[0].file_width !== 0){
-                            v = v + '/T';
-                        }
-                    }
-                    else{
-                        //* in case none of file uploaded */
-                        v = 'resources/images/ico_noimage.gif';
-                    }
-                }
-                else{
-                    v = 'resources/images/ico_noimage.gif';
-                }
-                return v;
-            },
-            mapping: 'bd_file[0].thumb_path',
-            name: 'thumb_path'
-        });
-        fields.push(thumbPath);
-
-        /* set path for downloading */
-        var filePath = Ext.create('Ext.data.field.Field', {
-            convert: function(v, rec) {
-                var fileInfo = rec.data.bd_file;
-                var value;
-                if(fileInfo !== undefined){
-                    if(fileInfo.length > 0){
-                        if(fileInfo[0].file_width !== 0){
-                            /* in case file size is too big */
-                            if(rec.data.file_width * rec.data.file_height > 4000000){
-                                value = fileInfo[0].thumb_path;
-                            }
-                            else{
-                                value = fileInfo[0].file_path;
-                            }
-                        }
-                        else{
-                            value = fileInfo[0].thumb_path;
-                        }
-                    }
-                    else{
-                        //파일없이 등록된 자료
-                        value = 'resources/images/ico_noimage.gif';
-                    }
-                }
-                else{
-                    value = 'resources/images/ico_noimage.gif';
-                }
-                return value;
-            },
-            name: 'file_path'
-        });
-        fields.push(filePath);
-
-        /* if file is image, set image width */
-        var fileWidth = Ext.create('Ext.data.field.Field', {
-            convert: function(v, rec) {
-                if(v === undefined) v = 0;
-                return v;
-            },
-            mapping: 'bd_file[0].file_width',
-            name: 'file_width'
-        });
-        fields.push(fileWidth);
-        /* if file is image, set image height */
-        var fileHeight = Ext.create('Ext.data.field.Field', {
-            convert: function(v, rec) {
-                if(v === undefined) v = 0;
-                return v;
-            },
-            mapping: 'bd_file[0].file_height',
-            name: 'file_height'
-        });
-        fields.push(fileHeight);
-        /* file size */
-        var fileSize = Ext.create('Ext.data.field.Field', {
-            convert: function(v, rec) {
-                if(v === undefined){return 0;}
-                if (v === 0) { return 0; }
-                var e = Math.floor(Math.log(v) / Math.log(1024));
-                return (v/Math.pow(1024, e)).toFixed(2)+' '+' KMGTP'.charAt(e)+'B';
-            },
-            mapping: 'bd_file[0].file_size',
-            name: 'file_size'
-        });
-        fields.push(fileSize);
-        /* common information of file */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_file'}));
-        /* registered data */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_regdate'}));
-        /* user name */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_name'}));
-        /* data index */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_idx'}));
-        /* user id */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'mb_id'}));
-        /* colortag */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_colortag'}));
-        /* information of used fields */
-        fields.push(Ext.create('Ext.data.field.Field', {name: 'bd_data'}));
-
-        //////* generating custom fields *//////
-        Ext.Array.each(cols, function(item){
-            var fType = 'auto';
-            var fName = 'id' + item.cols_idx;
-            /* special name for request id */
-            if(item.cols_type == 'idx'){
-                fName = 'idx';
-                indexFieldId = item.cols_idx; // save cols_idx of index key
-            }
-            if(item.cols_type == 'date'){
-                fType = 'date';
-            }
-            var ctmFld = Ext.create('Ext.data.field.Field', {
-                type:fType,
-                convert: function(v, rec) {
-                    v = rec.get('bd_data');
-                    var value = '';
-                    for(var i=0; i<v.length; i++){
-                        if(v[i].cols_idx == item.cols_idx){
-                            if(item.cols_type == 'colorchk'){//for normal colorchk field
-                                var values = [];
-                                value = [];
-                                if(v[i].data_val !== ''){
-                                    values = v[i].data_val.split(',');
-                                    Ext.Array.each(values, function(entry){
-                                        value.push(entry.trim().split('||'));
-                                    });
-                                }
-                            }
-                            else{
-                                value = v[i].data_val;
-                            }
-                            /* add cols_type to recode.bd_data */
-                            v[i].cols_type = item.cols_type;
-                        }
-                    }
-                    return value;
-                },
-                name: fName
-            });
-            fields.push(ctmFld);
-
-            if(item.cols_type == 'colorchk'){//for graphical colorchk
-                var colorFld = Ext.create('Ext.data.field.Field', {
-                    convert: function(v, rec) {
-                        var value = [];
-                        value = rec.get(fName);
-                        var val = '';
-                        Ext.Array.each(value, function(entry){
-                            val += '<div style="float:left;height:100%;margin-right:8px;">';
-                            val += '<div style="float:left;background-color:' + entry[0] + ';width:13px;height:13px;color:white;padding-left:5px"></div>';
-                            val += '<div style="float:left;margin-left:6px">' + entry[1] +'</div>';
-                            val += '</div>';
-                        });
-                        return val;
-                    },
-                    name: 'visibleColorchk' + item.cols_idx
-                });
-                fields.push(colorFld);
             }
         });
         return fields;
@@ -951,7 +771,7 @@ Ext.define('TaskManager.controller.Main', {
                                     /* registed data label */
                                     xtype:'label',
                                     text:locale.main.regDate,
-                                    cls: 'x-form-item-label-default',
+                                    cls: 'x-form-item-label-default'
                                 },
                                 {
                                     /* date range */
@@ -965,7 +785,7 @@ Ext.define('TaskManager.controller.Main', {
                                             /* date search label */
                                             xtype:'label',
                                             text:locale.search.from,
-                                            cls: 'x-form-item-label-default',
+                                            cls: 'x-form-item-label-default'
                                         },
                                         {
                                             /* search label 'from' */
@@ -981,7 +801,7 @@ Ext.define('TaskManager.controller.Main', {
                                             /* date search label */
                                             xtype:'label',
                                             text:locale.search.to,
-                                            cls: 'x-form-item-label-default',
+                                            cls: 'x-form-item-label-default'
                                         },
                                         {
                                             /* search label 'to' */
@@ -989,13 +809,13 @@ Ext.define('TaskManager.controller.Main', {
                                             itemId:'eDate',
                                             submitFormat:'Y/m/d'
                                         }
-                                    ],
+                                    ]
                                 },
                                 {
                                     /* search monthly label */
                                     xtype:'label',
                                     text:locale.search.monthly,
-                                    cls: 'x-form-item-label-default',
+                                    cls: 'x-form-item-label-default'
                                 },
                                 {
                                     /* monthly combos */
@@ -1009,7 +829,7 @@ Ext.define('TaskManager.controller.Main', {
                                             /* year label */
                                             xtype:'label',
                                             text:locale.search.year,
-                                            cls: 'x-form-item-label-default',
+                                            cls: 'x-form-item-label-default'
                                         },
                                         /* combo for year */
                                         Ext.create('Ext.form.field.ComboBox', {
@@ -1041,7 +861,7 @@ Ext.define('TaskManager.controller.Main', {
                                             /* month label */
                                             xtype:'label',
                                             text:locale.search.month,
-                                            cls: 'x-form-item-label-default',
+                                            cls: 'x-form-item-label-default'
                                         },
                                         /* combo for month */
                                         Ext.create('Ext.form.field.ComboBox', {
@@ -1427,7 +1247,7 @@ Ext.define('TaskManager.controller.Main', {
                     if(fStore === undefined){
                         fStore = Ext.create(appName + '.store.FieldStore',{
                             storeId:'fStore_' + cId,
-                            data:colsList,
+                            data:colsList
                         });
                     }
                 }
@@ -1642,7 +1462,7 @@ Ext.define('TaskManager.controller.Main', {
         }
     },
 
-    setViewFields: function(target) {
+    setViewFields5: function(target) {
         var me = this;
         var ca_id = target.categoryId;
 
@@ -1825,12 +1645,18 @@ Ext.define('TaskManager.controller.Main', {
                         });
                         /* add an attached file exists or not */
                         dl.hasFile = hasFile;
-                        var html = app.doc.Viewer.VIEWERS[currentViewMode].getHtml(dl);
                         viewer.categoryId = caId;
                         viewer.info = dl;
+
+                        if(!config.option.formMode) config.option.formMode = 'Default';
+                        var combo = vPan.getHeader().down('combo');
+                        combo.setValue(config.option.formMode);
+                        var record = combo.findRecord('formId', combo.getValue());
+                        html = app.doc.Viewer.FORMS[record.get('index')].getHtml(viewer.info);
                         viewer.setHtml(html);
                         vCon.add(viewer);
                         grid.enable();
+
                     }
                 });
 
@@ -1855,9 +1681,9 @@ Ext.define('TaskManager.controller.Main', {
         var btPrint = header.down('#btnPrint');
         var btComment = header.down('#btnComment');
         // var setCmt = (userInfo.nv_level < categoryInfo.ca_comment)? btComment.disable() : btComment.enable();
-        var setDel = (userInfo.nv_level < categoryInfo.get('data').del)? btDel.disable() : btDel.enable();
+        var setDel = (userInfo.nv_level < categoryInfo.ca_delete)? btDel.disable() : btDel.enable();
         // var setPrt = (userInfo.nv_level < categoryInfo.ca_print)? btPrint.disable() : btPrint.enable();
-        var setWit = (userInfo.nv_level < categoryInfo.get('data').write)? btEdit.disable() : btEdit.enable();
+        var setWit = (userInfo.nv_level < categoryInfo.ca_write)? btEdit.disable() : btEdit.enable();
     },
 
     showSplash: function(show) {

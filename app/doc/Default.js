@@ -1,5 +1,6 @@
 Ext.define('TaskManager.doc.Default', {
 	singleton : true,
+	CLASSNAME:'Default',
 	getName:function(){
 		return locale.viewer.defaultView;
 	},

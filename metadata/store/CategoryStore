@@ -24,7 +24,7 @@
             "userConfig": {
                 "api": [
                     "{",
-                    "    read    : getCategoryListApi(),",
+                    "    read    : getCategoryListApi()",
                     "}"
                 ]
             },

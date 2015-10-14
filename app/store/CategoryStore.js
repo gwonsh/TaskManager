@@ -32,8 +32,7 @@ Ext.define('TaskManager.store.CategoryStore', {
             proxy: {
                 type: 'jsonp',
                 api: {
-                    read: getCategoryListApi(),
-                    
+                    read: getCategoryListApi()
                 },
                 reader: {
                     type: 'json'

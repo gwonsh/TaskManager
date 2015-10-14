@@ -9,13 +9,12 @@ if(document.location.hostname != 'localhost'){
 }
 else{
     domain = 'http://smartdb.kr';
-    //     domain = 'http://data.samwoodtp.com';
-    //         domain = "http://samsung.dipol.co.kr";
+//         domain = 'http://data.samwoodtp.com';
+            domain = "http://samsung.dipol.co.kr";
     //     domain = "http://samwoo.dipol.co.kr";
 }
 
 var selectedCategory;
-var currentViewMode = 0;
 
 var sessionId;
 /* for language setting */
@@ -52,30 +51,16 @@ function getMemberUpdateApi(){
 
 /* 특정 카테고리정보는 id 받아서처리 아니면 고정 카테고리 id사용 */
 function getCategoryViewApi(cId){
+    if(cId === undefined) cId = '';
     return getDomain() + "/json/cateView?ca_id=" + cId;
 }
-
-// function getCategoryListApi(cid){
-//     var val = '';
-//     if(cid !== undefined && cid !== null){
-//         val = cid;  
-//     }
-//     else{
-//         val = defaultCategory;
-//     }
-//     if(val === undefined){
-//         alert('Category Id not defined');
-//     } 
-//     return domain + "/json/cateList?node=" + val;
-// }
 
 function getCategoryListApi(){
     return domain + "/json/cateList?";
 }
-function getCategoryViewApi(){
-    return domain + "/json/cateView";
+function getCategoryUpdateApi(){
+    return domain + '/json/cateAddUpdate';
 }
-
 
 /**
  * @params ca_id category id
@@ -280,7 +265,7 @@ var languageSet = {
             selectSecondOption:'Are you sure that uploading without the second option?',            
             submit:'Submit',
             uploadTitle:' - New document',
-            uploadTitleInEdit:' - Edit document',
+            uploadTitleInEdit:' - Edit document'
         },
         config:{
             changeShortcut:'Change shortcut',
@@ -288,6 +273,7 @@ var languageSet = {
             detailMode:'Detail list',
             listDisplay:'How to show the data list',
             noShortcut:'No shortcut found, please create shortcut by Setting Shorcuts menu',
+            selectForm:'Select a form for current category',
             simpleMode:'Simple list'
         },
         search:{
@@ -411,6 +397,7 @@ var languageSet = {
             detailMode:'자세히',
             listDisplay:'자료목록 표시방법',
             noShortcut:'설정된 바로가기가 없습니다. 바로가기설정 메뉴를 클릭하여 만들수 있습니다.',
+            selectForm:'현재 카테고리 양식 선택',
             simpleMode:'간단히'
         },
         search:{
@@ -572,3 +559,4 @@ Ext.override(Ext.window.Toast, {
 });
 /* Preference window */
 var preference;
+var config = {};
