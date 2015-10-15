@@ -156,7 +156,13 @@ Ext.define('TaskManager.controller.Main', {
 
     onBtnDelClick: function(button, e, eOpts) {
         var me = this;
-        var grid = this.getWestPanel().getActiveTab();
+        var grid;
+        if(this.getWestPanel().getActiveTab().type == 'normal'){
+            grid = this.getWestPanel().getActiveTab();
+        }
+        else{//gallery mode
+            grid = this.getWestPanel().getActiveTab().down('dataview');
+        }
         var chks = grid.getSelectionModel().getSelection();
         if(chks.length === 0){
             alert(locale.upload.noneSelected);
@@ -1005,10 +1011,6 @@ Ext.define('TaskManager.controller.Main', {
             ]
         };
 
-        var sm = new Ext.selection.CheckboxModel({
-            checkOnly: false
-        });
-
         if(gridType === undefined || gridType == 'null') gridType = 'normal';
         if(gridType == 'normal'){
             //* create grid for server data */
@@ -1018,10 +1020,6 @@ Ext.define('TaskManager.controller.Main', {
                 closable:true,
                 enableCtxMenu:false,
                 type:gridType,
-                selModel: {
-                    selType: 'checkboxmodel',
-                    mode:'SINGLE'
-                },
                 itemId:'mainGrid_' + cId,
                 id:'mainGrid_' + cId,
                 listeners:[
@@ -1115,6 +1113,10 @@ Ext.define('TaskManager.controller.Main', {
                 type:gridType,
                 title:title,
                 categoryId:cId,
+        //         selModel: {
+        //             selType: 'checkboxmodel',
+        //             mode:'SINGLE'
+        //         },
                 scrollable:true,
                 itemId:'mainGrid_' + cId,
                 bodyStyle:'background-color:#e9e9e9',
@@ -1369,7 +1371,14 @@ Ext.define('TaskManager.controller.Main', {
 
     newComment: function() {
         var me = this;
-        var chks = this.getWestPanel().getActiveTab().getSelectionModel().getSelection();
+        var grid;
+        if(this.getWestPanel().getActiveTab().type == 'normal'){
+            grid = this.getWestPanel().getActiveTab();
+        }
+        else{//gallery mode
+            grid = this.getWestPanel().getActiveTab().down('dataview');
+        }
+        var chks = grid.getSelectionModel().getSelection();
         if(chks.length === 0){
             alert(locale.upload.noneSelected);
             return;

@@ -1308,6 +1308,7 @@ Ext.define('TaskManager.controller.Upload', {
         // check if uploading complete
         frame.dom.onload = function (){
             if(isHtml5() && getIEVersion() > 9){
+                console.log(form);
                 onUploadComplete(form);
             }
             else{

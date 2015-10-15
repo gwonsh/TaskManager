@@ -437,7 +437,13 @@ Ext.define('TaskManager.view.MainView', {
         }
 
         /* if activetab has a selected record, view it */
-        var selected = tabPanel.getActiveTab().getSelectionModel().getSelection()[0];
+        var selected;
+        if(tabPanel.getActiveTab().type == 'normal'){
+            selected = tabPanel.getActiveTab().getSelectionModel().getSelection()[0];
+        }
+        else {
+            selected = tabPanel.getActiveTab().down('dataview').getSelectionModel().getSelection()[0];
+        }
         if(!selected){
             ctlr.showSplash(true);
             ctlr.getViewPan().down('#viewCon').setHidden(true);
@@ -450,6 +456,7 @@ Ext.define('TaskManager.view.MainView', {
             url:getCategoryViewApi(selectedCategory),
             success:function(response){
                 newCard.categoryInfo = response;
+                console.log(response);
                 var options = {};
                 if(newCard.categoryInfo.ca_option !== null && newCard.categoryInfo.ca_option !== ''){
                     var option = newCard.categoryInfo.ca_option.replace(/ /g, '');
