@@ -927,6 +927,15 @@ Ext.define('TaskManager.controller.Upload', {
     setDatasetField: function(record, isEditMode, target) {
         var i, j;
         var colsIdx = record.get('cols_idx').toString();
+        if(colsIdx.length == 1){
+            colsIdx = '000' + colsIdx;
+        }
+        if(colsIdx.length == 2){
+            colsIdx = '00' + colsIdx;
+        }
+        if(colsIdx.length == 3){
+            colsIdx = '0' + colsIdx;
+        }
         var fIdx = 'data_' + colsIdx;
         var dsetCon = Ext.create(appName + '.view.DatasetGridBox', {
             style:'margin-bottom:10px',
@@ -1276,7 +1285,9 @@ Ext.define('TaskManager.controller.Upload', {
         frame.isReady = false;
 
         var onUploadComplete = function(form){
-            form.unmask();
+            if(form){
+                //         form.unmask();
+            }
             /* refresh grid by reloading dStore */
             var dStore = Ext.getStore('dStore_' + selectedCategory);
             dStore.on('load', function onDstoreLoad(){
@@ -1308,8 +1319,7 @@ Ext.define('TaskManager.controller.Upload', {
         // check if uploading complete
         frame.dom.onload = function (){
             if(isHtml5() && getIEVersion() > 9){
-                console.log(form);
-                onUploadComplete(form);
+
             }
             else{
                 if(!frame.isReady){
@@ -1326,7 +1336,6 @@ Ext.define('TaskManager.controller.Upload', {
             var submitObj = {};
             submitObj.ca_id =  selectedCategory;
             submitObj.bd_group = 1;
-            submitObj.callback = 'callback';
 
             /* in case grids insise of form */
             var dsetGrids = Ext.ComponentQuery.query('datasetgridbox gridpanel');
@@ -1357,9 +1366,6 @@ Ext.define('TaskManager.controller.Upload', {
                         }
                     });
                 });
-                if(index === 0){
-        //             console.log(submitObj);
-                }
             });
 
             var atcCon = form.down('#attachCon');
@@ -1433,6 +1439,7 @@ Ext.define('TaskManager.controller.Upload', {
                 /* uploading files */
                 atcFiles = Ext.ComponentQuery.query('filefield', atcCon);
                 submitObj.fileCount = atcFiles.length + preFileLen;
+                submitObj.fileCount = 0;
                 Ext.Object.each(submitObj, function(key, value){
                     form.baseParams[key] = value;
                 });

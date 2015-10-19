@@ -185,8 +185,9 @@ Ext.define('TaskManager.controller.Main', {
         html 	+= ');background-size:'+bSize+'" class="div-image"></div>';
         html    += '</td>';
         html    += '<td style="padding-left:15px">';
-        html    += '<span style="font-weight:bold">제목: </span>' + selected.get('bd_subject') + '<br><span style="font-weight:bold">등록일: </span>' + selected.get('bd_regdate');
-        html    += '<br><span style="font-weight:bold">사용자: </span>' + selected.get('bd_name');
+        html    += '<span style="font-weight:bold">'+locale.main.title+': </span>' + selected.get('bd_subject');
+        html    += '<br><span style="font-weight:bold">'+locale.main.regDate+': </span>' + selected.get('bd_regdate');
+        html    += '<br><span style="font-weight:bold">'+locale.main.user+': </span>' + selected.get('bd_name');
         html    += '</td>';
         html    += '</tr></table>';
         Ext.create('Ext.window.Window', {
@@ -1017,6 +1018,10 @@ Ext.define('TaskManager.controller.Main', {
             grid = Ext.create('Ext.grid.Panel', {
                 title:title,
                 categoryId:cId,
+                selModel: {
+                    selType: 'checkboxmodel',
+                    mode:'SINGLE'
+                },
                 closable:true,
                 enableCtxMenu:false,
                 type:gridType,
@@ -1480,7 +1485,7 @@ Ext.define('TaskManager.controller.Main', {
         var fStore;
         // if(ca_id != selectedCategory){
         //     if(Ext.getStore('fStore_' + ca_id) === undefined){
-        //         console.log(target.getViewModel());
+
         //     }
         //     return;
         // }

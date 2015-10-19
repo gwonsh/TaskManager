@@ -456,7 +456,6 @@ Ext.define('TaskManager.view.MainView', {
             url:getCategoryViewApi(selectedCategory),
             success:function(response){
                 newCard.categoryInfo = response;
-                console.log(response);
                 var options = {};
                 if(newCard.categoryInfo.ca_option !== null && newCard.categoryInfo.ca_option !== ''){
                     var option = newCard.categoryInfo.ca_option.replace(/ /g, '');

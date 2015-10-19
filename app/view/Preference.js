@@ -122,19 +122,15 @@ Ext.define('TaskManager.view.Preference', {
     },
 
     onFDselectFormSelect: function(combo, record, eOpts) {
+        /* form mode update to server */
         var fi = record.get('formId');
-        var viewPan = getController('Viewer').getViewPan();
-        var viewer = viewPan.down('#viewer');
-        viewPan.fireEvent('viewmodechange', record.get('index'));
-        var grid = getController('Main').getWestPanel().getActiveTab();
-        var cInfo = grid.categoryInfo;
-        cInfo.ca_option = '--formMode:' + fi;
-        cInfo.u = 'u';
-        cInfo.ca_id = selectedCategory;
-        // Ext.data.JsonP.request({
-        //     url:getCategoryUpdateApi(),
-        //     params:cInfo
-        // });
+        Ext.data.JsonP.request({
+            url:getCategoryUpdateApi(),
+            params:{
+                ca_id:selectedCategory,
+                ca_option:'--formMode:' + fi
+            }
+        });
     }
 
 });

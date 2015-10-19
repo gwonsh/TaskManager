@@ -118,17 +118,6 @@ Ext.define('TaskManager.controller.Login', {
                 success:function(response){
                     userInfo = response.member;
 
-        //             console.log(userInfo);
-        //             userInfo.nv_10 = '';
-        //             Ext.data.JsonP.request({
-        //                 params:userInfo,
-        //                 url:getMemberUpdateApi(),
-        //                 success:function(response){
-        //                     Ext.toast(locale.upload.posted);
-        //                 }
-        //             });
-
-
                     /* the private information of shortcuts set */
                     var val = response.member.nv_10;
                     var scConfig = eval('(['+ val + '])');
@@ -227,17 +216,16 @@ Ext.define('TaskManager.controller.Login', {
         // Kakao.Auth.createLoginButton({
         //     container: scBox.el.dom,
         //     success: function(authObj) {
-        //         console.log(authObj);
         //         var refreshToken = Kakao.Auth.getRefreshToken();
         //         Kakao.Auth.setAccessToken(authObj.access_token);
         //         Ext.data.JsonP.request({
         //             url:'https://kapi.kakao.com/v1/user/ids',
         //             Autohorization:'35e4c76b343153cd5c8906482c5aee42',
         //             success:function(result){
-        //                 console.log(result);
+
         //             },
         //             fallure:function(err){
-        //                 console.log(err);
+
         //             }
         //         });
         //     },

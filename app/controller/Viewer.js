@@ -33,13 +33,13 @@ Ext.define('TaskManager.controller.Viewer', {
         var viewer = vPan.down('viewer');
         var fStore = Ext.getStore('fStore_' + viewer.categoryId);
         /* when click main image in design mode*/
-        var image = container.el.select('.div-image').elements[0];
-        if(Ext.get(image)){
-            Ext.get(image).on('dblclick', function(dsn){
-                //         console.log(dsn);
-            });
+        // var image = container.el.select('.div-image').elements[0];
+        // if(Ext.get(image)){
+        //     Ext.get(image).on('dblclick', function(dsn){
 
-        }
+        //     });
+
+        // }
         /* when click the approval table */
         var apvFld = container.el.select('.apvUnit');
         var apvEl = apvFld.elements;
@@ -1707,12 +1707,23 @@ Ext.define('TaskManager.controller.Viewer', {
             Ext.get(elements[i]).on('click', function(e ){
                 var viewer = me.getViewPan().down('viewer');
                 var apvList = viewer.info.approvalList;
-                var apvMembers = [];
-                for(var j=0; j<apvList.length; j++){
-                    apvMembers.push(apvList[j].user_id);
+        //         var apvMembers = [];
+        //         for(var j=0; j<apvList.length; j++){
+        //             apvMembers.push(apvList[j].user_id);
+        //         }
+        //         if(userInfo.nv_level == 10){
+        //             apvMembers.push(userInfo.nv_id);
+        //         }
+        //         var userId = userInfo.nv_id;
+        //         if(apvMembers.indexOf(userId) == -1){
+        //             alert(locale.viewer.noPower);
+        //             return;
+        //         }
+                /* admin or the one who has a permission of approval can */
+                if(e.currentTarget.getAttribute('userid') != userInfo.nv_id && userInfo.nv_level != 10){
+                    alert(locale.viewer.noPower);
+                    return;
                 }
-                var userId = userInfo.nv_id;
-                if(apvMembers.indexOf(userId)) return;
                 var text;
                 var updateMode = 'update';
                 var index = Ext.get(elements).indexOf(e.currentTarget);

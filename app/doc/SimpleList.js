@@ -27,7 +27,7 @@
 			for(i=0; i<apvLst.length; i++){
 		html += 					'<td height="45" align="center" valign="middle" bdIdx="'+values.bd_idx+'" checked="'+apvLst[i].ap_chk+'" userid="'+apvLst[i].user_id+'" class="apvUnit">';
 				if(apvLst[i].ap_chk == 1){
-		html +=                     	'<img src="resources/images/ico_check.png"><div style="width:100%;font-size:11px">'+userInfo.nv_name+'</div>';
+		html +=                     	'<img src="resources/images/ico_check.png">';
 				}
 		html += 					'</td>';
 			}
@@ -36,8 +36,8 @@
 		html += 	 	 '</div>';
 		}
 		html +=	 	 	'<div style="float:right">';
-		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">작성자:'+values.bd_name+'</div>';
-		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">작성일:'+values.bd_regdate+'</div>';
+		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">' + locale.main.user + ': ' +values.bd_name+'</div>';
+		html +=	 	 		'<div style="text-align:right;padding:0 0 5px 0">'+locale.main.regDate+': '+values.bd_regdate+'</div>';
 		html +=     	 '</div>';
 		html +=		 '</div>';
 		/* category name */
@@ -52,7 +52,7 @@
 		var subject = values.bd_subject;
 		if(values.bd_subject == '') subject = '';
 		html +=	     	'<tr>';	
-		html +=	     		'<td style="width:22%;text-align:right" class="simpleList">제목'+spacer+'</td>';	
+		html +=	     		'<td style="width:22%;text-align:right" class="simpleList">'+locale.main.title+spacer+'</td>';
 	
 		html +=	     		'<td '+subjectAttr+' style="width:78%">' + subject + '</td>';
 		html +=	     	'</tr>';
