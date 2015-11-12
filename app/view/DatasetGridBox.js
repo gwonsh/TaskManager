@@ -23,10 +23,9 @@ Ext.define('TaskManager.view.DatasetGridBox', {
         'Ext.toolbar.Spacer',
         'Ext.button.Button',
         'Ext.grid.Panel',
-        'Ext.grid.column.Column',
-        'Ext.form.field.Text',
         'Ext.grid.plugin.CellEditing',
-        'Ext.selection.CheckboxModel'
+        'Ext.selection.CheckboxModel',
+        'Ext.grid.column.Column'
     ],
 
     viewModel: {
@@ -106,18 +105,6 @@ Ext.define('TaskManager.view.DatasetGridBox', {
             header: false,
             enableColumnHide: false,
             enableColumnMove: false,
-            columns: [
-                {
-                    xtype: 'gridcolumn',
-                    draggable: false,
-                    sortable: false,
-                    dataIndex: 'string',
-                    text: 'String',
-                    editor: {
-                        xtype: 'textfield'
-                    }
-                }
-            ],
             plugins: [
                 {
                     ptype: 'cellediting',
@@ -126,7 +113,13 @@ Ext.define('TaskManager.view.DatasetGridBox', {
             ],
             selModel: {
                 selType: 'checkboxmodel'
-            }
+            },
+            columns: [
+                {
+                    xtype: 'gridcolumn',
+                    text: 'MyColumn'
+                }
+            ]
         }
     ],
 

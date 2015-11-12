@@ -23,7 +23,10 @@
         "requires": [
             "Ext.LoadMask",
             "Ext.ux.exporter.Exporter",
-            "TaskManager.doc.Viewer"
+            "TaskManager.doc.Viewer",
+            "Ext.chart.axis.Category",
+            "Ext.chart.series.Line",
+            "Ext.chart.plugin.ItemEvents"
         ],
         "stores": [
             "FieldStore",
@@ -47,7 +50,8 @@
             "FormSpacer",
             "MultiFileInput",
             "MyTabPanel1",
-            "LinkUnit"
+            "LinkUnit",
+            "MyBarChart"
         ]
     },
     "name": "Application",

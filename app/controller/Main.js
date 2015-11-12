@@ -1057,14 +1057,19 @@ Ext.define('TaskManager.controller.Main', {
                                     });
                                 }
                                 else if(cif.cols_type == 'colorchk'){
-                                    Ext.Array.each(cif.cols_data, function(entry){
+                                    Ext.Array.each(cif.cols_data, function(entry, index){
+                                        var margin = '0 0 0 0';
+                                        if(index === 0){
+                                            margin = '10 0 0 0';
+                                        }
                                         var html = '<div style="float:left;width:13px;height:13px;background-color:'+entry[1]+'"></div>';
-                                        html += '<span style="float:left;margin-left:3px">' + entry[0] + '</span>';
+                                        html += '<span style="float:left;margin-left:3px">' + entry[0] + '</span';
                                         var item = {
                                             xtype:'button',
                                             ui: 'plain-toolbar-small',
                                             textAlign:'left',
                                             height:25,
+                                            margin:margin,
                                             value: encodeURIComponent(entry[2]),
                                             html:html,
                                             handler:function(button){
@@ -1077,8 +1082,9 @@ Ext.define('TaskManager.controller.Main', {
                                             }
                                         };
                                         menu.add(item);
-                                        menu.showBy(e.target, 'tc-bc');
                                     });
+                                    menu.showBy(e.target, 'tc-bc');
+
                                 }
                                 else if(cif.cols_type == 'textarea' || cif.cols_type == 'datagrp' || cif.cols_type == 'text' || cif.cols_type == 'dbtext' || cif.cols_type == 'number' || cif.cols_type == 'dbl_select' || cif.cols_type == 'url'){
                                     var item = Ext.create('Ext.form.field.Text',{
@@ -1118,10 +1124,10 @@ Ext.define('TaskManager.controller.Main', {
                 type:gridType,
                 title:title,
                 categoryId:cId,
-        //         selModel: {
-        //             selType: 'checkboxmodel',
-        //             mode:'SINGLE'
-        //         },
+                //         selModel: {
+                //             selType: 'checkboxmodel',
+                //             mode:'SINGLE'
+                //         },
                 scrollable:true,
                 itemId:'mainGrid_' + cId,
                 bodyStyle:'background-color:#e9e9e9',
@@ -1320,7 +1326,7 @@ Ext.define('TaskManager.controller.Main', {
     },
 
     setCommentList: function(idx) {
-        var me = this;
+        var me = getController('Main');
         var cmtListUrl = getCommentListApi();
         Ext.data.JsonP.request({
             url:cmtListUrl,
@@ -1330,6 +1336,7 @@ Ext.define('TaskManager.controller.Main', {
             success:function(response){
                 var cmtLstCon = me.getEastPanel().down('#commentList');
                 cmtLstCon.setData(response.binderCList);
+                console.log(response.binderCList);
                 if(response.binderCList.length === 0){
                     cmtLstCon.up('#commentPanel').setCollapsed(true);
                 }
@@ -1679,7 +1686,12 @@ Ext.define('TaskManager.controller.Main', {
         });
 
         /* set Comment list */
+        /* remove previous setInterval to call comment list */
+        if(vPan.si){
+            clearInterval(vPan.si);
+        }
         me.setCommentList(bdIdx);
+        vPan.si = setInterval(me.setCommentList, 5000, bdIdx);
 
     },
 

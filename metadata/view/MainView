@@ -230,6 +230,98 @@
                     "userConfig": {
                         "designer|uiInterfaceName": "plain-toolbar-large",
                         "height": 50,
+                        "hidden": true,
+                        "icon": "resources/images/ico_main_chart.png",
+                        "itemId": "btnChart",
+                        "scale": "large",
+                        "text": null,
+                        "tooltip": [
+                            "{newComment}"
+                        ],
+                        "ui": "plain-toolbar-large",
+                        "width": 50
+                    },
+                    "name": "MyButton9",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "8dcbef49-2ea0-4b8e-8d96-907a275af05f",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var store = Ext.getStore('dStore_' + selectedCategory);",
+                                    "var chartWin = Ext.create('Ext.window.Window', {",
+                                    "    width:1000,",
+                                    "    height:600,",
+                                    "    scroller:true",
+                                    "}).show();",
+                                    "var chart =  Ext.create('TaskManager.view.MyBarChart', {",
+                                    "    plugins: {",
+                                    "        ptype: 'chartitemevents',",
+                                    "        moveEvents: true",
+                                    "    },",
+                                    "    store: {",
+                                    "        fields: ['pet', 'households', 'total'],",
+                                    "        data: [",
+                                    "            {pet: 'Cats', households: 38, total: 93},",
+                                    "            {pet: 'Dogs', households: 45, total: 79},",
+                                    "            {pet: 'Fish', households: 13, total: 171}",
+                                    "        ]",
+                                    "    },",
+                                    "    axes: [{",
+                                    "        type: 'numeric',",
+                                    "        position: 'left'",
+                                    "    }, {",
+                                    "        type: 'category',",
+                                    "        position: 'bottom'",
+                                    "    }],",
+                                    "    series: [{",
+                                    "        type: 'bar',",
+                                    "        xField: 'pet',",
+                                    "        yField: 'households',",
+                                    "        listeners: {",
+                                    "            itemmousemove: function (series, item, event) {",
+                                    "                console.log('itemmousemove', item.category, item.field);",
+                                    "            }",
+                                    "        }",
+                                    "    }, {",
+                                    "        type: 'line',",
+                                    "        xField: 'pet',",
+                                    "        yField: 'total',",
+                                    "        marker: true",
+                                    "    }]",
+                                    "});",
+                                    "chartWin.add(chart);"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "786e7d6a-c317-4201-86c2-87ca80f19a11"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-large",
+                        "height": 50,
                         "icon": "resources/images/ico_comment.png",
                         "itemId": "btnComment",
                         "scale": "large",

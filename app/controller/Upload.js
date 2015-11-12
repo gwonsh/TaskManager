@@ -125,6 +125,10 @@ Ext.define('TaskManager.controller.Upload', {
             newWin.add(newRqt);
         }
 
+        /* initializing fields */
+        var btnReset = newWin.down('#btnReset');
+        btnReset.fireEvent('click');
+
         /* created by the new button or click by a category */
         show = (!show)? show = false : true;
         if(show){
@@ -348,24 +352,31 @@ Ext.define('TaskManager.controller.Upload', {
     },
 
     onBtnResetClick: function(button) {
-        var newRqt = button.up('window').down('#newRequest');
+        var newWin = Ext.getCmp('newRequestWin_' + selectedCategory);
+        var newRqt = newWin.down('#newRequest');
         newRqt.reset();
+        var selectedFilesCon = newRqt.down('#multiFileCon').down('#selectedFilesCon');
+        if(selectedFilesCon.down('grid')){
+            selectedFilesCon.down('grid').destroy();
+        }
         var dsetGrid = Ext.ComponentQuery.query('datasetgridbox #datasetGrid');
         //if dataset field exists, reset dataset fields
         Ext.Array.each(dsetGrid, function(item){
             var store = item.getStore();
-            var obj = store.getData().items[0].data;
-            var nData = {};
-            Ext.Object.each(obj, function(key, value){
-                if(key !== 'id'){
-                    nData[key] = '';
-                }
-                if(key == 'cols_info'){
-                    nData[key] = value;
-                }
-            });
-            store.removeAll();
-            store.add(nData);
+            if(store.getData().items.length> 0){
+                var obj = store.getData().items[0].data;
+                var nData = {};
+                Ext.Object.each(obj, function(key, value){
+                    if(key !== 'id'){
+                        nData[key] = '';
+                    }
+                    if(key == 'cols_info'){
+                        nData[key] = value;
+                    }
+                });
+                store.removeAll();
+                store.add(nData);
+            }
         });
     },
 
@@ -375,6 +386,7 @@ Ext.define('TaskManager.controller.Upload', {
         var selectedFilesCon = field.up('#multiFileCon').down('#selectedFilesCon');
         var grid = selectedFilesCon.down('grid');
         var infos = [];
+
         Ext.Array.each(files, function(entry){
             var info = {};
             info.file = entry;
@@ -485,6 +497,24 @@ Ext.define('TaskManager.controller.Upload', {
 
     },
 
+    getDbtextValue: function(field, e, colsIdx) {
+        /* dropdown 위 아래로 움직여 선택 할 수 있도록 화살표 위, 아래 엔테 제외 */
+        if(e.keyCode == 38 || e.keyCode == 40 || e.keyCode == 13){
+            return;
+        }
+        var url = domain + '/binder/expDataList';
+        Ext.data.JsonP.request({
+            url:url,
+            params:{
+                cols_idx:colsIdx,
+                data_val:field.getValue()
+            },
+            success:function(response){
+                field.setStore(response.data_val);
+            }
+        });
+    },
+
     setCustomFields: function(fStore, target, isEditMode) {
         var me = this;
         var i, j;
@@ -521,12 +551,39 @@ Ext.define('TaskManager.controller.Upload', {
                     name: fIdx,
                     cls:'requestform-space'
                 });
+
                 target.add(fldText);
                 if(isEditMode){
                     fldText.setValue(preVal);
                 }
                 target.add({xtype:'formspacer'});
             }
+
+            if(record.get('cols_type') == 'dbtext'){
+                var fldDbText = Ext.create('Ext.form.field.ComboBox', {
+                    itemId: iId,
+                    fieldLabel: fName,
+                    name: fIdx,
+                    store:[],
+                    enableKeyEvents:true,
+                    emptyText:locale.upload.autoText,
+                    cls:'requestform-space',
+                    listeners:[
+                        {
+                            keyup:function(field, e){
+                                me.getDbtextValue(field, e, record.get('cols_idx'));
+                            }
+                        }
+                    ]
+                });
+
+                target.add(fldDbText);
+                if(isEditMode){
+                    fldDbText.setValue(preVal);
+                }
+                target.add({xtype:'formspacer'});
+            }
+
             /* field for auto numbering field */
             if(record.get('cols_type') == 'idx'){
                 var fldIdx = Ext.create('Ext.form.TextField', {
@@ -926,6 +983,7 @@ Ext.define('TaskManager.controller.Upload', {
 
     setDatasetField: function(record, isEditMode, target) {
         var i, j;
+        var me = this;
         var colsIdx = record.get('cols_idx').toString();
         if(colsIdx.length == 1){
             colsIdx = '000' + colsIdx;
@@ -943,7 +1001,6 @@ Ext.define('TaskManager.controller.Upload', {
         });
         var grid = dsetCon.getGrid();
         dsetCon.addTitle(record.get('cols_name') + ':');
-
         /* data for store in grid */
         var storeData = [];
         /* colums for grid according to sub-fields */
@@ -956,6 +1013,8 @@ Ext.define('TaskManager.controller.Upload', {
         /* generate infomarion each column */
         var subColsInfos = [];
 
+        var rowNum = new Ext.grid.RowNumberer();
+        clms.push(rowNum);
 
         var colsData = record.get('cols_data');
         for(i=0; i<colsData.length; i++){
@@ -986,7 +1045,6 @@ Ext.define('TaskManager.controller.Upload', {
                         }
                         /* cols27_data_0028 */
                         cdx = 'cols' + record.get('cols_idx').toString() +'_data_' + cdx;
-
                         /* empty field values for new reqeust mode */
         //                 storeObj[cdx] = '';
                         /* save cols_infos into Array to use at Editmode */
@@ -1029,6 +1087,35 @@ Ext.define('TaskManager.controller.Upload', {
                                     store:colsInfo.cols_data
                                 }
                             });
+                        }
+                        if(colsInfo.cols_type == 'dbtext'){
+                            clm = Ext.create('Ext.grid.column.Column', {
+                                text:colsInfo.cols_name,
+                                dataIndex:cdx,
+                                height:25,
+                                flex:1,
+                                editor: {
+                                    xtype: 'combo',
+                                    ctype:colsInfo.cols_type,
+                                    store:[],
+                                    emptyText:locale.upload.autoText,
+                                    enableKeyEvents:true,
+                                    listeners:[
+                                        {
+                                            keyup:function(field, e){
+                                                var arr = field.dataIndex.split('_');
+                                                var colsIdx = parseInt(arr[2]);
+                                                me.getDbtextValue(field, e, colsIdx);
+                                            }
+                                        }
+                                    ]
+                                }
+                            });
+
+                if(isEditMode){
+                    fldDbText.setValue(preVal);
+                }
+                target.add({xtype:'formspacer'});
                         }
                         var fld = {
                             name:cdx

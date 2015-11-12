@@ -235,40 +235,6 @@
             ],
             "cn": [
                 {
-                    "type": "Ext.grid.column.Column",
-                    "reference": {
-                        "name": "columns",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "dataIndex": "string",
-                        "draggable": false,
-                        "sortable": false,
-                        "text": "String"
-                    },
-                    "name": "MyColumn",
-                    "configAlternates": {
-                        "scrollable": "boolean"
-                    },
-                    "designerId": "3dd52a71-14fe-41d5-804b-9f93fda14e5b",
-                    "cn": [
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "editor",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "name": "MyTextField4",
-                            "configAlternates": {
-                                "scrollable": "boolean"
-                            },
-                            "designerId": "3397c142-478d-4be1-b01d-423879423898"
-                        }
-                    ]
-                },
-                {
                     "type": "Ext.grid.plugin.CellEditing",
                     "reference": {
                         "name": "plugins",
@@ -290,6 +256,19 @@
                     "codeClass": null,
                     "name": "MyCheckboxSelectionModel",
                     "designerId": "cd4b616c-1dfd-4258-9f38-1110c47637b7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "MyColumn"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "80837425-4d9b-4aae-a429-85d10cb302bf"
                 }
             ]
         },
