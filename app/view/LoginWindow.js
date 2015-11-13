@@ -176,7 +176,7 @@ Ext.define('TaskManager.view.LoginWindow', {
         {
             xtype: 'panel',
             frame: true,
-            height: 200,
+            height: 300,
             hidden: true,
             html: '',
             itemId: 'feedBox',
@@ -220,6 +220,30 @@ Ext.define('TaskManager.view.LoginWindow', {
             listeners: {
                 afterrender: 'onFeedBoxAfterRender'
             }
+        },
+        {
+            xtype: 'button',
+            handler: function(button, e) {
+                /* reset shortcuts */
+                userInfo.nv_10 = "";
+                /* save shortcut setting to server */
+                Ext.data.JsonP.request({
+                    params:userInfo,
+                    url:getMemberUpdateApi(),
+                    success:function(response){
+                        window.location.href = document.location.href;
+                    }
+                });
+            },
+            hidden: true,
+            itemId: 'initShortcuts',
+            bind: {
+                text: '{initShortcut}'
+            }
+        },
+        {
+            xtype: 'tbspacer',
+            height: 10
         },
         {
             xtype: 'container',

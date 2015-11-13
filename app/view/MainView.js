@@ -86,6 +86,18 @@ Ext.define('TaskManager.view.MainView', {
                 {
                     xtype: 'button',
                     height: 50,
+                    itemId: 'btnCopy',
+                    ui: 'plain-toolbar-large',
+                    width: 50,
+                    icon: 'resources/images/ico_main_copy.png',
+                    scale: 'large',
+                    bind: {
+                        tooltip: '{copy}'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    height: 50,
                     itemId: 'btnEdit',
                     ui: 'plain-toolbar-large',
                     width: 50,
@@ -110,6 +122,21 @@ Ext.define('TaskManager.view.MainView', {
                 {
                     xtype: 'button',
                     height: 50,
+                    itemId: 'btnDownload',
+                    ui: 'plain-toolbar-large',
+                    width: 50,
+                    icon: 'resources/images/ico_main_download.png',
+                    scale: 'large',
+                    bind: {
+                        tooltip: '{download}'
+                    },
+                    listeners: {
+                        beforerender: 'onBtnDownloadBeforeRender'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    height: 50,
                     itemId: 'btnPrint',
                     ui: 'plain-toolbar-large',
                     width: 50,
@@ -117,6 +144,64 @@ Ext.define('TaskManager.view.MainView', {
                     scale: 'large',
                     bind: {
                         tooltip: '{printIt}'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    handler: function(button, e) {
+                        var store = Ext.getStore('dStore_' + selectedCategory);
+                        var chartWin = Ext.create('Ext.window.Window', {
+                            width:1000,
+                            height:600,
+                            scroller:true
+                        }).show();
+                        var chart =  Ext.create('TaskManager.view.MyBarChart', {
+                            plugins: {
+                                ptype: 'chartitemevents',
+                                moveEvents: true
+                            },
+                            store: {
+                                fields: ['pet', 'households', 'total'],
+                                data: [
+                                {pet: 'Cats', households: 38, total: 93},
+                                {pet: 'Dogs', households: 45, total: 79},
+                                {pet: 'Fish', households: 13, total: 171}
+                                ]
+                            },
+                            axes: [{
+                                type: 'numeric',
+                                position: 'left'
+                            }, {
+                                type: 'category',
+                                position: 'bottom'
+                            }],
+                            series: [{
+                                type: 'bar',
+                                xField: 'pet',
+                                yField: 'households',
+                                listeners: {
+                                    itemmousemove: function (series, item, event) {
+                                        //                 console.log('itemmousemove', item.category, item.field);
+                                    }
+                                }
+                            }, {
+                                type: 'line',
+                                xField: 'pet',
+                                yField: 'total',
+                                marker: true
+                            }]
+                        });
+                        chartWin.add(chart);
+                    },
+                    height: 50,
+                    hidden: true,
+                    itemId: 'btnChart',
+                    ui: 'plain-toolbar-large',
+                    width: 50,
+                    icon: 'resources/images/ico_main_chart.png',
+                    scale: 'large',
+                    bind: {
+                        tooltip: '{newComment}'
                     }
                 },
                 {
@@ -399,6 +484,14 @@ Ext.define('TaskManager.view.MainView', {
     ],
     listeners: {
         add: 'onMainViewAdd'
+    },
+
+    onBtnDownloadBeforeRender: function(component, eOpts) {
+        var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        var isChrome = !!window.chrome && !isOpera;
+        if(!isChrome){
+            component.setHidden(true);
+        }
     },
 
     onBtnExitClick: function(button, e, eOpts) {

@@ -8,10 +8,9 @@ if(document.location.hostname != 'localhost'){
     domain = 'http://' + document.location.hostname;
 }
 else{
-    domain = 'http://smartdb.kr';
-//         domain = 'http://data.samwoodtp.com';
-            domain = "http://samsung.dipol.co.kr";
-    //     domain = "http://samwoo.dipol.co.kr";
+    //     domain = 'http://smartdb.kr';
+    domain = 'http://data.samwoodtp.com';
+    //     domain = "http://samsung.dipol.co.kr";
 }
 
 var selectedCategory;
@@ -61,7 +60,9 @@ function getCategoryListApi(){
 function getCategoryUpdateApi(){
     return domain + '/json/cateAddUpdate';
 }
-
+function getCategoryOptionUpdateApi(){
+    return domain + '/cateOptionUpdate';
+}
 /**
  * @params ca_id category id
  * @params page current page number
@@ -175,6 +176,7 @@ function getUpdateApprovalApi(){
 var languageSet = {
     English:{
         login:{
+            initShortcut:'Reset shortcuts',
             loginInfo:'The ID or the password is incorrect',
             login:'LOGIN',
             password:'Password',
@@ -183,6 +185,8 @@ var languageSet = {
         menu:{
             clear:'Clear',
             close:'Close',
+            copy:'Copy',
+            download:'Download attached files',
             edit:'Edit',
             editable:'Editable/Uneditable',
             isEditable:'Activate the edit mode',
@@ -204,6 +208,7 @@ var languageSet = {
             commentList:'Comment list',
             complete:'Save',
             config:'Preference',
+            copied:'copy complete',
             delAlert:'Are you sure? It can not be recovered',
             description:'Description:',
             download:'Download',
@@ -244,6 +249,7 @@ var languageSet = {
             addAttachFile:'Add attachment:',
             addRow:'Add a row',
             attachedFile:'Attached File:',
+            autoText:'Input a letter that included',
             cancel:'Cancel',
             cellEditTip:'Press Enter key to save, Press ESC key to cancel',
             delRow:'Remove the selected row',
@@ -293,11 +299,13 @@ var languageSet = {
             byImage:'By Image',
             defaultView:'Default',
             gallery:'Gallery',
+            noPower:'You do not have enough permissions',
             simpleList:'Simple list'
         }
     },
     Korean:{
         login:{
+            initShortcut:'바로가기 초기화',
             loginInfo:'아이디 또는 패스워드가 올바르지 않습니다.',
             login:'로그인',
             password:'패스워드',
@@ -306,8 +314,10 @@ var languageSet = {
         menu:{
             clear:'초기화',
             close:'닫기',
+            copy:'자료복사',
             edit:'수정',
             editable:'수정모드/보호모드',
+            download:'첨부파일 다운로드',
             isEditable:'수정모드가 활성화 됐습니다.',
             newPost:'새로 작성',
             remove:'삭제',
@@ -327,6 +337,7 @@ var languageSet = {
             commentList:'댓글목록',
             complete:'완료',
             config:'설정',
+            copied:'복사 되었습니다.',
             delAlert:'삭제된 내용은 복구 될 수 없습니다. 삭제 하시겠습니까?',
             description:'내용:',
             download:'다운로드',
@@ -367,6 +378,7 @@ var languageSet = {
             addAttachFile:'첨부파일 추가:',
             addRow:'열추가',
             attachedFile:'첨부된 파일:',
+            autoText:'포함된 글자 입력 후 아래 방향키 사용',
             cancel:'취소',
             cellEditTip:'Enter 키를 누르면 적용, ESC를 누르면 취소',
             edited:'수정 됐습니다.',
@@ -417,6 +429,7 @@ var languageSet = {
             byImage:'이미지 강조',
             defaultView:'기본',
             gallery:'갤러리',
+            noPower:'결재 권한이 없습니다.',
             simpleList:'단순나열'
         }        
     }

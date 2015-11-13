@@ -1,0 +1,92 @@
+{
+    "type": "Ext.chart.CartesianChart",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "colors": [
+            "[\"#115fa6\", \"#94ae0a\", \"#a61120\", \"#ff8809\", \"#ffd13e\", \"#a61187\", \"#24ad9a\", \"#7c7474\", \"#a66111\"]"
+        ],
+        "designer|userAlias": "mybarchart",
+        "designer|userClassName": "MyBarChart"
+    },
+    "name": "MyBarChart",
+    "designerId": "afd2cb8f-1177-445d-a62c-89f635b81b46",
+    "isBuiltIn": true,
+    "iconCls": "icon-bar-chart",
+    "autoName": "MyBarChart",
+    "viewControllerInstanceId": "d6e2a8ed-a110-4841-bfa5-000c1217c62c",
+    "viewModelInstanceId": "a719af9b-a01e-44ac-b617-a9e6871f2ebd",
+    "cn": [
+        {
+            "type": "Ext.chart.axis.Category",
+            "reference": {
+                "name": "axes",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fields": [
+                    "x"
+                ]
+            },
+            "name": "MyCategoryAxis1",
+            "designerId": "be253ea9-eef9-419f-944f-8d590ddd3531"
+        },
+        {
+            "type": "Ext.chart.axis.Numeric",
+            "reference": {
+                "name": "axes",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fields": [
+                    "y1",
+                    "y2",
+                    "y3"
+                ],
+                "grid": [
+                    "{",
+                    "    odd: {",
+                    "        fill: '#e8e8e8'",
+                    "    }",
+                    "}"
+                ],
+                "position": "left"
+            },
+            "name": "MyNumericAxis2",
+            "designerId": "7512db27-64e1-4b88-ac74-5b15eb335d0b"
+        },
+        {
+            "type": "Ext.chart.series.Bar",
+            "reference": {
+                "name": "series",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "xField": "x",
+                "yField": [
+                    "y1",
+                    "y2",
+                    "y3"
+                ]
+            },
+            "name": "MyBarSeries1",
+            "designerId": "9237e73e-47e5-4a7b-8a3b-7f4c64ef74ef"
+        },
+        {
+            "type": "Ext.chart.interactions.PanZoom",
+            "reference": {
+                "name": "interactions",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "MyPanZoomInteraction1",
+            "designerId": "5eac2c6a-8ff7-4c83-8613-b8f823d4cda9"
+        }
+    ]
+}

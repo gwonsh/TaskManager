@@ -245,7 +245,7 @@
                     "                                var scBox = loginWin.down('#shortcutsBox');",
                     "                                /* add new shortcut to shortcut list in login window */",
                     "                                Ext.Array.each(scs, function(entry, index){",
-                    "                                    //                                     value.push('{ca_name:\"'+ entry.categoryName+'\",'+'ca_id:\"'+entry.categoryId+'\",src:\"'+entry.src+'\"}');",
+                    "                                    //value.push('{ca_name:\"'+ entry.categoryName+'\",'+'ca_id:\"'+entry.categoryId+'\",src:\"'+entry.src+'\"}');",
                     "                                    var params = '{ca_name:\"'+entry.categoryName+'\",ca_id:\"'+entry.categoryId+'\",src:\"'+entry.src+'\",displayType:\"'+entry.displayType+'\"}';",
                     "                                    value.push(params);",
                     "                                });",

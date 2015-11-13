@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "mybarchart",
+        "designer|userClassName": "MyBarChartViewModel"
+    },
+    "designerId": "a719af9b-a01e-44ac-b617-a9e6871f2ebd"
+}

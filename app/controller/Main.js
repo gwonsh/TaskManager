@@ -40,6 +40,12 @@ Ext.define('TaskManager.controller.Main', {
         },
         "#btnConfig": {
             click: 'onBtnConfigClick'
+        },
+        "#btnCopy": {
+            click: 'onBtnCopyClick'
+        },
+        "#btnDownload": {
+            click: 'onBtnDownloadClick'
         }
     },
 
@@ -83,15 +89,18 @@ Ext.define('TaskManager.controller.Main', {
             changeShortcut:locale.config.changeShortcut,
             commentList:locale.main.commentList,
             config:locale.main.config,
+            copy:locale.menu.copy,
             delAllRow:locale.upload.delAllRow,
             delRow:locale.upload.delRow,
             description:locale.main.description,
             detailMode:locale.config.detailMode,
+            download:locale.menu.download,
             dropHere:locale.main.dropHere,
             edit:locale.menu.edit,
             editable:locale.menu.editable,
             entry:locale.upload.entry,
             gridTitle:locale.main.gridTitle,
+            initShortcut:locale.login.initShortcut,
             linkWinTitle:locale.main.linkWindowTitle,
             listDisplay:locale.config.listDisplay,
             logoPath:companyInfo.company_logo,
@@ -296,6 +305,47 @@ Ext.define('TaskManager.controller.Main', {
             });
         }
         preference.show();
+    },
+
+    onBtnCopyClick: function(button, e, eOpts) {
+        var me = this;
+        var url = domain + '/binder/copy';
+        var chks = this.getWestPanel().getActiveTab().getSelectionModel().getSelection();
+        if(chks.length === 0){
+            alert(locale.upload.noneSelected);
+            return;
+        }
+        var bdIdx = chks[0].get('bd_idx');
+        Ext.data.JsonP.request({
+            url:url,
+            params:{
+                ca_id:selectedCategory,
+                bd_idx:bdIdx
+            },
+            success:function(response){
+                console.log(response);
+                Ext.toast(locale.main.copied);
+                me.getWestPanel().down('grid').getStore().load();
+            }
+        });
+    },
+
+    onBtnDownloadClick: function(button, e, eOpts) {
+        var me = this;
+        var url = domain + '/binder/copy';
+        var chks = this.getWestPanel().getActiveTab().getSelectionModel().getSelection();
+
+        if(chks.length === 0){
+            alert(locale.upload.noneSelected);
+            return;
+        }
+
+        var fileInfo = chks[0].get("bd_file");
+        var paths = [];
+        for(var i=0; i<fileInfo.length; i++){
+            paths.push(fileInfo[i].file_path);
+        }
+        multiDownload(paths);
     },
 
     setShortcuts: function(shortcuts) {
@@ -519,7 +569,7 @@ Ext.define('TaskManager.controller.Main', {
         var mode = window.localStorage.getItem('isSimpleMode');
         var basicInfoWidth;
         var fx = 0;
-        if(mode == 'true'){
+        if(mode == 'true' || cols.length === 0){
             basicInfoWidth = '100%';
             fx = 1;
 
@@ -527,6 +577,7 @@ Ext.define('TaskManager.controller.Main', {
         else{
             basicInfoWidth = 320;
         }
+
         var colsSimple = {
             xtype: 'gridcolumn',
             width:basicInfoWidth,
@@ -688,7 +739,22 @@ Ext.define('TaskManager.controller.Main', {
                     cls: 'searchbox',
                     margin: '0 0 0 3',
                     fieldLabel: 'Label',
-                    hideLabel: true
+                    hideLabel: true,
+                    listeners:[
+                        {
+                            keyup:function(e){
+                                console.log(e);
+                            },
+                            render:function(field, e){
+                                field.el.on('keyup', function(e){
+                                    if(e.keyCode == 13){
+                                        var fndBtn = field.up('pagingtoolbar').down('#findIt');
+                                        fndBtn.fireEvent('click');
+                                    }
+                                });
+                            }
+                        }
+                    ]
                 },
                 {
                     xtype: 'button',
@@ -705,6 +771,7 @@ Ext.define('TaskManager.controller.Main', {
                     margin: '0 6 0 0',
                     icon: 'resources/images/find.png',
                     tooltip:locale.search.search,
+                    itemId:'findIt',
                     /* serach data from selected category */
                     handler:function(button){
                         var val = button.up('pagingtoolbar').down('#fdSearchAll').getValue();
@@ -1336,7 +1403,6 @@ Ext.define('TaskManager.controller.Main', {
             success:function(response){
                 var cmtLstCon = me.getEastPanel().down('#commentList');
                 cmtLstCon.setData(response.binderCList);
-                console.log(response.binderCList);
                 if(response.binderCList.length === 0){
                     cmtLstCon.up('#commentPanel').setCollapsed(true);
                 }

@@ -149,6 +149,33 @@
                     "userConfig": {
                         "designer|uiInterfaceName": "plain-toolbar-large",
                         "height": 50,
+                        "icon": "resources/images/ico_main_copy.png",
+                        "itemId": "btnCopy",
+                        "scale": "large",
+                        "text": null,
+                        "tooltip": [
+                            "{copy}"
+                        ],
+                        "ui": "plain-toolbar-large",
+                        "width": 50
+                    },
+                    "name": "MyButton24",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "a51ff44c-8e66-43a5-98cc-472d49c53f16"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-large",
+                        "height": 50,
                         "icon": "resources/images/ico_main_edit.png",
                         "itemId": "btnEdit",
                         "scale": "large",
@@ -192,6 +219,57 @@
                         "tooltip": "binding"
                     },
                     "designerId": "5b29c524-b21a-4389-8bf8-c6f9c5cb703d"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-large",
+                        "height": 50,
+                        "icon": "resources/images/ico_main_download.png",
+                        "itemId": "btnDownload",
+                        "scale": "large",
+                        "text": null,
+                        "tooltip": [
+                            "{download}"
+                        ],
+                        "ui": "plain-toolbar-large",
+                        "width": 50
+                    },
+                    "name": "MyButton25",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "6fb6cc28-f353-4628-9601-a0e8e2adf9a3",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnDownloadBeforeRender",
+                                "implHandler": [
+                                    "var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;",
+                                    "var isChrome = !!window.chrome && !isOpera;",
+                                    "if(!isChrome){",
+                                    "    component.setHidden(true);",
+                                    "}"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onBtnDownloadBeforeRender",
+                            "designerId": "35f97795-7351-473a-94e5-6baec0e91529"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.button.Button",
@@ -294,7 +372,7 @@
                                     "        yField: 'households',",
                                     "        listeners: {",
                                     "            itemmousemove: function (series, item, event) {",
-                                    "                console.log('itemmousemove', item.category, item.field);",
+                                    "//                 console.log('itemmousemove', item.category, item.field);",
                                     "            }",
                                     "        }",
                                     "    }, {",

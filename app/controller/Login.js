@@ -80,7 +80,6 @@ Ext.define('TaskManager.controller.Login', {
             window.localStorage.setItem('isSimpleMode', true);
         }
 
-
         /* get conmpany information */
         Ext.data.JsonP.request({
             url:domain + '/json/site',
@@ -108,6 +107,8 @@ Ext.define('TaskManager.controller.Login', {
             me.getLoginWin().down('#languageBox').setHidden(true);
             /* diplay shortcuts */
             scBox.setHidden(false);
+            me.getLoginWin().down('#initShortcuts').setHidden(false);
+
 
             /* load user Info */
             Ext.data.JsonP.request({
@@ -117,6 +118,21 @@ Ext.define('TaskManager.controller.Login', {
                 url:getMemberViewApi(),
                 success:function(response){
                     userInfo = response.member;
+
+
+                    /* reset shortcuts */
+        //             userInfo.nv_10 = "";
+        //             /* save shortcut setting to server */
+        //             Ext.data.JsonP.request({
+        //                 params:userInfo,
+        //                 url:getMemberUpdateApi(),
+        //                 success:function(response){
+        //                     Ext.toast(locale.upload.posted);
+        //                     window.location.href = document.location.href;
+        //                     scWin.close();
+        //                 }
+        //             });
+        //             return;
 
                     /* the private information of shortcuts set */
                     var val = response.member.nv_10;

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "mybarchart",
+        "designer|userClassName": "MyBarChartViewController"
+    },
+    "designerId": "d6e2a8ed-a110-4841-bfa5-000c1217c62c"
+}
