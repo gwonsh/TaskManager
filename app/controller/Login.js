@@ -249,6 +249,33 @@ Ext.define('TaskManager.controller.Login', {
         //         alert(JSON.stringify(err));
         //     }
         // });
+    },
+
+    viewNoticeFile: function(bdFile) {
+        var imgUrl = bdFile.getAttribute('attached');
+        imgUrl = imgUrl.replace('/file/', '/thumb/');
+        var atWin = Ext.create('Ext.window.Window', {
+            scrollable:true,
+            ghost:false,
+            modal:true,
+            padding:'25',
+            items:[
+                {
+                    xtype:'image',
+                    src:imgUrl,
+                    listeners:[
+                        {
+                            render:function(image){
+                                image.getEl().on('load', function(e, target){
+                                    image.setWidth(Ext.get(target).getWidth());
+                                    image.setHeight(Ext.get(target).getHeight());
+                                });
+                            }
+                        }
+                    ]
+                }
+            ]
+        }).show();
     }
 
 });

@@ -550,16 +550,18 @@ Ext.define('TaskManager.controller.Upload', {
             var fName = record.get('cols_name');
             /* current value incase of update(Edit) mode */
             var preVal = record.get('data_val');
-
             /* fields for kind of textfields */
             if(Ext.Array.contains(txtFields, record.get('cols_type'))){
+                var itemId = iId;
+                if(record.get('cols_type') == 'idx'){
+                    itemId = 'idxField';
+                }
                 var fldText = Ext.create('Ext.form.TextField', {
-                    itemId: iId,
+                    itemId: itemId,
                     fieldLabel: fName,
                     name: fIdx,
                     cls:'requestform-space'
                 });
-
                 target.add(fldText);
                 if(isEditMode){
                     fldText.setValue(preVal);
@@ -594,12 +596,17 @@ Ext.define('TaskManager.controller.Upload', {
 
             /* field for auto numbering field */
             if(record.get('cols_type') == 'idx'){
+                var ifdHidden = true;
+                if(isEditMode){
+                    ifdHidden = false;
+                }
                 var fldIdx = Ext.create('Ext.form.TextField', {
                     xtype: 'textfield',
                     width: '100%',
                     itemId: 'indexKey',
+                    fieldLabel: fName,
                     name: fIdx,
-                    hidden:true,
+                    hidden:ifdHidden,
                     cls:'requestform-space'
                 });
                 target.add(fldIdx);

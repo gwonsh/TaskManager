@@ -140,12 +140,7 @@
 				else{
 		html +=		 		'<tr>';
 		html +=		 			'<th  width="22%">'+entry.cols_name+'</th>';
-					if(entry.cols_type != 'idx'){
 		html += 				'<td  '+customAttr+'>' +entry.data_val+ '</td>';
-					}
-					else{
-		html += 				'<td  width="78%" >' +entry.data_val+ '</td>';
-					}
 		html +=		 		'</tr>';
 				}
 			});

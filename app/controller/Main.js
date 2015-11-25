@@ -742,9 +742,6 @@ Ext.define('TaskManager.controller.Main', {
                     hideLabel: true,
                     listeners:[
                         {
-                            keyup:function(e){
-                                console.log(e);
-                            },
                             render:function(field, e){
                                 field.el.on('keyup', function(e){
                                     if(e.keyCode == 13){

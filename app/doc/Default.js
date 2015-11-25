@@ -66,7 +66,7 @@ Ext.define('TaskManager.doc.Default', {
 		var remark = values.bd_content;
 		if(remark === undefined) remark = '';
 		html +=		 		'<tr>';
-		html +=		 			'<td height=25 '+contentAttr+' colspan=4>'+remark+'</td>';
+		html +=		 			'<td height="25" '+contentAttr+' colspan=4>'+remark+'</td>';
 		html +=		 		'</tr>';
 		html +=		 	'</table>';
 		html +=		 '</div>';
@@ -153,12 +153,13 @@ Ext.define('TaskManager.doc.Default', {
 				else{
 		html +=		 		'<tr>';
 		html +=		 			'<th style="width:180px">'+entry.cols_name+'</th>';
-					if(entry.cols_type != 'idx'){
 		html += 				'<td  '+customAttr+'>' +entry.data_val+ '</td>';
-					}
-					else{
-		html += 				'<td>' +entry.data_val+ '</td>';
-					}
+		//			if(entry.cols_type != 'idx'){
+		//html += 				'<td  '+customAttr+'>' +entry.data_val+ '</td>';
+		//			}
+		//			else{
+		//html += 				'<td>' +entry.data_val+ '</td>';
+		//			}
 		html +=		 		'</tr>';
 				}
 			});
@@ -179,7 +180,20 @@ Ext.define('TaskManager.doc.Default', {
 				var pixels = entry.file_height * entry.file_width;
 				var sizeInFormat = ctlr.autoFilesizeFormat(entry.file_size);
 				var resol = entry.file_width+'x'+entry.file_height;
-				var backSize = (entry.file_height < 120 && entry.file_width < 120)? 'auto' : 'cover';
+				//var backSize = (entry.file_height < 120 && entry.file_width < 120)? 'auto' : 'cover';
+				//if(entry.file_width > entry.file_height){
+				//	var ratio =  250/entry.file_width;
+				//	var tw = entry.file_height * ratio;
+				//	console.log(tw);
+				//	if(tw < 120){
+				//		backSize = 'auto';
+				//		console.log(backSize);
+				//	}
+				//}
+				var backSize = 'contain';
+				if(entry.file_width == 0){
+					backSize = 'auto';
+				}
 				var attr = 'thumbSrc="'+tPath+'" viewSrc="'+oPath+'" downSrc="';
 					attr += dPath+'" pixels="'+pixels+'" filesize="'+entry.file_size+'" resolution="'+resol+'" filename="'+entry.file_name+'"';
 		html += 				'<div class="viewer-attach-unit">';

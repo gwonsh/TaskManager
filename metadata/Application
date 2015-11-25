@@ -49,9 +49,7 @@
             "DataGroupWindow",
             "FormSpacer",
             "MultiFileInput",
-            "MyTabPanel1",
-            "LinkUnit",
-            "MyBarChart"
+            "LinkUnit"
         ]
     },
     "name": "Application",

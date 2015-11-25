@@ -82,13 +82,7 @@
             "1d12d368-ee1e-4804-acf3-1a601938b537",
             "de99fdcf-4f02-48da-880d-f0a934e3682b",
             "c1531275-3912-4a7c-a43a-04be7a437bcb",
-            "a7afac18-b12a-4433-bed1-2357ce57b0b6",
-            "bda19f87-7d41-4746-bb56-22f74bb0a906",
-            "17ac9e63-8c6e-43a7-94df-5d82d171c849",
-            "bf1a1d2e-f9f4-48c2-9af4-08530f773ea8",
-            "afd2cb8f-1177-445d-a62c-89f635b81b46",
-            "a719af9b-a01e-44ac-b617-a9e6871f2ebd",
-            "d6e2a8ed-a110-4841-bfa5-000c1217c62c"
+            "a7afac18-b12a-4433-bed1-2357ce57b0b6"
         ],
         "store": [
             "f38f3239-6468-477c-b49d-a0e4667d798e",
@@ -116,7 +110,8 @@
             "4da49bfe-bf6e-45b2-8af7-f15987ece736",
             "c01d4d23-75d4-4535-a79c-ab0137ddf8c8",
             "9be3e0fd-9ac3-47b2-a966-699128258ead",
-            "7585d9af-9ab6-482f-a6a1-1ffc61b6b9f8"
+            "7585d9af-9ab6-482f-a6a1-1ffc61b6b9f8",
+            "7b23b0d9-5ffb-47b1-a1fa-6125f9b75c77"
         ],
         "app": [
             "application"

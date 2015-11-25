@@ -129,7 +129,7 @@ Ext.define('TaskManager.controller.Viewer', {
                 var preVal = fStore.getData().items[fieldIndex].get('data_val').toString();
                 /* check if edit mode activated */
                 if(!container.getEditable()) return;
-                if(attr == 'text' || attr == 'number' || attr == 'url'){
+                if(attr == 'text' || attr == 'number' || attr == 'url' || attr == 'idx'){
                     /* stop event prevent for duplicating even though input field added */
                     Ext.get(target).un('click', onCustomFldClick);
                     me.setInputField(target, onCustomFldClick);
@@ -1031,95 +1031,7 @@ Ext.define('TaskManager.controller.Viewer', {
 
         /* when click on attached */
         var attachFile = container.el.select('.viewer-attach-image');
-        Ext.Array.each(attachFile.elements, function(entry){
-            var el = Ext.get(entry);
-            el.on('click', function(e){
-                var oPath = e.currentTarget.getAttribute('viewSrc');
-                var dPath = e.currentTarget.getAttribute('downSrc');
-                var tPath = e.currentTarget.getAttribute('thumbSrc');
-                var filename = e.currentTarget.getAttribute('filename');
-                var filesize = e.currentTarget.getAttribute('filesize');
-                var pixels = e.currentTarget.getAttribute('pixels');
-                var resol = e.currentTarget.getAttribute('resolution');
-                var ext = filename.slice(filename.length - 3, filename.length);
-                var isImage = false;
-                var isTooBig = false;
-
-                if(pixels > 8000 * 8000) isTooBig = true;
-
-                if(ext == 'tif' || ext == 'psd' || ext == 'jpg' || ext == 'pdf' || ext == 'bmp' || ext == 'gif' || ext == 'png'){
-                    isImage = true;
-                }
-                /* window for download or view the attached data */
-                var thumbHeight = (resol.split('x')[0] < 100 && resol.split('x')[1] < 100)? resol.split('x')[1] : 100;
-                if(!isImage) thumbHeight = 32;
-                var confirmWin = Ext.create('Ext.window.Window', {
-                    minWidth:300,
-                    modal:true,
-                    bodyStyle:'padding:20px',
-                    ghost:false,
-                    layout:{
-                        type:'vbox',
-                        align:'center'
-                    },
-                    items:[
-                        {
-                            xtype:'image',
-                            src:tPath,
-                            height:thumbHeight
-                        },
-                        {
-                            xtype:'label',
-                            text:filename,
-                            style:'font-size:11px;color:#555555'
-                        },
-                        {
-                            xtype:'container',
-                            layout:{
-                                type:'hbox'
-                            },
-                            itemId:'btnCon',
-                            margin:'10 0 0 0'
-                        }
-                    ]
-                }).show();
-                /* view file in case of image*/
-                var viewBtn = {
-                    /* show image button */
-                    xtype:'button',
-                    text:locale.main.showImage,
-                    width:100,
-                    handler:function(){
-                        var win = window.open('','imageView');
-                        if(isTooBig){
-                            win.document.write('<img src="' + tPath + '/M"/>');
-                            Ext.toast(locale.upload.imageTooBig);
-                        }
-                        else{
-                            win.document.write('<img src="' + oPath + '"/>');
-                        }
-                    }
-                };
-                /* download file */
-                var downBtn = {
-                    /* download button */
-                    xtype:'button',
-                    text:locale.main.download,
-                    margin:'0 0 0 10',
-                    width:100,
-                    handler:function(){
-                        window.location.href = domain + '/' + dPath;
-                        confirmWin.close();
-                    }
-                };
-
-                var btnCon = confirmWin.down('#btnCon');
-                btnCon.add(downBtn);
-                if(isImage){
-                    btnCon.insert(0, viewBtn);
-                }
-            });
-        });
+        this.viewAttachedFile(attachFile.elements);
     },
 
     editModeToggle: function(icon) {
@@ -1578,12 +1490,12 @@ Ext.define('TaskManager.controller.Viewer', {
         var query = '';
         var colsIdx = '';
         if(fieldType == 'content'){
-            query = '?bd_idx='+bd_idx+'&data_name=bd_content&data_val=' + val;
+            query = '?bd_idx='+bd_idx+'&data_name=bd_content&data_val=' + encodeURIComponent(val);
             colsIdx = 'bd_content';
         }
         else{
             var idx = target.getAttribute('cols_idx');
-            query = '?bd_idx='+bd_idx+'&cols_idx=' + idx + '&data_val=' + val;
+            query = '?bd_idx='+bd_idx+'&cols_idx=' + idx + '&data_val=' + encodeURIComponent(val);
         }
         target.dom.innerHTML = val;
         me.updateCellValue(query);
@@ -1655,7 +1567,6 @@ Ext.define('TaskManager.controller.Viewer', {
 
     updateCellValue: function(query, win) {
         var ctlr = getController('Main');
-
         Ext.data.JsonP.request({
             url:domain + '/binder/expDataUpdate' + query,
             callback:function(response){
@@ -1865,6 +1776,183 @@ Ext.define('TaskManager.controller.Viewer', {
                 ctlr.viewDocument(selectedCategory, viewer.info.bd_idx);
 
             }
+        });
+    },
+
+    viewAttachedFile: function(elements) {
+        var elInfos = [];
+        Ext.Array.each(elements, function(entry, index){
+            var el = Ext.get(entry);
+            var obj = {};
+            obj.oPath = entry.getAttribute('viewSrc');
+            obj.dPath = entry.getAttribute('downSrc');
+            obj.tPath = entry.getAttribute('thumbSrc');
+            obj.filename = entry.getAttribute('filename');
+            obj.filesize = entry.getAttribute('filesize');
+            obj.pixels = entry.getAttribute('pixels');
+            obj.resol = entry.getAttribute('resolution');
+            obj.ext = obj.filename.slice(obj.filename.length - 3, obj.filename.length);
+            obj.isImage = false;
+            obj.isTooBig = false;
+            elInfos.push(obj);
+            el.on('click', function(e){
+                var index = elements.indexOf(e.currentTarget);
+                var oPath = "";
+                var dPath = "";
+                var tPath = "";
+                var filename = "";
+                var filesize = "";
+                var pixels = "";
+                var resol = "";
+                var ext = "";
+                var isImage = false;
+                var isTooBig = false;
+                var thumbHeight = 0;
+
+                var changeFileInfo = function(index){
+                    oPath = elInfos[index].oPath;
+                    dPath = elInfos[index].dPath;
+                    tPath = elInfos[index].tPath;
+                    filename = elInfos[index].filename;
+                    filesize = elInfos[index].filesize;
+                    pixels = elInfos[index].pixels;
+                    resol = elInfos[index].resol;
+                    ext = elInfos[index].ext;
+                    isImage = elInfos[index].isImage;
+                    isTooBig = elInfos[index].isTooBig;
+                    if(pixels > 8000 * 8000) isTooBig = true;
+
+                    if(ext == 'tif' || ext == 'psd' || ext == 'jpg' || ext == 'pdf' || ext == 'bmp' || ext == 'gif' || ext == 'png'){
+                        isImage = true;
+                    }
+                    /* window for download or view the attached data */
+                    var resolX = resol.split('x')[0];
+                    var resolY = resol.split('x')[1];
+                    thumbHeight = (resolY < 100)? resolY : 100;
+                    var ratio = 250/resolX;
+                    if(resolY * ratio < 100){ thumbHeight = resolY * ratio; }
+
+                    if(!isImage) thumbHeight = 32;
+
+                    if(confirmWin){
+                        var atFile = confirmWin.down('#atFile');
+                        var atName = confirmWin.down('#atName');
+                        atFile.setWidth(null);
+                        atFile.setHeight(null);
+                        atFile.setSrc(tPath);
+                        atFile.setHeight(thumbHeight);
+                        atName.setText(filename);
+                    }
+                };
+                changeFileInfo(index);
+
+                var confirmWin = Ext.create('Ext.window.Window', {
+                    minWidth:300,
+                    modal:true,
+                    bodyStyle:'padding:20px',
+                    ghost:false,
+                    itemId:'attachWin',
+                    layout:{
+                        type:'vbox',
+                        align:'center'
+                    },
+                    tools:[
+                        {
+                            type:'left',
+                            hidden:true,
+                            handler:function(event, button, panelHeader){
+                                var file = panelHeader.up('#attachWin').down('#atFile');
+                                file.currentIndex --;
+                                if(file.currentIndex == -1){
+                                    file.currentIndex = elInfos.length - 1;
+                                }
+                                changeFileInfo(file.currentIndex);
+                            }
+                        },
+                        {
+                            type:'right',
+                            hidden:true,
+                            handler:function(event, button, panelHeader){
+                                var file = panelHeader.up('#attachWin').down('#atFile');
+                                file.currentIndex ++;
+                                if(file.currentIndex == elInfos.length){
+                                    file.currentIndex = 0;
+                                }
+                                changeFileInfo(file.currentIndex);
+                            }
+                        }
+                    ],
+                    items:[
+                        {
+                            xtype:'image',
+                            src:tPath,
+                            itemId:'atFile',
+                            currentIndex:index,
+                            height:thumbHeight
+                        },
+                        {
+                            xtype:'label',
+                            itemId:'atName',
+                            text:filename,
+                            style:'font-size:11px;color:#555555'
+                        },
+                        {
+                            xtype:'container',
+                            layout:{
+                                type:'hbox'
+                            },
+                            itemId:'btnCon',
+                            margin:'10 0 0 0'
+                        }
+                    ]
+                }).show();
+
+                /* only show left and right buttons when files are more than 1 */
+                if(elInfos.length > 1){
+                    var tools = confirmWin.tools;
+                    for(var i=0; i<tools.length; i++){
+                        if(tools[i].type == 'left' || tools[i].type == 'right'){
+                            tools[i].setHidden(false);
+                        }
+                    }
+                }
+
+                /* view file in case of image*/
+                var viewBtn = {
+                    /* show image button */
+                    xtype:'button',
+                    text:locale.main.showImage,
+                    width:100,
+                    handler:function(){
+                        var win = window.open('','imageView');
+                        if(isTooBig){
+                            win.document.write('<img src="' + tPath + '/M"/>');
+                            Ext.toast(locale.upload.imageTooBig);
+                        }
+                        else{
+                            win.document.write('<img src="' + oPath + '"/>');
+                        }
+                    }
+                };
+                /* download file */
+                var downBtn = {
+                    /* download button */
+                    xtype:'button',
+                    text:locale.main.download,
+                    margin:'0 0 0 10',
+                    width:100,
+                    handler:function(){
+                        window.location.href = domain + '/' + dPath;
+                        confirmWin.close();
+                    }
+                };
+
+                var btnCon = confirmWin.down('#btnCon');
+                btnCon.add(downBtn);
+                if(isImage){
+                    btnCon.insert(0, viewBtn);
+                }
+            });
         });
     }
 

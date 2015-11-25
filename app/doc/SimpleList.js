@@ -131,13 +131,8 @@
 		else{
 		html +=		 	'<tr>';
 		html +=		 		'<td style="text-align:right" class="simpleList">'+entry.cols_name+spacer+'</td>';
-			if(entry.cols_type != 'idx'){
-				html += 		'<td  '+customAttr+'>' +entry.data_val+ '</td>';
-			}
-			else{
-				html += 		'<td class="simpleList">' +entry.data_val+ '</td>';
-			}
-			html +=		 	'</tr>';
+		html += 			'<td  '+customAttr+'>' +entry.data_val+ '</td>';
+		html +=		 	'</tr>';
 		}
 		});	
 		var remark = values.bd_content;
@@ -160,7 +155,11 @@
 			var pixels = entry.file_height * entry.file_width;
 			var sizeInFormat = ctlr.autoFilesizeFormat(entry.file_size);
 			var resol = entry.file_width+'x'+entry.file_height;
-			var backSize = (entry.file_height < 120 && entry.file_width < 120)? 'auto' : 'cover';
+			//var backSize = (entry.file_height < 120 && entry.file_width < 120)? 'auto' : 'cover';
+			var backSize = 'contain';
+			if(entry.file_width == 0){
+				backSize = 'auto';
+			}
 			var attr = 'thumbSrc="'+tPath+'" viewSrc="'+oPath+'" downSrc="';
 				attr += dPath+'" pixels="'+pixels+'" filesize="'+entry.file_size+'" resolution="'+resol+'" filename="'+entry.file_name+'"';
 			html += 		'<div class="viewer-attach-unit">';

@@ -302,6 +302,48 @@
             },
             "name": "onLoginSuccess",
             "designerId": "61d59343-5656-4709-9f94-13b057ffe91b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "bdFile"
+                ],
+                "fn": "viewNoticeFile",
+                "implHandler": [
+                    "var imgUrl = bdFile.getAttribute('attached');",
+                    "imgUrl = imgUrl.replace('/file/', '/thumb/');",
+                    "var atWin = Ext.create('Ext.window.Window', {",
+                    "    scrollable:true,",
+                    "    ghost:false,",
+                    "    modal:true,",
+                    "    padding:'25',",
+                    "    items:[",
+                    "        {",
+                    "            xtype:'image',",
+                    "            src:imgUrl,",
+                    "            listeners:[",
+                    "                {",
+                    "                    render:function(image){",
+                    "                        image.getEl().on('load', function(e, target){",
+                    "                            image.setWidth(Ext.get(target).getWidth());",
+                    "                            image.setHeight(Ext.get(target).getHeight());",
+                    "                        });",
+                    "                    }",
+                    "                }",
+                    "            ]",
+                    "        }",
+                    "    ]",
+                    "}).show();"
+                ]
+            },
+            "name": "viewNoticeFile",
+            "designerId": "d16b98f6-8ec5-47fe-9dd3-4a50217b2ac1"
         }
     ]
 }
