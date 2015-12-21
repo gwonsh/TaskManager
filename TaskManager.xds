@@ -3,7 +3,7 @@
     "settings": {
         "cmd": {
             "license": "commercial",
-            "cmdVersion": "5.1.3.61",
+            "cmdVersion": "6.0.2.14",
             "frameworkVersion": "5.1.1.451"
         },
         "canvasControls": {
@@ -82,7 +82,10 @@
             "1d12d368-ee1e-4804-acf3-1a601938b537",
             "de99fdcf-4f02-48da-880d-f0a934e3682b",
             "c1531275-3912-4a7c-a43a-04be7a437bcb",
-            "a7afac18-b12a-4433-bed1-2357ce57b0b6"
+            "a7afac18-b12a-4433-bed1-2357ce57b0b6",
+            "b0b847d2-6244-459f-b342-283f7bae59e3",
+            "ac19fd43-a82d-475f-88d7-49d3e6b9d3f0",
+            "089cf6e5-58c4-48de-bf24-ae75014bea48"
         ],
         "store": [
             "f38f3239-6468-477c-b49d-a0e4667d798e",

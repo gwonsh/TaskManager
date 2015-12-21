@@ -88,6 +88,12 @@ Ext.define('TaskManager.controller.Upload', {
                         },
                         items: [
                             {
+                                xtype:'checkbox',
+                                itemId:'saveHistory',
+                                boxLabel:locale.upload.saveHistory,
+                                style:'margin-right:10px'
+                            },
+                            {
                                 xtype: 'button',
                                 itemId: 'btnSubmit',
                                 width: 80,
@@ -147,7 +153,7 @@ Ext.define('TaskManager.controller.Upload', {
         var grid = wPan.getActiveTab();
         var chks = grid.getSelectionModel().getSelection();
         if(chks.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
             return;
         }
         var selected = chks[0];
@@ -235,11 +241,17 @@ Ext.define('TaskManager.controller.Upload', {
                     },
                     items: [
                         {
+                            xtype:'checkbox',
+                            itemId:'saveHistory',
+                            boxLabel:locale.upload.saveHistory,
+                            style:'margin-right:10px'
+                        },
+                        {
                             xtype: 'button',
                             itemId: 'btnSubmit',
                             width: 80,
                             bind: {
-                                text: '{edit}'
+                                text: '{editLabel}'
                             }
                         },
                         {
@@ -332,7 +344,7 @@ Ext.define('TaskManager.controller.Upload', {
             grid.getView().refresh();
         });
         if(selected.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
         }
         else{
             store.remove(selected);
@@ -1348,6 +1360,8 @@ Ext.define('TaskManager.controller.Upload', {
         var url = getUpdateApi();
         var form = win.down('form');
 
+        var saveHistory = win.down('#saveHistory').getValue();
+
         /* extract link fields from request panel */
         var lnkFlds = Ext.ComponentQuery.query('linkeddata', form);
         if(lnkFlds !== null && lnkFlds.length > 0){
@@ -1434,6 +1448,8 @@ Ext.define('TaskManager.controller.Upload', {
             var submitObj = {};
             submitObj.ca_id =  selectedCategory;
             submitObj.bd_group = 1;
+
+            if(saveHistory) submitObj.history = 1;
 
             /* in case grids insise of form */
             var dsetGrids = Ext.ComponentQuery.query('datasetgridbox gridpanel');

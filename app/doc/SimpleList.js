@@ -15,7 +15,7 @@
 		html +=  	'<div style="width:100%;height:68px">';
 		if(values.approvalList){
 			var apvLst = values.approvalList;
-		html += 	 	 '<div style="float:left;height:65px;">';
+		html += 	 	 '<div class="viewer-approval">';
 		html +=			 	'<table cellpadding="0" cellspacing="0" border="1" class="approval-list">';
 		html +=             	'<tr>';
 			for(i=0; i<apvLst.length; i++){

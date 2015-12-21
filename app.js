@@ -24,10 +24,7 @@ Ext.application({
     requires: [
         'Ext.LoadMask',
         'Ext.ux.exporter.Exporter',
-        'TaskManager.doc.Viewer',
-        'Ext.chart.axis.Category',
-        'Ext.chart.series.Line',
-        'Ext.chart.plugin.ItemEvents'
+        'TaskManager.doc.Viewer'
     ],
     models: [
         'FieldModel',
@@ -55,7 +52,8 @@ Ext.application({
         'DataGroupWindow',
         'FormSpacer',
         'MultiFileInput',
-        'LinkUnit'
+        'LinkUnit',
+        'HistoryWindow'
     ],
     controllers: [
         'Login',

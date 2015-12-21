@@ -60,6 +60,20 @@ Ext.define('TaskManager.view.MainView', {
             items: [
                 {
                     xtype: 'button',
+                    cls: 'menuButton',
+                    height: 63,
+                    itemId: 'btnMenu',
+                    style: 'background-color:#485265',
+                    ui: 'plain-toolbar-large',
+                    width: 53,
+                    icon: 'resources/images/ico_main_menu.png',
+                    scale: 'large',
+                    bind: {
+                        tooltip: '{menu}'
+                    }
+                },
+                {
+                    xtype: 'button',
                     handler: function(button, e) {
                         var westPan = button.up('#mainView').down('#westPanel');
                         westPan.setActiveItem(0);
@@ -67,7 +81,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnHome',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_home.png',
                     scale: 'large'
                 },
@@ -76,7 +90,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnNew',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_new.png',
                     scale: 'large',
                     bind: {
@@ -88,7 +102,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnCopy',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_copy.png',
                     scale: 'large',
                     bind: {
@@ -100,7 +114,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnEdit',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_edit.png',
                     scale: 'large',
                     bind: {
@@ -112,7 +126,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnDel',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_del.png',
                     scale: 'large',
                     bind: {
@@ -124,7 +138,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnDownload',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_download.png',
                     scale: 'large',
                     bind: {
@@ -139,11 +153,11 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnPrint',
                     ui: 'plain-toolbar-large',
-                    width: 50,
-                    icon: 'resources/images/ico_print.png',
+                    width: 40,
+                    icon: 'resources/images/ico_main_print.png',
                     scale: 'large',
                     bind: {
-                        tooltip: '{printIt}'
+                        tooltip: '{printSelected}'
                     }
                 },
                 {
@@ -197,7 +211,7 @@ Ext.define('TaskManager.view.MainView', {
                     hidden: true,
                     itemId: 'btnChart',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_chart.png',
                     scale: 'large',
                     bind: {
@@ -212,7 +226,7 @@ Ext.define('TaskManager.view.MainView', {
                     height: 50,
                     itemId: 'btnComment',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_comment.png',
                     scale: 'large',
                     bind: {
@@ -221,10 +235,23 @@ Ext.define('TaskManager.view.MainView', {
                 },
                 {
                     xtype: 'button',
+                    disabled: true,
+                    height: 50,
+                    itemId: 'btnHistory',
+                    ui: 'plain-toolbar-large',
+                    width: 40,
+                    icon: 'resources/images/ico_main_history.png',
+                    scale: 'large',
+                    bind: {
+                        tooltip: '{history}'
+                    }
+                },
+                {
+                    xtype: 'button',
                     height: 50,
                     itemId: 'btnConfig',
                     ui: 'plain-toolbar-large',
-                    width: 50,
+                    width: 40,
                     icon: 'resources/images/ico_main_config.png',
                     scale: 'large',
                     bind: {
@@ -348,22 +375,11 @@ Ext.define('TaskManager.view.MainView', {
                     xtype: 'container',
                     hidden: true,
                     itemId: 'viewCon',
+                    minWidth: 600,
                     style: 'background-color:white',
+                    width: '100%',
                     listeners: {
                         afterrender: 'onViewConAfterRender'
-                    }
-                }
-            ],
-            tools: [
-                {
-                    xtype: 'tool',
-                    itemId: 'printDoc',
-                    type: 'print',
-                    bind: {
-                        tooltip: '{printIt}'
-                    },
-                    listeners: {
-                        click: 'onPrintDocClick'
                     }
                 }
             ]
@@ -607,6 +623,8 @@ Ext.define('TaskManager.view.MainView', {
             };
             tab.setStyle(css);
         });
+        /* to show up bottom line of header */
+        component.getHeader().removeCls('x-docked-top');
     },
 
     onToolClick1: function(tool, e, owner, eOpts) {
@@ -632,9 +650,14 @@ Ext.define('TaskManager.view.MainView', {
     },
 
     onViewPanBeforeShow: function(component, eOpts) {
-        var title = '<div style="float:left;margin-top:6px">'+locale.main.preview+'</div>';
-        var toggleIco = '<img class="editableToggle" src="resources/images/ico_lock.png" style="float:left;margin:5px 20px 0 10px;cursor:pointer"';
+        var title = '<div style="float:left">'+locale.main.preview+'</div>';
+        var toggleIco = '<img class="editableToggle" src="resources/images/ico_lock.png" style="float:left;margin:0 0 0 30px;cursor:pointer"';
         toggleIco += 'onclick="getController(\'Viewer\').editModeToggle(this)" title="'+locale.menu.editable+'">';
+        //display:none as default it shows when history list exists at Main controller viewDocument()
+        var historyIco = '<img src="resources/images/ico_history.png" style="float:left;margin:0 0 0 10px;cursor:pointer;display:none" class="historyIco"';
+        historyIco += 'onclick="getController(\'Viewer\').showHistory(this)" title="'+locale.menu.history+'">';
+        var printIco = '<img src="resources/images/ico_print.png" style="float:left;margin:0 0 0 10px;cursor:pointer"';
+        printIco += 'onclick="getController(\'Main\').printDocument()" title="'+locale.menu.print+'">';
         var viewers = app.doc.Viewer.FORMS;
         // var views = '<select id="formSelector" style="margin:1px 0 0 8px;float:right" onchange="Ext.getCmp(\'viewPan\').fireEvent(\'viewmodechange\', this.selectedIndex)">';
 
@@ -671,37 +694,14 @@ Ext.define('TaskManager.view.MainView', {
             data:formData
         });
         combo.setStore(store);
-        component.getHeader().add(combo);
-
-
-        // Ext.Array.each(viewers, function(entry, index){
-        //     if(entry.CLASSNAME == preference.option.formMode){
-        //         views += '<option index='+index+' selected>'+ entry.getName()+'</option>';
-        //     }
-        //     else{
-        //         views += '<option index='+index+'>'+ entry.getName()+'</option>';
-        //     }
-        // });
-        // views += '</select>';
-        component.setTitle(title + toggleIco);
-        component.getHeader().setHeight(36);
-        // component.on('viewmodechange', function(index){
-        //     var viewer = component.down('#viewer');
-        //     currentViewMode = index;
-        //     if(viewer) {
-        //         html = app.doc.Viewer.FORMS[index].getHtml(viewer.info);
-        //         viewer.setHtml(html);
-        //     }
-        // });
+        component.getHeader().insert(1, combo);
+        /* to show up bottom line of header */
+        component.getHeader().removeCls('x-docked-top');
+        component.setTitle(title + toggleIco + historyIco + printIco);
     },
 
     onViewConAfterRender: function(component, eOpts) {
         component.setMinHeight(document.body.clientHeight - 180);
-    },
-
-    onPrintDocClick: function(tool, e, owner, eOpts) {
-        var ctrl = getController('Main');
-        ctrl.printDocument();
     },
 
     onMainViewAdd: function(container, component, index, eOpts) {

@@ -7,12 +7,11 @@
    "theme": "ext-theme-crisp-0ce2e424-cec8-4a50-8848-7818c8de2ba4",
    "requires": [],
    "sass": {
-      "namespace": "FormViewer"
+      "namespace": "TaskManager"
    },
-   "url": null,
    "js": [
       {
-         "path": "${ext.dir}/build/ext-all-rtl-debug.js"
+         "path": "${framework.dir}/build/ext-all-rtl-debug.js"
       },
       {
          "path": "resources/globals.js",
@@ -84,5 +83,5 @@
          }
       ]
    },
-   "id": "a06829e2-e0ab-4a8e-aa30-e982538c50e2"
+   "id": "41b6bb4a-682d-4973-a8ea-8200b84bd780"
 }

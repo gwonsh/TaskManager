@@ -23,6 +23,9 @@ Ext.define('TaskManager.controller.Viewer', {
     control: {
         "#viewer": {
             afterlayout: 'onViewerAfterLayout'
+        },
+        "#showChanged": {
+            change: 'onShowChangedChange'
         }
     },
 
@@ -1034,6 +1037,12 @@ Ext.define('TaskManager.controller.Viewer', {
         this.viewAttachedFile(attachFile.elements);
     },
 
+    /* Whecn click checkbox for showing changed in history */
+    onShowChangedChange: function(field, newValue, oldValue, eOpts) {
+        var grid = field.up('window').down('grid');
+        this.showChanged(grid.getStore(), grid.getView(), newValue);
+    },
+
     editModeToggle: function(icon) {
         var vPan = this.getViewPan();
         var viewer = vPan.down('#viewer');
@@ -1061,6 +1070,108 @@ Ext.define('TaskManager.controller.Viewer', {
                 Ext.get(entry).setStyle('background-color', 'white');
             });
         }
+    },
+
+    showHistory: function(icon) {
+        var me = this;
+
+        var ctrl = getController('Main');
+        var grid;
+        if(ctrl.getWestPanel().getActiveTab().type == 'normal'){
+            grid = ctrl.getWestPanel().getActiveTab();
+        }
+        else{//gallery mode
+            grid = ctrl.getActiveTab().down('dataview');
+        }
+
+        var chks = grid.getSelectionModel().getSelection();
+        var bdIdx = chks[0].get('bd_idx');
+        var url = getHistoryApi();
+        var cId = grid.categoryId;
+        var colsList = grid.categoryColsList;
+        var flds = ctrl.getDataFields(colsList);
+        var gCols = ctrl.getGridColumns(colsList, true);
+
+        /* store for grid */
+        var hStore = Ext.create('Ext.data.Store', {
+            storeId:'hStore_' + bdIdx,
+            fields: flds,
+            proxy: {
+                type: 'jsonp',
+                url:url + '?bd_idx=' + bdIdx,
+                limitParam:'page_size',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'binderList',
+                    totalProperty: 'page.totCount'
+                }
+            },
+            listeners:{
+                load:function onHStoreLoad(store, records){
+                    store.un('load', onHStoreLoad);
+                    var hw = Ext.create(appName + '.view.HistoryWindow');
+                    hw.show();
+                    var historyGrid = hw.down('#historyGrid');
+                    var hsViewer = hw.down('#historyViewer');
+                    hsViewer.setStyle('border-bottom', '1px solid #cccccc');
+                    /* to show up bottom line of header */
+                    hsViewer.getHeader().removeCls('x-docked-top');
+                    historyGrid.reconfigure(store, gCols);
+                    historyGrid.setStyle('border-right', '1px solid #cccccc');
+                    var currentIndex = -1;
+                    historyGrid.on('itemclick', function( grid, record, item, index, e, eOpts ){
+                        if(currentIndex == index){
+                            hsViewer.setCollapsed(true);
+                            currentIndex = -1;
+                            return;
+                        }
+                        currentIndex = index;
+                        html = app.doc.Viewer.FORMS[0].getHtml(record.data);
+                        hsViewer.setHtml(html);
+                        hsViewer.setCollapsed(false);
+                        hsViewer.setTitle('History ' + record.get('bd_idx') + '-' + (index + 1).toString());
+                    });
+                    hsViewer.on('titlechange', function(container){
+                        /* prepare for when click on attached */
+                        var attachFile = container.el.select('.viewer-attach-image');
+                        getController('Viewer').viewAttachedFile(attachFile.elements);
+                    });
+
+                    /* check what has been changed in store */
+                    var gridView = historyGrid.getView();
+                    me.showChanged(store, gridView, true);
+
+                }
+            }
+        });
+
+        hStore.load();
+    },
+
+    /* Show changed values in history */
+    showChanged: function(store, gridView, show) {
+        var bgColor = (show)? '#ffe3cd': '#ffffff';
+        store.each(function(record, index){
+            var preRec = store.getRange(index + 1, index + 1);
+            if(preRec.length > 0){
+                if(record.get('bd_subject') != preRec[0].get('bd_subject')){
+                    Ext.get(gridView.getNodes(index, index)[0]).el.select('.gsubject').elements[0].style.backgroundColor = bgColor;
+                }
+                if(record.get('bd_content') != preRec[0].get('bd_content')){
+                    Ext.get(gridView.getNodes(index, index)[0]).el.select('.gcontent').elements[0].style.backgroundColor = bgColor;
+                }
+                if(record.get('idx') != preRec[0].get('idx')){
+                    Ext.get(gridView.getNodes(index, index)[0]).el.select('.gidx').elements[0].style.backgroundColor = bgColor;
+                }
+                Ext.Array.each(preRec[0].data.bd_data, function(entry, i){
+                    if(record.get('bd_data')[i].data_val != entry.data_val){//exclude 'auto numbering field'
+                        var idx = '.id' + record.get('bd_data')[i].cols_idx;
+                        if(Ext.get(gridView.getNodes(index, index)[0]).el.select(idx).elements[0])
+                            Ext.get(gridView.getNodes(index, index)[0]).el.select(idx).elements[0].parentElement.style.backgroundColor = bgColor;
+                    }
+                });
+            }
+        });
     },
 
     generateHtml: function(values, type, header) {

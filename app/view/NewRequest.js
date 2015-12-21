@@ -314,52 +314,6 @@ Ext.define('TaskManager.view.NewRequest', {
             name: 'bd_idx'
         }
     ],
-    dockedItems: [
-        {
-            xtype: 'container',
-            flex: 1,
-            dock: 'bottom',
-            hidden: true,
-            itemId: 'buttonCon',
-            margin: '20 0 0 0',
-            layout: {
-                type: 'hbox',
-                align: 'middle',
-                pack: 'center'
-            },
-            items: [
-                {
-                    xtype: 'button',
-                    itemId: 'btnSubmit',
-                    width: 80,
-                    bind: {
-                        text: '{submit}'
-                    }
-                },
-                {
-                    xtype: 'button',
-                    itemId: 'btnReset',
-                    margin: '0 0 0 10',
-                    width: 80,
-                    bind: {
-                        text: '{reset}'
-                    }
-                },
-                {
-                    xtype: 'button',
-                    itemId: 'btnCancel',
-                    margin: '0 0 0 10',
-                    width: 80,
-                    bind: {
-                        text: '{cancel}'
-                    },
-                    listeners: {
-                        click: 'onBtnCancelClick'
-                    }
-                }
-            ]
-        }
-    ],
 
     onComboboxRender: function(component, eOpts) {
         var store = Ext.create('Ext.data.Store', {
@@ -438,10 +392,6 @@ Ext.define('TaskManager.view.NewRequest', {
             /* add one fileField to set the multipart upload form*/
             component.down('#btnAddAttach').fireEvent('click');
         }
-    },
-
-    onBtnCancelClick: function(button, e, eOpts) {
-        button.up('window').close();
     },
 
     setSubject: function(value) {

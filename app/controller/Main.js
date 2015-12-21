@@ -46,6 +46,12 @@ Ext.define('TaskManager.controller.Main', {
         },
         "#btnDownload": {
             click: 'onBtnDownloadClick'
+        },
+        "#btnHistory": {
+            click: 'onBtnHistoryClick'
+        },
+        "#btnMenu": {
+            click: 'onBtnMenuClick'
         }
     },
 
@@ -80,6 +86,7 @@ Ext.define('TaskManager.controller.Main', {
             }
         }
         var baseData = {
+            activateChanged:locale.viewer.activateChanged,
             addAttachFile:locale.upload.addAttachFile,
             addRow:locale.upload.addRow,
             attachedFile:locale.upload.attachedFile,
@@ -98,13 +105,17 @@ Ext.define('TaskManager.controller.Main', {
             dropHere:locale.main.dropHere,
             edit:locale.menu.edit,
             editable:locale.menu.editable,
+            editLabel:locale.upload.edit,
             entry:locale.upload.entry,
             gridTitle:locale.main.gridTitle,
+            history:locale.menu.history,
+            historyList:locale.main.historyList,
             initShortcut:locale.login.initShortcut,
             linkWinTitle:locale.main.linkWindowTitle,
             listDisplay:locale.config.listDisplay,
             logoPath:companyInfo.company_logo,
             login:locale.login.login,
+            menu:locale.menu.menu,
             newComment:locale.main.newComment,
             newPost:locale.menu.newPost,
             ok:locale.main.ok,
@@ -112,6 +123,7 @@ Ext.define('TaskManager.controller.Main', {
             option2:locale.upload.option2,
             password:locale.login.password,
             printIt:locale.main.printIt,
+            printSelected:locale.menu.print,
             referenceCategory:locale.main.referenceCategory,
             refresh:locale.main.refresh,
             remove:locale.menu.remove,
@@ -174,7 +186,7 @@ Ext.define('TaskManager.controller.Main', {
         }
         var chks = grid.getSelectionModel().getSelection();
         if(chks.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
             return;
         }
         var selected = chks[0];
@@ -229,7 +241,7 @@ Ext.define('TaskManager.controller.Main', {
                         {
                             xtype:'button',
                             text:locale.menu.remove,
-                            width:70,
+                            width:100,
                             handler:function(button){
                                 Ext.data.JsonP.request({
                                     url:getDeleteDataApi(),
@@ -312,22 +324,35 @@ Ext.define('TaskManager.controller.Main', {
         var url = domain + '/binder/copy';
         var chks = this.getWestPanel().getActiveTab().getSelectionModel().getSelection();
         if(chks.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
             return;
         }
         var bdIdx = chks[0].get('bd_idx');
-        Ext.data.JsonP.request({
-            url:url,
-            params:{
-                ca_id:selectedCategory,
-                bd_idx:bdIdx
-            },
-            success:function(response){
-                console.log(response);
-                Ext.toast(locale.main.copied);
-                me.getWestPanel().down('grid').getStore().load();
+
+        var confirm = Ext.Msg.show({
+            title:locale.main.caution,
+            message: locale.main.copyMessage,
+            buttons: Ext.Msg.YESNO,
+            icon: Ext.Msg.QUESTION,
+            fn: function(btn) {
+                if (btn === 'yes') {
+                    Ext.data.JsonP.request({
+                        url:url,
+                        params:{
+                            ca_id:selectedCategory,
+                            bd_idx:bdIdx
+                        },
+                        success:function(response){
+                            Ext.toast(locale.main.copied);
+                            me.getWestPanel().down('grid').getStore().load();
+                        }
+                    });
+                } else {
+
+                }
             }
         });
+
     },
 
     onBtnDownloadClick: function(button, e, eOpts) {
@@ -336,7 +361,7 @@ Ext.define('TaskManager.controller.Main', {
         var chks = this.getWestPanel().getActiveTab().getSelectionModel().getSelection();
 
         if(chks.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
             return;
         }
 
@@ -346,6 +371,99 @@ Ext.define('TaskManager.controller.Main', {
             paths.push(fileInfo[i].file_path);
         }
         multiDownload(paths);
+    },
+
+    onBtnHistoryClick: function(button, e, eOpts) {
+        getController('Viewer').showHistory();
+    },
+
+    onBtnMenuClick: function(button, e, eOpts) {
+        var me = this;
+        var headerPan = this.getMainView().down('#headerPan');
+        Ext.create('Ext.menu.Menu', {
+            width: 100,
+            plain: true,
+            floating:true,
+            alwaysOnTop:true,
+            autoShow:true,
+            margin:'99 0 0 1',
+            renderTo: Ext.getBody(),  // usually rendered by it's containing component
+            items: [
+                {
+                    text: locale.menu.newPost,
+                    listeners:{
+                        click:function(){
+                            getController('Upload').onBtnNewClick(true);
+
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.copy,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnCopy').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.edit,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnEdit').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.remove,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnDel').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.download,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnDownload').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.print,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnPrint').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.main.newComment,
+                    listeners:{
+                        click:function(){
+                            me.newComment();
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.history,
+                    listeners:{
+                        click:function(){
+                            headerPan.down('#btnHistory').fireEvent('click');
+                        }
+                    }
+                },
+                {
+                    text: locale.menu.setting,
+                                listeners:{
+                        click:function(){
+                            headerPan.down('#btnConfig').fireEvent('click');
+                        }
+                    }
+                }
+            ]
+        });
     },
 
     setShortcuts: function(shortcuts) {
@@ -382,7 +500,7 @@ Ext.define('TaskManager.controller.Main', {
 
     getDataFields: function(cols) {
         var fields = [];
-        //////* generating basic fields *//////
+        //////* generating basic fields to use at store *//////
 
         /* title field */
         fields.push({name:'bd_subject'});
@@ -404,7 +522,7 @@ Ext.define('TaskManager.controller.Main', {
         /* description field */
         fields.push({
             convert:function(v, rec){
-                v = v.replace(/\n/g, '<br>');
+                //v = v.replace(/\n/g, '<br>');
                 return v;
             },
             name:'bd_content'
@@ -415,9 +533,7 @@ Ext.define('TaskManager.controller.Main', {
             convert:function(v, rec){
                 if(rec.data.bd_file !== undefined){
                     if(rec.data.bd_file.length > 0){
-                        if(rec.data.bd_file[0].file_width !== 0){
-                            v = v + '/T';
-                        }
+                        v = rec.data.bd_file[0].thumb_path + '/T';
                     }
                     else{
                         //* in case none of file uploaded */
@@ -429,7 +545,6 @@ Ext.define('TaskManager.controller.Main', {
                 }
                 return v;
             },
-            mapping: 'bd_file[0].thumb_path',
             name: 'thumb_path'
         });
 
@@ -515,10 +630,11 @@ Ext.define('TaskManager.controller.Main', {
                 type:fType,
                 convert: function(v, rec) {
                     var value = '';
+
                     Ext.Array.each(v, function(entry, index){
                         if(entry.cols_idx == item.cols_idx){
+                            var values = [];
                             if(item.cols_type == 'colorchk'){//for normal colorchk field
-                                var values = [];
                                 value = [];
                                 if(entry.data_val !== ''){
                                     values = entry.data_val.split(',');
@@ -526,6 +642,15 @@ Ext.define('TaskManager.controller.Main', {
                                         value.push(entry.trim().split('||'));
                                     });
                                 }
+                            }
+                            else if(item.cols_type == 'color256'){
+                                var html = '';
+                                values = entry.data_val.split(',');
+                                Ext.Array.each(values, function(entry){
+                                    var c256 = 'float:left;width:20px;height:20px;background-color:' + entry.trim();
+                                    html += '<div style="'+c256+'"></div>';
+                                });
+                                value = html;
                             }
                             else{
                                 value = entry.data_val;
@@ -539,7 +664,7 @@ Ext.define('TaskManager.controller.Main', {
                 mapping:'bd_data',
                 name: fName
             });
-        /* add for graphical colorchk */
+            /* add for graphical colorchk */
             if(item.cols_type == 'colorchk'){//
                 fields.push({
                     convert: function(v, rec) {
@@ -562,13 +687,14 @@ Ext.define('TaskManager.controller.Main', {
         return fields;
     },
 
-    getGridColumns: function(cols) {
+    getGridColumns: function(cols, isHistory) {
 
         var columns = [];
-        /* Detail list mode */
+        /* check if detail list mode */
         var mode = window.localStorage.getItem('isSimpleMode');
         var basicInfoWidth;
         var fx = 0;
+        if(isHistory) mode = false;
         if(mode == 'true' || cols.length === 0){
             basicInfoWidth = '100%';
             fx = 1;
@@ -577,6 +703,7 @@ Ext.define('TaskManager.controller.Main', {
         else{
             basicInfoWidth = 320;
         }
+
 
         var colsSimple = {
             xtype: 'gridcolumn',
@@ -596,22 +723,25 @@ Ext.define('TaskManager.controller.Main', {
                 content = content.replace(/(<([^>]+)>)/ig, "");
                 var titleRow;
                 if(record.get('bd_colortag') === ''){
-                    titleRow = '<span style="float:left;font-weight:bold;font-size:15px">' + record.get('bd_subject') + '</span>';
+                    titleRow = '<span class="gsubject" style="float:left;font-weight:bold;font-size:15px">' + record.get('bd_subject') + '</span>';
                 }
                 /* if colortag exists show it infront of title */
                 else{
-                    titleRow  = '<div style="float:left;width:14px;height:14px;background-color:' + record.get('bd_colortag') + '">';
-                    titleRow += '</div><span style="float:left;margin-left:2px;font-weight:bold;font-size:15px">' + record.get('bd_subject') + '</span>';
+                    titleRow  = '<div class="gcolortag" style="float:left;width:14px;height:14px;background-color:' + record.get('bd_colortag') + '">';
+                    titleRow += '</div><span class="gsubject" style="float:left;margin-left:2px;font-weight:bold;font-size:15px">' + record.get('bd_subject') + '</span>';
                 }
                 var html  = '<div style="width:100%;overflow:hidden">';
                 html += '<table width=100%><tr><td colspan="2">' + titleRow + '</td></tr>';
                 if(record.get('idx') !== undefined){
-                    html += '<tr><td  style="width:90px"><div style="font-size:12px;margin:-2px 0 0 0">ID: ' + record.get('idx') + '</div></td>';
-                    html += '<td><div style="font-size:12px;margin:-2px 0 0 0">' + locale.main.user +  ' : ' + record.get('bd_name') + '&nbsp;&nbsp;';
+                    if(record.get('idx') && record.get('idx') !== "")
+                        html += '<tr><td  style="width:90px"><div class="gidx" style="font-size:12px;margin:-2px 0 0 0">ID: ' + record.get('idx') + '</div></td>';
+                    if(record.get('bd_name'))
+                        html += '<td><div class="guserid" style="font-size:12px;margin:-2px 0 0 0">' + locale.main.user +  ' : ' + record.get('bd_name') + '&nbsp;&nbsp;';
                     html += ' <span style="color:#999999">' + record.get('bd_regdate') + '</span></div></td></tr>';
                 }
                 else{
-                    html += '<tr><td colspan="2"><div style="font-size:12px;margin:-2px 0 0 0;width:100%">' + locale.main.user +  ' : ' + record.get('bd_name') + '&nbsp;&nbsp;';
+                    if(record.get('bd_name'))
+                        html += '<tr><td colspan="2"><div class="guserid" style="font-size:12px;margin:-2px 0 0 0;width:100%">' + locale.main.user +  ' : ' + record.get('bd_name') + '&nbsp;&nbsp;';
                     html += ' <span style="color:#999999">' + record.get('bd_regdate') + '</span></div></td></tr>';
                 }
                 if(mode == 'true'){
@@ -620,7 +750,7 @@ Ext.define('TaskManager.controller.Main', {
                         html    += '<tr><td colspan="2">' + colorchkVal + '</td></tr>';
                     }
                 }
-                html    += '<tr><td colspan="2"><div style="over-flow:hidden;width:100%;height:12px;color:#777777;margin-top:-2px">' + content + '</div></td></tr>';
+                html    += '<tr><td colspan="2"><div class="gcontent" style="over-flow:hidden;width:100%;height:12px;color:#777777;margin-top:-2px">' + content + '</div></td></tr>';
                 html    += '</table>';
                 html    += '</div>';
                 return html;
@@ -629,7 +759,7 @@ Ext.define('TaskManager.controller.Main', {
         columns.push(colsSimple);
 
         /* for detail display mode */
-        if(mode === 'false'){
+        if(mode === 'false' || isHistory){
             if(selectedCategory !== ''){
                 for(var i=0; i<cols.length; i++){
                     var dIdx = cols[i].cols_name.replace(' ', '_');
@@ -657,12 +787,21 @@ Ext.define('TaskManager.controller.Main', {
                     }
                     /* in case common custom fields */
                     else{
+                        var customRenderer = function(idx){
+                            return function(value, metadata){
+                                /* to change backgroundcolor of text at history */
+                                var v = '<div style="width:100%" class="'+idx+'">' + value + '</div>';
+                                return v;
+                            };
+                        };
                         var c = Ext.create('Ext.grid.column.Column', {
                             xtype: 'gridcolumn',
                             dataIndex: dIdx,
+                            cls:'gcolumn',
                             sortable:false,
                             colsInfo:cols[i],
-                            text: cols[i].cols_name
+                            text: cols[i].cols_name,
+                            renderer:customRenderer(dIdx)
                         });
                         columns.push(c);
                     }
@@ -959,7 +1098,7 @@ Ext.define('TaskManager.controller.Main', {
                                                         var fdYearVal = win.down('#fdYear').getValue();
                                                         var fdMonth = win.down('#fdMonth');
                                                         if(!fdYearVal){
-                                                            alert(locale.search.yearRequired);
+                                                            Ext.MessageBox.alert(locale.main.notice, locale.search.yearRequired);
                                                             fdMonth.setValue(null);
                                                         }
                                                     }
@@ -1047,7 +1186,7 @@ Ext.define('TaskManager.controller.Main', {
                                                     query += '&se_sdate=' + sVal + '&se_edate=' + eVal;
                                                 }
                                                 else{
-                                                    alert(locale.search.nothingToSearch);
+                                                    Ext.MessageBox.alert(locale.main.notice, locale.search.nothingToSearch);
                                                     win.down('#fdSubject').focus();
                                                     return;
                                                 }
@@ -1284,11 +1423,15 @@ Ext.define('TaskManager.controller.Main', {
             });
         }
 
-        me.getWestPanel().insert(tabIndex, grid);
-        me.getServerData(cId, '&ca_id=' + cId, grid);
-        me.getWestPanel().setActiveItem(grid);
-        /* hide view content */
-        me.getViewPan().down('#viewCon').setHidden(true);
+        if(tabIndex != -1){
+            me.getWestPanel().insert(tabIndex, grid);
+            me.getServerData(cId, '&ca_id=' + cId, grid);
+            me.getWestPanel().setActiveItem(grid);
+            /* hide view content */
+            me.getViewPan().down('#viewCon').setHidden(true);
+        }
+
+        return grid;
     },
 
     onTplImageLoad: function(target) {
@@ -1348,7 +1491,6 @@ Ext.define('TaskManager.controller.Main', {
                     },
                     listeners:{
                         load:function onDstoreLoad(store, records){
-                            dStore.un('load', onDstoreLoad);
                             /* do not excute by LinkingWindow, dataGroupWindow or so on */
                             if(grid.getItemId() == 'mainGrid_' + cId){
                                 grid.categoryColsList = response.categoryColsList;
@@ -1408,7 +1550,7 @@ Ext.define('TaskManager.controller.Main', {
                 }
             },
             failure:function(response){
-                alert(locale.main.networkProblem);
+                //alert(locale.main.networkProblem);
             }
 
         });
@@ -1455,7 +1597,7 @@ Ext.define('TaskManager.controller.Main', {
         }
         var chks = grid.getSelectionModel().getSelection();
         if(chks.length === 0){
-            alert(locale.upload.noneSelected);
+            Ext.MessageBox.alert(locale.main.notice, locale.upload.noneSelected);
             return;
         }
         var bdIdx = chks[0].get('bd_idx');
@@ -1515,7 +1657,7 @@ Ext.define('TaskManager.controller.Main', {
         // viewer.el.select('.x-box-inner').setStyle('overflow', 'visible');
         // viewer.el.select('.x-box-layout-ct').setStyle('overflow', 'visible');
         if(viewer === null){
-            alert(locale.main.nothingToPrint);
+            Ext.MessageBox.alert(locale.main.notice, locale.main.nothingToPrint);
         }
         else{
             var htmlSrc = viewer.el.dom.innerHTML;
@@ -1741,6 +1883,20 @@ Ext.define('TaskManager.controller.Main', {
                         vCon.add(viewer);
                         grid.enable();
 
+
+                        /* check if history exists */
+                        var mainHeader = me.getMainView().down('#headerPan');
+                        var historyMenu = mainHeader.down('#btnHistory');
+
+                        if(dl.bd_history.length > 0){
+                            vPan.getHeader().title.el.select('.historyIco').elements[0].style.display = 'inline';
+                            historyMenu.setDisabled(false);
+
+                        }
+                        else{
+                            vPan.getHeader().title.el.select('.historyIco').elements[0].style.display = 'none';
+                            historyMenu.setDisabled(true);
+                        }
                     }
                 });
 
