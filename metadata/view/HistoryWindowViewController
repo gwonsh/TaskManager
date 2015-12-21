@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "historywindow",
+        "designer|userClassName": "HistoryWindowViewController"
+    },
+    "designerId": "089cf6e5-58c4-48de-bf24-ae75014bea48"
+}

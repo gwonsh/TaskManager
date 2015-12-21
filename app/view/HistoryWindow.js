@@ -32,6 +32,7 @@ Ext.define('TaskManager.view.HistoryWindow', {
     width: 1024,
     layout: 'border',
     ghost: false,
+    maximizable: true,
     modal: true,
 
     bind: {

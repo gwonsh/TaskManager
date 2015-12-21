@@ -21,6 +21,7 @@
         "id": null,
         "layout": "vbox",
         "maxHeight": null,
+        "maximizable": true,
         "modal": true,
         "title": null,
         "width": 850

@@ -15,7 +15,8 @@
             "'null'"
         ],
         "itemId": "viewer",
-        "layout": "fit",
+        "layout": null,
+        "minWidth": null,
         "padding": "0 0 30 0",
         "width": "100%"
     },

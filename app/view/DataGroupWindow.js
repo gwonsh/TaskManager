@@ -43,6 +43,7 @@ Ext.define('TaskManager.view.DataGroupWindow', {
         'background-color': '#ffffff'
     },
     ghost: false,
+    maximizable: true,
     modal: true,
     defaultListenerScope: true,
 

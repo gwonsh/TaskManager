@@ -73,6 +73,36 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "cls": "menuButton",
+                        "designer|uiInterfaceName": "plain-toolbar-large",
+                        "height": 63,
+                        "icon": "resources/images/ico_main_menu.png",
+                        "itemId": "btnMenu",
+                        "scale": "large",
+                        "style": "background-color:#485265",
+                        "text": null,
+                        "tooltip": [
+                            "{menu}"
+                        ],
+                        "ui": "plain-toolbar-large",
+                        "width": 53
+                    },
+                    "name": "MyButton7",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding",
+                        "style": "string"
+                    },
+                    "designerId": "63a6abae-a978-44fd-bed6-43ce0c521f87"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "designer|uiInterfaceName": "plain-toolbar-large",
                         "height": 50,
                         "icon": "resources/images/ico_home.png",
@@ -81,7 +111,7 @@
                         "text": null,
                         "tooltip": null,
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton22",
                     "configAlternates": {
@@ -130,7 +160,7 @@
                             "{newPost}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton4",
                     "configAlternates": {
@@ -157,7 +187,7 @@
                             "{copy}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton24",
                     "configAlternates": {
@@ -184,7 +214,7 @@
                             "{edit}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton",
                     "configAlternates": {
@@ -211,7 +241,7 @@
                             "{remove}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton2",
                     "configAlternates": {
@@ -238,7 +268,7 @@
                             "{download}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton25",
                     "configAlternates": {
@@ -281,15 +311,15 @@
                     "userConfig": {
                         "designer|uiInterfaceName": "plain-toolbar-large",
                         "height": 50,
-                        "icon": "resources/images/ico_print.png",
+                        "icon": "resources/images/ico_main_print.png",
                         "itemId": "btnPrint",
                         "scale": "large",
                         "text": null,
                         "tooltip": [
-                            "{printIt}"
+                            "{printSelected}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton21",
                     "configAlternates": {
@@ -317,7 +347,7 @@
                             "{newComment}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton9",
                     "configAlternates": {
@@ -408,7 +438,7 @@
                             "{newComment}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton5",
                     "configAlternates": {
@@ -448,6 +478,34 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|uiInterfaceName": "plain-toolbar-large",
+                        "disabled": true,
+                        "height": 50,
+                        "icon": "resources/images/ico_main_history.png",
+                        "itemId": "btnHistory",
+                        "scale": "large",
+                        "text": null,
+                        "tooltip": [
+                            "{history}"
+                        ],
+                        "ui": "plain-toolbar-large",
+                        "width": 40
+                    },
+                    "name": "MyButton6",
+                    "configAlternates": {
+                        "scrollable": "boolean",
+                        "tooltip": "binding"
+                    },
+                    "designerId": "34bf4676-a533-4986-ba55-1a91a3cacc22"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "plain-toolbar-large",
                         "height": 50,
                         "icon": "resources/images/ico_main_config.png",
                         "itemId": "btnConfig",
@@ -457,7 +515,7 @@
                             "{setting}"
                         ],
                         "ui": "plain-toolbar-large",
-                        "width": 50
+                        "width": 40
                     },
                     "name": "MyButton1",
                     "configAlternates": {
@@ -530,11 +588,11 @@
                         ],
                         "width": 2
                     },
-                    "name": "MySpacer6",
+                    "name": "MySpacer1",
                     "configAlternates": {
                         "scrollable": "boolean"
                     },
-                    "designerId": "b3aa9487-55fe-47b7-bf4b-1a968cb46170"
+                    "designerId": "3e98c3ed-efb4-4fe2-8768-d0cff1bdf0eb"
                 },
                 {
                     "type": "Ext.toolbar.Spacer",
@@ -812,7 +870,9 @@
                             "        'margin-left':'3px'",
                             "    };",
                             "    tab.setStyle(css);",
-                            "});"
+                            "});",
+                            "/* to show up bottom line of header */",
+                            "component.getHeader().removeCls('x-docked-top');"
                         ],
                         "name": "render",
                         "scope": "me"
@@ -944,9 +1004,14 @@
                     "userConfig": {
                         "fn": "onViewPanBeforeShow",
                         "implHandler": [
-                            "var title = '<div style=\"float:left;margin-top:6px\">'+locale.main.preview+'</div>';",
-                            "var toggleIco = '<img class=\"editableToggle\" src=\"resources/images/ico_lock.png\" style=\"float:left;margin:5px 20px 0 10px;cursor:pointer\"';",
+                            "var title = '<div style=\"float:left\">'+locale.main.preview+'</div>';",
+                            "var toggleIco = '<img class=\"editableToggle\" src=\"resources/images/ico_lock.png\" style=\"float:left;margin:0 0 0 30px;cursor:pointer\"';",
                             "toggleIco += 'onclick=\"getController(\\'Viewer\\').editModeToggle(this)\" title=\"'+locale.menu.editable+'\">';",
+                            "//display:none as default it shows when history list exists at Main controller viewDocument()",
+                            "var historyIco = '<img src=\"resources/images/ico_history.png\" style=\"float:left;margin:0 0 0 10px;cursor:pointer;display:none\" class=\"historyIco\"';",
+                            "historyIco += 'onclick=\"getController(\\'Viewer\\').showHistory(this)\" title=\"'+locale.menu.history+'\">';",
+                            "var printIco = '<img src=\"resources/images/ico_print.png\" style=\"float:left;margin:0 0 0 10px;cursor:pointer\"';",
+                            "printIco += 'onclick=\"getController(\\'Main\\').printDocument()\" title=\"'+locale.menu.print+'\">';",
                             "var viewers = app.doc.Viewer.FORMS;",
                             "// var views = '<select id=\"formSelector\" style=\"margin:1px 0 0 8px;float:right\" onchange=\"Ext.getCmp(\\'viewPan\\').fireEvent(\\'viewmodechange\\', this.selectedIndex)\">';",
                             "",
@@ -983,28 +1048,10 @@
                             "    data:formData",
                             "});",
                             "combo.setStore(store);",
-                            "component.getHeader().add(combo);",
-                            "",
-                            "",
-                            "// Ext.Array.each(viewers, function(entry, index){",
-                            "//     if(entry.CLASSNAME == preference.option.formMode){",
-                            "//         views += '<option index='+index+' selected>'+ entry.getName()+'</option>';",
-                            "//     }",
-                            "//     else{",
-                            "//         views += '<option index='+index+'>'+ entry.getName()+'</option>';",
-                            "//     }",
-                            "// });",
-                            "// views += '</select>';",
-                            "component.setTitle(title + toggleIco);",
-                            "component.getHeader().setHeight(36);",
-                            "// component.on('viewmodechange', function(index){",
-                            "//     var viewer = component.down('#viewer');",
-                            "//     currentViewMode = index;",
-                            "//     if(viewer) {",
-                            "//         html = app.doc.Viewer.FORMS[index].getHtml(viewer.info);",
-                            "//         viewer.setHtml(html);",
-                            "//     }",
-                            "// });"
+                            "component.getHeader().insert(1, combo);",
+                            "/* to show up bottom line of header */",
+                            "component.getHeader().removeCls('x-docked-top');",
+                            "component.setTitle(title + toggleIco + historyIco + printIco);"
                         ],
                         "name": "beforeshow",
                         "scope": "me"
@@ -1045,10 +1092,11 @@
                         "itemId": "viewCon",
                         "margin": null,
                         "minHeight": null,
+                        "minWidth": 600,
                         "padding": null,
                         "scrollable": null,
                         "style": "background-color:white",
-                        "width": null
+                        "width": "100%"
                     },
                     "name": "MyContainer10",
                     "configAlternates": {
@@ -1074,47 +1122,6 @@
                             },
                             "name": "onViewConAfterRender",
                             "designerId": "c3dd1b23-e831-435c-9948-e0fd36ee998f"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Tool",
-                    "reference": {
-                        "name": "tools",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "itemId": "printDoc",
-                        "tooltip": [
-                            "{printIt}"
-                        ],
-                        "type": "print"
-                    },
-                    "name": "MyTool2",
-                    "configAlternates": {
-                        "tooltip": "binding"
-                    },
-                    "designerId": "f55c2ca8-d8ea-4313-92b1-bf4f613823a5",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onPrintDocClick",
-                                "implHandler": [
-                                    "var ctrl = getController('Main');",
-                                    "ctrl.printDocument();"
-                                ],
-                                "name": "click",
-                                "scope": "me"
-                            },
-                            "name": "onPrintDocClick",
-                            "designerId": "6ed081fb-21af-49e2-9cfa-9433523c1600"
                         }
                     ]
                 }

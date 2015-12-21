@@ -1,5 +1,5 @@
 .viewer-frame{
-    max-width:700px;
+    min-width:550px;
     padding:25px;
     margin:0 auto;
 }
@@ -15,6 +15,7 @@
     max-height:40px;
 }
 .viewer-addr{
+    max-width:200px;
     font-size:11px;
 }
 .viewer-companyname{
@@ -22,7 +23,12 @@
     font-size:15px;
     font-weight:bold;
 }
+.viewer-approval{
+    float:right;
+    height:100%;
+}
 .viewer-title{
+    position:relative;
     margin-top:5px;
     height:30px;
     width:100%;

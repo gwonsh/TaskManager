@@ -78,6 +78,142 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
+                    "icon"
+                ],
+                "fn": "showHistory",
+                "implHandler": [
+                    "var me = this;",
+                    "",
+                    "var ctrl = getController('Main');",
+                    "var grid;",
+                    "if(ctrl.getWestPanel().getActiveTab().type == 'normal'){",
+                    "    grid = ctrl.getWestPanel().getActiveTab();",
+                    "}",
+                    "else{//gallery mode",
+                    "    grid = ctrl.getActiveTab().down('dataview');",
+                    "}",
+                    "",
+                    "var chks = grid.getSelectionModel().getSelection();",
+                    "var bdIdx = chks[0].get('bd_idx');",
+                    "var url = getHistoryApi();",
+                    "var cId = grid.categoryId;",
+                    "var colsList = grid.categoryColsList;",
+                    "var flds = ctrl.getDataFields(colsList);",
+                    "var gCols = ctrl.getGridColumns(colsList, true);",
+                    "",
+                    "/* store for grid */",
+                    "var hStore = Ext.create('Ext.data.Store', {",
+                    "    storeId:'hStore_' + bdIdx,",
+                    "    fields: flds,",
+                    "    proxy: {",
+                    "        type: 'jsonp',",
+                    "        url:url + '?bd_idx=' + bdIdx,",
+                    "        limitParam:'page_size',",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            rootProperty: 'binderList',",
+                    "            totalProperty: 'page.totCount'",
+                    "        }",
+                    "    },",
+                    "    listeners:{",
+                    "        load:function onHStoreLoad(store, records){",
+                    "            store.un('load', onHStoreLoad);",
+                    "            var hw = Ext.create(appName + '.view.HistoryWindow');",
+                    "            hw.show();",
+                    "            var historyGrid = hw.down('#historyGrid');",
+                    "            var hsViewer = hw.down('#historyViewer');",
+                    "            hsViewer.setStyle('border-bottom', '1px solid #cccccc');",
+                    "            /* to show up bottom line of header */",
+                    "            hsViewer.getHeader().removeCls('x-docked-top');",
+                    "            historyGrid.reconfigure(store, gCols);",
+                    "            historyGrid.setStyle('border-right', '1px solid #cccccc');",
+                    "            var currentIndex = -1;",
+                    "            historyGrid.on('itemclick', function( grid, record, item, index, e, eOpts ){",
+                    "                if(currentIndex == index){",
+                    "                    hsViewer.setCollapsed(true);",
+                    "                    currentIndex = -1;",
+                    "                    return;",
+                    "                }",
+                    "                currentIndex = index;",
+                    "                html = app.doc.Viewer.FORMS[0].getHtml(record.data);",
+                    "                hsViewer.setHtml(html);",
+                    "                hsViewer.setCollapsed(false);",
+                    "                hsViewer.setTitle('History ' + record.get('bd_idx') + '-' + (index + 1).toString());",
+                    "            });",
+                    "            hsViewer.on('titlechange', function(container){",
+                    "                /* prepare for when click on attached */",
+                    "                var attachFile = container.el.select('.viewer-attach-image');",
+                    "                getController('Viewer').viewAttachedFile(attachFile.elements);",
+                    "            });",
+                    "",
+                    "            /* check what has been changed in store */",
+                    "            var gridView = historyGrid.getView();",
+                    "            me.showChanged(store, gridView, true);",
+                    "",
+                    "        }",
+                    "    }",
+                    "});",
+                    "",
+                    "hStore.load();"
+                ]
+            },
+            "name": "showHistory",
+            "designerId": "184a84fb-baac-4353-91ba-6e70cc54c777"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|commentHeader": [
+                    "Show changed values in history"
+                ],
+                "designer|params": [
+                    "store",
+                    "gridView",
+                    "show"
+                ],
+                "fn": "showChanged",
+                "implHandler": [
+                    "var bgColor = (show)? '#ffe3cd': '#ffffff';",
+                    "store.each(function(record, index){",
+                    "    var preRec = store.getRange(index + 1, index + 1);",
+                    "    if(preRec.length > 0){",
+                    "        if(record.get('bd_subject') != preRec[0].get('bd_subject')){",
+                    "            Ext.get(gridView.getNodes(index, index)[0]).el.select('.gsubject').elements[0].style.backgroundColor = bgColor;",
+                    "        }",
+                    "        if(record.get('bd_content') != preRec[0].get('bd_content')){",
+                    "            Ext.get(gridView.getNodes(index, index)[0]).el.select('.gcontent').elements[0].style.backgroundColor = bgColor;",
+                    "        }",
+                    "        if(record.get('idx') != preRec[0].get('idx')){",
+                    "            Ext.get(gridView.getNodes(index, index)[0]).el.select('.gidx').elements[0].style.backgroundColor = bgColor;",
+                    "        }",
+                    "        Ext.Array.each(preRec[0].data.bd_data, function(entry, i){",
+                    "            if(record.get('bd_data')[i].data_val != entry.data_val){//exclude 'auto numbering field'",
+                    "                var idx = '.id' + record.get('bd_data')[i].cols_idx;",
+                    "                if(Ext.get(gridView.getNodes(index, index)[0]).el.select(idx).elements[0])",
+                    "                    Ext.get(gridView.getNodes(index, index)[0]).el.select(idx).elements[0].parentElement.style.backgroundColor = bgColor;",
+                    "            }",
+                    "        });",
+                    "    }",
+                    "});"
+                ]
+            },
+            "name": "showChanged",
+            "designerId": "5483e84c-2ac5-4cb8-9c68-1daca4547aea"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
                     "values",
                     "type",
                     "header"
@@ -1064,7 +1200,7 @@
                     "                var atFile = confirmWin.down('#atFile');",
                     "                var atName = confirmWin.down('#atName');",
                     "                atFile.setWidth(null);",
-                    "                atFile.setHeight(null);                ",
+                    "                atFile.setHeight(null);",
                     "                atFile.setSrc(tPath);",
                     "                atFile.setHeight(thumbHeight);",
                     "                atName.setText(filename);",
@@ -2213,6 +2349,36 @@
             },
             "name": "onViewerAfterLayout",
             "designerId": "4cebf6cc-4b57-4c6e-a685-16b1d322e460"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|commentHeader": [
+                    "Whecn click checkbox for showing changed in history"
+                ],
+                "designer|controlQuery": "#showChanged",
+                "designer|params": [
+                    "field",
+                    "newValue",
+                    "oldValue",
+                    "eOpts"
+                ],
+                "designer|targetType": "MyCheckbox",
+                "fn": "onShowChangedChange",
+                "implHandler": [
+                    "var grid = field.up('window').down('grid');",
+                    "this.showChanged(grid.getStore(), grid.getView(), newValue);"
+                ],
+                "name": "change",
+                "scope": "me"
+            },
+            "name": "onShowChangedChange",
+            "designerId": "bf134864-8901-429c-b5c8-0cbd1d18af54"
         }
     ]
 }

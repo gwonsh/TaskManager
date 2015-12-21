@@ -6,11 +6,21 @@
 
 .x-grid-item-selected {
     color: black;
-    background-color: #e9eef4 !important;
+    background-color: #f4f4f4 !important;
+    border-color:#cccccc !important;
 }
 .x-grid-item-over{
-    background-color:#f2f6fb !important;
+    background-color:#fcfcfc !important;
+    border-color:#cecece !important;
 }
+.x-grid-with-row-lines .x-grid-item-selected + .x-grid-item {
+    border-top-style: solid;
+    border-top-color: #cecece;
+} 
+.x-grid-with-row-lines .x-grid-item-over + .x-grid-item {
+    border-top-style: solid;
+} 
+/* remove focus box when click the cell */
 .x-grid-item-focused .x-grid-cell-inner:before {
     content:'';
     position:absolute;
@@ -18,6 +28,10 @@
     pointer-events:none  !important;
     border:none !important;
 }
+.x-grid-with-row-lines .x-grid-item{
+    border-right:1px solid #cecece;
+}
+
 .uploadGrid .x-grid-cell { 
     height:40px;
     vertical-align:middle;
@@ -31,12 +45,25 @@
 .x-panel-header-default {
     background-image: none;
     background-color: #ef5f5f5;
+    border-bottom:1px solid #cccccc;
 }
 .x-panel-header-title-default{
     color:#111111;
 }
+
 .menuPan .x-btn-over{
     background-color:#aab3bd !important;
+}
+
+.menuPan .menuButton{
+    border:none;
+    border-radius:0px;
+    background-color:#485265;
+}
+
+/* main menu mouseover */
+.menuButton.x-btn-over{
+    background-color:#566175 !important;
 }
 
 /* panel header border */
@@ -50,11 +77,23 @@
     height:28px;
 }
 .x-window-header-title-default {
-    color: #111111;
+    color: #ffffff;
     font-size: 15px;
     font-weight: bold;
     font-family: helvetica, arial, verdana, sans-serif;
     line-height: 16px;
+}
+
+/* Messagebox button */
+.x-message-box .x-btn-default-small{
+    background-color:#3892d3 !important;
+    padding: 5px;
+    border:none;
+    margin-bottom:20px;
+}
+
+.x-message-box .x-toolbar-footer{
+    background-color: #ffffff;
 }
 
 .x-toolbar-footer {

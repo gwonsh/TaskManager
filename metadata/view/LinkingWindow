@@ -20,6 +20,7 @@
         "id": null,
         "layout": "border",
         "maxHeight": null,
+        "maximizable": true,
         "opener": [
             "`null`"
         ],

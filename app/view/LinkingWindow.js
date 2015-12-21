@@ -47,6 +47,7 @@ Ext.define('TaskManager.view.LinkingWindow', {
         'background-color': '#ffffff'
     },
     ghost: false,
+    maximizable: true,
     defaultListenerScope: true,
 
     bind: {

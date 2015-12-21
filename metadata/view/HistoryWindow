@@ -1,0 +1,149 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyStyle": null,
+        "container|padding": null,
+        "designer|userAlias": "historywindow",
+        "designer|userClassName": "HistoryWindow",
+        "ghost": [
+            "false"
+        ],
+        "height": 768,
+        "itemId": "historyWindow",
+        "layout": "border",
+        "maximizable": true,
+        "modal": true,
+        "title": [
+            "{history}"
+        ],
+        "width": 1024
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "b0b847d2-6244-459f-b342-283f7bae59e3",
+    "viewControllerInstanceId": "089cf6e5-58c4-48de-bf24-ae75014bea48",
+    "viewModelInstanceId": "ac19fd43-a82d-475f-88d7-49d3e6b9d3f0",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 37,
+                "itemId": "historyHeader",
+                "layout|region": "north",
+                "style": "background-color:#f5f5f5;border-bottom:1px solid #cccccc"
+            },
+            "name": "MyContainer",
+            "configAlternates": {
+                "style": "string"
+            },
+            "designerId": "92b6470e-7676-4932-8597-a574768fff6e",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Checkbox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "boxLabel": [
+                            "{activateChanged}"
+                        ],
+                        "checked": true,
+                        "fieldLabel": null,
+                        "itemId": "showChanged",
+                        "margin": "8 20 0 0",
+                        "style": "float:right"
+                    },
+                    "name": "MyCheckbox",
+                    "configAlternates": {
+                        "style": "string",
+                        "boxLabel": "binding"
+                    },
+                    "designerId": "8740706d-2e49-4764-ac9f-1bb58ad0119d"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoShow": true,
+                "bodyStyle": [
+                    "{'background-color':'#999999'}"
+                ],
+                "header": false,
+                "itemId": "historyGrid",
+                "layout|flex": 1,
+                "layout|region": "west",
+                "layout|split": true,
+                "maxHeight": null,
+                "title": [
+                    "{historyList}"
+                ],
+                "width": null
+            },
+            "name": "MyGridPanel",
+            "configAlternates": {
+                "title": "binding"
+            },
+            "designerId": "5ae0a7b1-2bfc-4ba6-b830-1c3dd713f5b5",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "string",
+                        "text": "String"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "6c252c6b-ac6c-40d2-8ff2-329a1514fee7"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "animCollapse": false,
+                "collapseDirection": "right",
+                "collapsed": true,
+                "collapsible": true,
+                "itemId": "historyViewer",
+                "layout|flex": 3,
+                "layout|region": "center",
+                "layout|split": true,
+                "scrollable": true
+            },
+            "name": "MyPanel5",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
+            "designerId": "a2f6bd51-3502-4f98-ae79-92538636c36e"
+        }
+    ]
+}

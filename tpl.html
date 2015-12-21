@@ -1,0 +1,56 @@
+<div style="width:100%;height:{[this.setDocumentSize()]};background-color:#ffffff;padding:20px">
+    <!--         subject -->
+    <div style="width:100%;height:50px;background:#000;">
+        <div style="float:left;width:4px;height:100%;background:{bd_colortag};color:#ffffff"></div>
+        <div style="float:left:height:100%;padding:17px 0 0 20px;font-weight:bold;font-size:17px;color:#ffffff;">{bd_subject}</div>
+    </div>
+    <!--         username and post date -->
+    <div style="width:100%;">            
+        <table style="margin-top:25px;">
+            <tr>
+                <td style="font-weight:bold">{[callLanguagePack('main', 'user')]}</td>
+                <td>{bd_name}</td>
+                <td style="font-weight:bold">{[callLanguagePack('main', 'regDate')]}</td>
+                <td style="color:#777777">{bd_regdate}</td>
+            </tr>  
+        </table>
+    </div>
+    <!--         bd_content -->
+    <tpl if="values.bd_content != ''">
+        <div style="border-bottom:1px solid #000;border-top:1px solid #000;padding:6px">{bd_content}</div>
+    </tpl>
+    <!--         space -->
+    <div style="width:100%;height:5px;"></div>
+    <!--         thumbnails and files -->
+    <tpl if="hasFile == true">
+        <div style="width:100%;margin-top:15px;;overflow:hidden">
+            <tpl for="bd_file">
+                <div class="attached_file" filename="{file_name}" path="{[this.getFilePath(values.thumb_path)]}" style="float:left;width:120px;height:143px;margin-right:3px;border:1px solid #cccccc">
+                    <!--                         thumbnail -->
+                    <div onclick='getController("Main").viewImage("{[this.getFilePath(values.thumb_path)]}")' style="width:100%;height:120px;background:url({[this.getThumbPath(values.thumb_path)]});background-size:{[this.checkSize(values)]}"></div>
+                    <!--                         filename -->
+                    <div style="font-size:11px;margin-top:3px;text-align:center;overflow:hidden" title="{file_name}">{file_name}</div>
+                </div>
+            </tpl>
+        </div>
+    </tpl>
+    <!--         custom fields -->
+    <div style="margin-top:25px;float:left;width:100%">
+        <table width=100%>
+            <tpl for="bd_data">
+                <tpl if="data_val != ''">
+                    <tr>
+                        <td style="font-weight:bold;vertical-align:top;padding-right:5px;width:130px">{cols_name}</td>
+                        <tpl if='values.cols_type != "datagrp"'>
+                            <td style="border-bottom:1px solid #000;padding:3px">{data_html}</td>
+                        </tpl>
+                        <tpl if='values.cols_type == "datagrp"'>
+                            <td style="border-bottom:1px solid #000;padding:3px">{data_val}</td>
+                        </tpl>                    
+                    </tr>
+                </tpl>
+            </tpl>
+        </table>
+    </div>
+</div>
+<div style="height:20px;width:100%;float:left"></div>

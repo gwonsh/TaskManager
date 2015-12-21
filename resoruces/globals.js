@@ -8,8 +8,8 @@ if(document.location.hostname != 'localhost'){
     domain = 'http://' + document.location.hostname;
 }
 else{
-    //     domain = 'http://smartdb.kr';
-    domain = 'http://data.samwoodtp.com';
+    domain = 'http://smartdb.kr';
+    //domain = 'http://data.samwoodtp.com';
     //     domain = "http://samsung.dipol.co.kr";
 }
 
@@ -172,6 +172,9 @@ function getLogoutApi(){
 function getUpdateApprovalApi(){
     return getDomain() + '/json/approval';
 }
+function getHistoryApi(){
+    return getDomain() + '/json/history';
+}
 
 var languageSet = {
     English:{
@@ -185,13 +188,16 @@ var languageSet = {
         menu:{
             clear:'Clear',
             close:'Close',
-            copy:'Copy',
+            copy:'Copy selected',
             download:'Download attached files',
-            edit:'Edit',
+            edit:'Edit selected',
             editable:'Editable/Uneditable',
+            history:'History',
             isEditable:'Activate the edit mode',
+            menu:'Menu',
             newPost:'New',
-            remove:'Remove',
+            print:'Print selected',
+            remove:'Remove Selected',
             seeDetail:'See details',
             setting:'Setting',
             uneditable:'Deactivate the edit mode',
@@ -209,6 +215,7 @@ var languageSet = {
             complete:'Save',
             config:'Preference',
             copied:'copy complete',
+            copyMessage:'Data will be copied. Are you sure',
             delAlert:'Are you sure? It can not be recovered',
             description:'Description:',
             download:'Download',
@@ -218,6 +225,7 @@ var languageSet = {
             emptyItem:'Select one',
             file:'File',
             gridTitle:'Data list',
+            historyList:'History List',
             message:'Message',
             name:'Name',
             networkProblem:'Network connection has a problem',
@@ -254,6 +262,7 @@ var languageSet = {
             cellEditTip:'Press Enter key to save, Press ESC key to cancel',
             delRow:'Remove the selected row',
             delAllRow:'Remove all row',
+            edit:'Edit',
             edited:'it updated successfully',
             entry:'Insert',
             fileName:'File name',
@@ -267,6 +276,7 @@ var languageSet = {
             option2:'2nd option', 
             pleaseWait:'Plese wait while uploading...',
             posted:'Submit complete',
+            saveHistory:'Save history',
             selectFirstOption:'Please select the first option',
             selectSecondOption:'Are you sure that uploading without the second option?',            
             submit:'Submit',
@@ -296,6 +306,7 @@ var languageSet = {
             yearRequired:'Select year first'
         },
         viewer:{
+            activateChanged:'Show changed',
             byImage:'By Image',
             defaultView:'Default',
             gallery:'Gallery',
@@ -314,13 +325,16 @@ var languageSet = {
         menu:{
             clear:'초기화',
             close:'닫기',
-            copy:'자료복사',
-            edit:'수정',
+            copy:'선택자료 복사',
+            edit:'선택자료 수정',
             editable:'수정모드/보호모드',
             download:'첨부파일 다운로드',
+            history:'히스토리',
             isEditable:'수정모드가 활성화 됐습니다.',
+            menu:'메뉴',
             newPost:'새로 작성',
-            remove:'삭제',
+            print:'선택자료 인쇄',
+            remove:'선택자료 삭제',
             seeDetail:'자세히보기',
             setting:'설정',
             uneditable:'보호모드가 활성화 됐습니다.',
@@ -333,11 +347,12 @@ var languageSet = {
             browse:'찾아보기',
             canceled:'취소 됐습니다.',
             category:'카테고리',
-            caution:'주위',
+            caution:'주의',
             commentList:'댓글목록',
             complete:'완료',
             config:'설정',
             copied:'복사 되었습니다.',
+            copyMessage:'자료가 복사됩니다. 진행하시겠습니까?',
             delAlert:'삭제된 내용은 복구 될 수 없습니다. 삭제 하시겠습니까?',
             description:'내용:',
             download:'다운로드',
@@ -347,6 +362,7 @@ var languageSet = {
             emptyItem:'선택',
             file:'파일',
             gridTitle:'자료목록',
+            historyList:'히스토리 목록',
             message:'메시지',
             name:'이름',
             networkProblem:'넷트웍 연결에 문제가 있습니다.',
@@ -381,6 +397,7 @@ var languageSet = {
             autoText:'포함된 글자 입력 후 아래 방향키 사용',
             cancel:'취소',
             cellEditTip:'Enter 키를 누르면 적용, ESC를 누르면 취소',
+            edit:'수정',
             edited:'수정 됐습니다.',
             entry:'입력',
             delAllRow:'모든 열 제거',
@@ -397,6 +414,7 @@ var languageSet = {
             option2:'둘째조건', 
             pleaseWait:'업로드 중입니다. 잠시만 기다려 주세요...',
             posted:'등록 됐습니다.',
+            saveHistory:'히스토리저장',
             selectFirstOption:'첫번째 조건을 선택 해 주세요',
             selectSecondOption:'두번째 조건 없이 첫번째 값만 입력 하시겠습니까?',
             submit:'등록',
@@ -426,6 +444,7 @@ var languageSet = {
             yearRequired:'연도 먼저 선택해 주세요'
         },
         viewer:{
+            activateChanged:'변경된 자료 표시',
             byImage:'이미지 강조',
             defaultView:'기본',
             gallery:'갤러리',
